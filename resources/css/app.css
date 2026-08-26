@@ -21,15 +21,97 @@
     --color-mai-border: #dedcd7;
 }
 
-@layer utilities {
-    .prefers-reduced-motion {
-        @media (prefers-reduced-motion: reduce) {
-            animation: none !important;
-            transition: none !important;
-        }
+[x-cloak] {
+    display: none !important;
+}
+
+/*
+ * Scroll-reveal system — see docs/DESIGN_SYSTEM.md "Animation".
+ * Elements start hidden/offset and are flipped to `.is-visible` by
+ * resources/js/animations.js via IntersectionObserver. Kept as plain CSS
+ * (no animation library) so there is nothing to load beyond a few bytes.
+ */
+.reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(1.04);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+.reveal.is-visible,
+.reveal-scale.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Hero content: animates immediately on load rather than on scroll. */
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
     }
 }
 
-[x-cloak] {
-    display: none !important;
+.animate-fade-up {
+    animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--reveal-delay, 0ms);
+}
+
+/* Underline sweep for desktop nav links. */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    background: var(--color-mai-red);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current='page']::after {
+    transform: scaleX(1);
+}
+
+[data-site-header] {
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+[data-site-header].is-scrolled {
+    box-shadow: 0 1px 2px rgba(24, 24, 24, 0.04), 0 4px 12px rgba(24, 24, 24, 0.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal-scale,
+    .animate-fade-up {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        transition: none !important;
+    }
+
+    * {
+        scroll-behavior: auto !important;
+    }
 }

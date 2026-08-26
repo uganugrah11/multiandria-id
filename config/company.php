@@ -68,29 +68,40 @@ return [
     | Company timeline
     |--------------------------------------------------------------------------
     |
-    | Verified against the live multiandriaindonesia.com/about-us page on
-    | 2026-08-26 (see docs/DISCOVERY.md Task 2.6). Do not add years/claims
-    | that aren't independently confirmed.
+    | Verified against the Company Profile PDF (public/company_profile.pdf)
+    | on 2026-08-27, cross-checked against the live multiandriaindonesia.com
+    | /about-us page captured 2026-08-26 (see docs/DISCOVERY.md Task 2.6).
+    |
+    | Note: the Company Profile's own intro paragraph says "berdiri sejak
+    | tahun 2012," but its timeline graphic dates the first (pre-PT)
+    | milestone to 2014, and 2018 employee count reads 20 (not the 50 the
+    | live site's About page shows). Timeline below follows the PDF's own
+    | timeline graphic — the more specific, purpose-built source — since
+    | that's also the structure the redesign brief itself was built around.
+    | CONTENT NEEDED: business to confirm which figure (2012 vs. 2014, 20 vs.
+    | 50 employees in 2018) is correct so every page agrees.
+    |
+    | Do not add years/claims that aren't in one of these two sources.
     |
     */
     'timeline' => [
         [
-            'year' => 2012,
+            'year' => '2014',
             'title' => 'Awal Mula',
             'description' => 'Fasilitas konveksi pertama kali berdiri di Bintaro, Tangerang Selatan (belum berbadan hukum PT).',
         ],
         [
-            'year' => 2018,
+            'year' => '2018',
             'title' => 'Pendirian Perusahaan',
-            'description' => 'PT. Multi Andria Indonesia (PT. MAI) resmi berdiri pada 7 November 2018, dengan 50 karyawan.',
+            'description' => 'PT. Multi Andria Indonesia (PT. MAI) resmi berdiri pada 7 November 2018, dengan 20 karyawan.',
         ],
         [
-            'year' => 2019,
+            'year' => '2019',
             'title' => 'Ekspansi Sukabumi',
             'description' => 'Ekspansi ke Sukabumi dengan menyewa 3 ruko. Total karyawan Sukabumi mencapai 120 orang.',
         ],
         [
-            'year' => 2020,
+            'year' => '2020',
             'title' => 'Pabrik Sukabumi Berdiri',
             'description' => [
                 'Pabrik Garmen Sukabumi resmi berdiri dengan luas bangunan 1.860 m².',
@@ -98,7 +109,7 @@ return [
             ],
         ],
         [
-            'year' => 2021,
+            'year' => '2021–2022',
             'title' => 'Klien Besar & Proyek B2G',
             'description' => [
                 'Menangani proyek B2G: Kementerian Perindustrian dan Pengadaan MPR RI.',
@@ -106,7 +117,7 @@ return [
             ],
         ],
         [
-            'year' => 2023,
+            'year' => '2023',
             'title' => 'Perluasan Kantor Pusat',
             'description' => [
                 'Perluasan fasilitas Bintaro dengan gedung 4 lantai sebagai kantor pusat & produksi.',
@@ -114,7 +125,7 @@ return [
             ],
         ],
         [
-            'year' => 2024,
+            'year' => '2024',
             'title' => 'Pertumbuhan Signifikan',
             'description' => [
                 'Total karyawan mencapai 600 orang.',

@@ -11,7 +11,7 @@
         </div>
         <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             @foreach($b2b as $client)
-                <div class="flex h-20 items-center justify-center rounded-lg border border-mai-border bg-white p-4 grayscale transition hover:grayscale-0">
+                <div class="reveal flex h-20 items-center justify-center rounded-lg border border-mai-border bg-white p-4 grayscale transition-all duration-200 hover:-translate-y-0.5 hover:grayscale-0 hover:shadow-sm" style="--reveal-delay: {{ min($loop->index * 40, 320) }}ms">
                     <img src="{{ asset($client['logo']) }}" alt="{{ $client['name'] }}" class="max-h-full max-w-full object-contain" loading="lazy">
                 </div>
             @endforeach
@@ -25,7 +25,7 @@
         </div>
         <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             @foreach($b2g as $client)
-                <div class="flex h-20 items-center justify-center rounded-lg border border-mai-border bg-white p-4 grayscale transition hover:grayscale-0">
+                <div class="reveal flex h-20 items-center justify-center rounded-lg border border-mai-border bg-white p-4 grayscale transition-all duration-200 hover:-translate-y-0.5 hover:grayscale-0 hover:shadow-sm" style="--reveal-delay: {{ min($loop->index * 40, 320) }}ms">
                     <img src="{{ asset($client['logo']) }}" alt="{{ $client['name'] }}" class="max-h-full max-w-full object-contain" loading="lazy">
                 </div>
             @endforeach

@@ -9,8 +9,11 @@
 
 <div class="grid grid-cols-2 gap-6 sm:grid-cols-4">
     @foreach($stats as $stat)
-        <div class="text-center">
-            <p class="text-3xl font-extrabold text-white sm:text-4xl">{{ $stat['value'] }}</p>
+        <div class="reveal text-center" style="--reveal-delay: {{ $loop->index * 90 }}ms">
+            {{-- data-counter: the real value is already rendered server-side, JS only
+                 animates a count-up from 0 once in view — no-JS/no-scroll users still
+                 see the correct number, so there's no "0" flash. --}}
+            <p class="text-3xl font-extrabold text-white sm:text-4xl" data-counter>{{ $stat['value'] }}</p>
             <p class="mt-1 text-xs font-medium text-white/70 sm:text-sm">{{ $stat['label'] }}</p>
         </div>
     @endforeach

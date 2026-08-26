@@ -21,7 +21,7 @@
         Langsung ke konten
     </a>
 
-    <header x-data="{ mobileOpen: false }" class="sticky top-0 z-40 border-b border-mai-border bg-mai-ivory/95 backdrop-blur">
+    <header x-data="{ mobileOpen: false }" data-site-header class="sticky top-0 z-40 border-b border-mai-border bg-mai-ivory/95 backdrop-blur">
         <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             <a href="{{ route('home') }}" class="flex items-center gap-2">
                 <img src="{{ asset('images/logo-mai-transparent.png') }}" alt="Multi Andria Indonesia" class="h-10 w-10 object-contain">
@@ -45,7 +45,8 @@
                 @foreach($navLinks as $key => $link)
                     <a
                         href="{{ route($link['route']) }}"
-                        class="text-sm font-semibold transition-colors {{ request()->routeIs($link['route']) ? 'text-mai-red' : 'text-mai-charcoal hover:text-mai-red' }}"
+                        @if(request()->routeIs($link['route'])) aria-current="page" @endif
+                        class="nav-link text-sm font-semibold transition-colors {{ request()->routeIs($link['route']) ? 'text-mai-red' : 'text-mai-charcoal hover:text-mai-red' }}"
                     >
                         {{ $link['label'] }}
                     </a>
@@ -107,7 +108,7 @@
                         <span class="text-base font-bold">Multi Andria Indonesia</span>
                     </div>
                     <p class="mt-4 max-w-sm text-sm leading-relaxed text-mai-slate">
-                        Produsen garment dan tekstil untuk kebutuhan bisnis, institusi, dan pemerintahan sejak 2012.
+                        Produsen garment dan tekstil untuk kebutuhan bisnis, institusi, dan pemerintahan sejak 2014.
                     </p>
                     @if(config('company.social.instagram') || config('company.social.tiktok') || config('company.social.linkedin'))
                         <div class="mt-6 flex items-center gap-4">

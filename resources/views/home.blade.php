@@ -1,25 +1,25 @@
 <x-layouts.app>
 
-    {{-- 1. Hero --}}
+    {{-- 1. Hero — animates on load, not on scroll, since it's already in view --}}
     <section class="relative overflow-hidden bg-mai-charcoal">
         <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-32">
             <div>
-                <p class="text-xs font-bold uppercase tracking-widest text-mai-soft-red">PT. Multi Andria Indonesia</p>
-                <h1 class="mt-4 text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
+                <p class="animate-fade-up text-xs font-bold uppercase tracking-widest text-mai-soft-red" style="--reveal-delay: 0ms">PT. Multi Andria Indonesia</p>
+                <h1 class="animate-fade-up mt-4 text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl" style="--reveal-delay: 80ms">
                     Partner Produksi Garment untuk Bisnis dan Institusi Anda
                 </h1>
-                <p class="mt-6 max-w-lg text-lg leading-relaxed text-white/70">
+                <p class="animate-fade-up mt-6 max-w-lg text-lg leading-relaxed text-white/70" style="--reveal-delay: 160ms">
                     Produksi garment dan tekstil custom untuk kebutuhan brand, perusahaan, sekolah, dan pemerintahan — dari konsultasi sampai produksi selesai.
                 </p>
-                <div class="mt-10 flex flex-wrap gap-4">
+                <div class="animate-fade-up mt-10 flex flex-wrap gap-4" style="--reveal-delay: 240ms">
                     <x-whatsapp-button size="lg">Konsultasi via WhatsApp</x-whatsapp-button>
-                    <a href="{{ route('products.index') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/30 px-8 py-4 text-base font-semibold text-white transition-colors hover:border-white">
+                    <a href="{{ route('products.index') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/30 px-8 py-4 text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-white motion-reduce:hover:translate-y-0">
                         Lihat Produk
                     </a>
                 </div>
             </div>
 
-            <div class="relative aspect-4/5 overflow-hidden rounded-2xl border border-white/10 bg-white/5 lg:aspect-square">
+            <div class="reveal-scale relative aspect-4/5 overflow-hidden rounded-2xl border border-white/10 bg-white/5 lg:aspect-square" style="--reveal-delay: 120ms">
                 <div class="flex h-full items-center justify-center p-10 text-center text-sm text-white/40">
                     [CONTENT NEEDED — foto produksi/factory asli PT. Multi Andria Indonesia akan tampil di sini]
                 </div>
@@ -27,23 +27,22 @@
         </div>
     </section>
 
-    {{-- 2. Company Introduction --}}
+    {{-- 2. Company Introduction + Timeline --}}
     <section class="bg-white py-20 sm:py-24">
-        <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-            <div>
-                <x-section-heading eyebrow="Sejak 2012">
-                    Dari konveksi kecil di Bintaro, kini melayani bisnis dan institusi di seluruh Indonesia
-                </x-section-heading>
-                <p class="mt-6 max-w-lg text-base leading-relaxed text-mai-slate">
-                    PT. Multi Andria Indonesia berdiri sejak 2012 dan resmi berbadan hukum pada 2018. Kini kami mengoperasikan kantor pusat di Bintaro dan pabrik produksi di Sukabumi, melayani klien B2B maupun B2G/BUMN.
-                </p>
-                <a href="{{ route('about') }}" class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-mai-red hover:text-mai-wine">
-                    Selengkapnya tentang kami &rarr;
-                </a>
-            </div>
-            <div class="rounded-2xl border border-mai-border bg-mai-ivory p-8">
-                <x-company-timeline />
-            </div>
+        <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+            <x-section-heading eyebrow="Sejak 2014" align="center" class="reveal mx-auto">
+                Dari konveksi kecil di Bintaro, kini melayani bisnis dan institusi di seluruh Indonesia
+            </x-section-heading>
+            <p class="reveal mx-auto mt-6 max-w-2xl text-base leading-relaxed text-mai-slate" style="--reveal-delay: 60ms">
+                PT. Multi Andria Indonesia berdiri sejak 2014 dan resmi berbadan hukum pada 2018. Kini kami mengoperasikan kantor pusat di Bintaro dan pabrik produksi di Sukabumi, melayani klien B2B maupun B2G/BUMN.
+            </p>
+            <a href="{{ route('about') }}" class="reveal mt-6 inline-flex items-center gap-1 text-sm font-semibold text-mai-red transition-transform duration-200 hover:gap-2 hover:text-mai-wine" style="--reveal-delay: 100ms">
+                Selengkapnya tentang kami &rarr;
+            </a>
+        </div>
+
+        <div class="mx-auto mt-16 max-w-7xl px-4 sm:px-6 lg:px-8">
+            <x-company-timeline />
         </div>
     </section>
 
@@ -57,20 +56,24 @@
     {{-- 4. Product Categories --}}
     <section class="bg-mai-ivory py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <x-section-heading eyebrow="Kapabilitas Produk" align="center" class="mx-auto">
+            <x-section-heading eyebrow="Kapabilitas Produk" align="center" class="reveal mx-auto">
                 Kami memproduksi berbagai kategori garment
             </x-section-heading>
 
             <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
                 @foreach(\App\Models\Product::productTypes() as $slug => $label)
-                    <a href="{{ route('products.index', ['type' => $slug]) }}" class="group rounded-xl border border-mai-border bg-white p-6 text-center transition hover:border-mai-red">
-                        <p class="text-sm font-bold text-mai-charcoal group-hover:text-mai-red">{{ $label }}</p>
+                    <a
+                        href="{{ route('products.index', ['type' => $slug]) }}"
+                        class="reveal group rounded-xl border border-mai-border bg-white p-6 text-center transition-all duration-200 hover:-translate-y-1 hover:border-mai-red hover:shadow-md"
+                        style="--reveal-delay: {{ min($loop->index * 60, 360) }}ms"
+                    >
+                        <p class="text-sm font-bold text-mai-charcoal transition-colors group-hover:text-mai-red">{{ $label }}</p>
                     </a>
                 @endforeach
             </div>
 
             <div class="mt-10 text-center">
-                <a href="{{ route('products.index') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border border-mai-border px-8 py-4 text-sm font-semibold text-mai-charcoal transition hover:border-mai-charcoal">
+                <a href="{{ route('products.index') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border border-mai-border px-8 py-4 text-sm font-semibold text-mai-charcoal transition-all duration-200 hover:-translate-y-0.5 hover:border-mai-charcoal motion-reduce:hover:translate-y-0">
                     Lihat Semua Produk
                 </a>
             </div>
@@ -80,22 +83,24 @@
     {{-- 5. Manufacturing Capabilities --}}
     <section class="bg-mai-charcoal py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <x-section-heading eyebrow="Kapabilitas Produksi" align="center" class="mx-auto">
+            <x-section-heading eyebrow="Kapabilitas Produksi" align="center" class="reveal mx-auto">
                 <span class="text-white">Dari konsultasi sampai produk jadi</span>
             </x-section-heading>
 
-            <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
-                @foreach(['Konsultasi', 'Cutting', 'Sewing', 'Finishing & QC'] as $step)
-                    <div class="rounded-xl border border-white/10 bg-white/5 p-6 text-center">
+            <div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-5">
+                @foreach(['Desain', 'Pemilihan Bahan', 'Penjahitan & Perapihan', 'Pengemasan', 'Pengiriman'] as $step)
+                    <div class="reveal rounded-xl border border-white/10 bg-white/5 p-6 text-center transition-colors duration-200 hover:border-mai-red/40" style="--reveal-delay: {{ $loop->index * 80 }}ms">
                         <p class="text-sm font-bold text-white">{{ $step }}</p>
                     </div>
                 @endforeach
             </div>
-            <p class="mx-auto mt-8 max-w-2xl text-center text-sm text-white/50">
-                [CONTENT NEEDED — konfirmasi tahapan produksi lengkap dan kapabilitas CMT/FOB sebelum tampil sebagai klaim final. Lihat docs/CONTENT_REQUIREMENTS.md.]
+            <p class="reveal mx-auto mt-8 max-w-2xl text-center text-sm text-white/50">
+                Quality Control kami komprehensif di setiap tahap, dari desain sampai pengiriman.
+                Tersedia dalam dua model kerja sama —
+                <a href="{{ route('services') }}" class="font-semibold text-mai-soft-red hover:text-white">Jasa CMT dan Jasa FOB</a>.
             </p>
 
-            <div class="mt-10 text-center">
+            <div class="reveal mt-10 text-center">
                 <x-whatsapp-button
                     size="lg"
                     :message="'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai kebutuhan produksi garment.'"
@@ -109,18 +114,17 @@
     {{-- 6. Why Multi Andria --}}
     <section class="bg-white py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <x-section-heading eyebrow="Mengapa Multi Andria" align="center" class="mx-auto">
+            <x-section-heading eyebrow="Keunggulan Kami" align="center" class="reveal mx-auto">
                 Dipercaya bisnis dan institusi di seluruh Indonesia
             </x-section-heading>
 
-            <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
                 @foreach([
-                    ['title' => 'Kapasitas Produksi Besar', 'desc' => 'Kapasitas produksi hingga 5.000 pcs per hari.'],
-                    ['title' => 'Produksi Custom', 'desc' => 'Desain, ukuran, dan bahan disesuaikan kebutuhan Anda.'],
-                    ['title' => 'Berpengalaman B2G', 'desc' => 'Menangani proyek pemerintahan dan BUMN.'],
-                    ['title' => 'Tim Profesional', 'desc' => '600+ karyawan mendukung proses produksi.'],
+                    ['title' => 'Produksi Skala Besar', 'desc' => 'Kapasitas dan infrastruktur yang mumpuni untuk memfasilitasi produksi skala besar, memastikan setiap pesanan dipenuhi tepat waktu dengan kualitas konsisten.'],
+                    ['title' => 'Jaminan Kualitas & Pengiriman', 'desc' => 'Standar Quality Control yang komprehensif — mulai dari desain, pemilihan bahan, penjahitan & perapihan, pengemasan, hingga pengiriman.'],
+                    ['title' => 'After Sales Service', 'desc' => 'Layanan purna jual untuk memastikan kebutuhan Anda selalu terpenuhi setelah produksi selesai.'],
                 ] as $item)
-                    <div class="rounded-xl border border-mai-border p-6">
+                    <div class="reveal rounded-xl border border-mai-border p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-md" style="--reveal-delay: {{ $loop->index * 90 }}ms">
                         <div class="mb-4 h-10 w-10 rounded-full bg-mai-red/10"></div>
                         <h3 class="text-base font-bold text-mai-charcoal">{{ $item['title'] }}</h3>
                         <p class="mt-2 text-sm leading-relaxed text-mai-slate">{{ $item['desc'] }}</p>
@@ -134,14 +138,14 @@
     @if($featuredPortfolio->isNotEmpty())
         <section class="bg-mai-ivory py-20 sm:py-24">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <x-section-heading eyebrow="Portfolio">Hasil produksi kami</x-section-heading>
+                <x-section-heading eyebrow="Portfolio" class="reveal">Hasil produksi kami</x-section-heading>
 
                 <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     @foreach($featuredPortfolio as $project)
-                        <div class="overflow-hidden rounded-xl border border-mai-border bg-white">
-                            <div class="aspect-square bg-mai-gray">
+                        <div class="reveal group overflow-hidden rounded-xl border border-mai-border bg-white" style="--reveal-delay: {{ $loop->index * 80 }}ms">
+                            <div class="aspect-square overflow-hidden bg-mai-gray">
                                 @if($project->cover_image_url)
-                                    <img src="{{ $project->cover_image_url }}" alt="{{ $project->title }}" class="h-full w-full object-cover">
+                                    <img src="{{ $project->cover_image_url }}" alt="{{ $project->title }}" class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
                                 @endif
                             </div>
                             <div class="p-4">
@@ -154,7 +158,7 @@
                     @endforeach
                 </div>
 
-                <div class="mt-10 text-center">
+                <div class="reveal mt-10 text-center">
                     <x-whatsapp-button variant="secondary" size="md">Buat Produk Serupa</x-whatsapp-button>
                 </div>
             </div>
@@ -164,10 +168,10 @@
     {{-- 8. Client / Trust Signals --}}
     <section class="bg-white py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <x-section-heading eyebrow="Klien Kami" align="center" class="mx-auto">
+            <x-section-heading eyebrow="Klien Kami" align="center" class="reveal mx-auto">
                 Dipercaya oleh brand dan institusi terkemuka
             </x-section-heading>
-            <div class="mt-12">
+            <div class="reveal mt-12" style="--reveal-delay: 100ms">
                 <x-client-logos />
             </div>
         </div>
@@ -176,7 +180,7 @@
     {{-- 9. FAQ --}}
     <section class="bg-mai-ivory py-20 sm:py-24" x-data="{ open: 0 }">
         <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-            <x-section-heading eyebrow="FAQ" align="center" class="mx-auto">
+            <x-section-heading eyebrow="FAQ" align="center" class="reveal mx-auto">
                 Pertanyaan yang sering diajukan
             </x-section-heading>
 
@@ -194,13 +198,13 @@
                     ];
                 @endphp
                 @foreach($faqs as $index => $faq)
-                    <div class="overflow-hidden rounded-xl border border-mai-border bg-white">
+                    <div class="reveal overflow-hidden rounded-xl border border-mai-border bg-white transition-colors duration-200 hover:border-mai-red/40" style="--reveal-delay: {{ $index * 70 }}ms">
                         <button
                             @click="open = open === {{ $index }} ? null : {{ $index }}"
                             class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                         >
                             <span class="text-sm font-bold text-mai-charcoal">{{ $faq['q'] }}</span>
-                            <span class="text-mai-red" x-text="open === {{ $index }} ? '−' : '+'"></span>
+                            <span class="text-mai-red transition-transform duration-200" :class="open === {{ $index }} ? 'rotate-45' : ''" aria-hidden="true">+</span>
                         </button>
                         <div x-show="open === {{ $index }}" x-transition x-cloak class="px-6 pb-5 text-sm leading-relaxed text-mai-slate">
                             {{ $faq['a'] }}
@@ -216,16 +220,16 @@
 
     {{-- 10. Final CTA --}}
     <section class="bg-mai-red py-20 sm:py-28">
-        <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+        <div class="reveal mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
             <h2 class="text-3xl font-extrabold text-white sm:text-4xl">Siap Memulai Produksi?</h2>
             <p class="mx-auto mt-4 max-w-xl text-base text-white/80">
                 Diskusikan kebutuhan garment Anda bersama tim Multi Andria Indonesia.
             </p>
             <div class="mt-8 flex flex-wrap justify-center gap-4">
-                <a href="https://wa.me/{{ config('company.whatsapp.number') }}?text={{ rawurlencode(config('company.whatsapp.default_message')) }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-4 text-base font-semibold text-mai-red hover:bg-mai-ivory">
+                <a href="https://wa.me/{{ config('company.whatsapp.number') }}?text={{ rawurlencode(config('company.whatsapp.default_message')) }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-4 text-base font-semibold text-mai-red shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-mai-ivory hover:shadow-md motion-reduce:hover:translate-y-0">
                     Konsultasi via WhatsApp
                 </a>
-                <a href="{{ route('products.index') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/40 px-8 py-4 text-base font-semibold text-white hover:border-white">
+                <a href="{{ route('products.index') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/40 px-8 py-4 text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-white motion-reduce:hover:translate-y-0">
                     Lihat Produk
                 </a>
             </div>

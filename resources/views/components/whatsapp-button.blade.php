@@ -9,7 +9,7 @@
     $text = $message ?? config('company.whatsapp.default_message');
     $href = 'https://wa.me/'.$number.'?text='.rawurlencode($text);
 
-    $base = 'inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mai-red';
+    $base = 'inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-all duration-200 ease-out hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mai-red motion-reduce:hover:translate-y-0';
 
     $sizes = [
         'md' => 'px-6 py-3 text-sm',
@@ -17,7 +17,7 @@
     ];
 
     $variants = [
-        'primary' => 'bg-mai-red text-white hover:bg-mai-wine',
+        'primary' => 'bg-mai-red text-white shadow-sm hover:bg-mai-wine hover:shadow-md',
         'secondary' => 'bg-transparent text-mai-charcoal border border-mai-border hover:border-mai-charcoal',
     ];
 @endphp
