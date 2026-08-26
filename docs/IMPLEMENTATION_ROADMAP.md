@@ -21,7 +21,7 @@ This roadmap assumes approval of the direction documented in `SITEMAP.md`, `HOME
 
 ### Phase 4 — Laravel/Tailwind Foundation
 **Purpose:** Stand up the actual project skeleton — nothing here exists yet (see Phase 1 finding).
-**What:** Laravel install, Tailwind + Vite configuration using the tokens from Phase 3, base Blade layout, route skeleton for the Phase 2 sitemap (Home, Tentang Kami, Produk, Layanan, Manufacturing, Portfolio, Kontak), centralized `config('company.*')` including `company.whatsapp.number` and `company.whatsapp.default_message`, and a reusable `<x-whatsapp-button>` Blade component.
+**What:** Laravel install, Tailwind + Vite configuration using the tokens from Phase 3, base Blade layout, route skeleton for the Phase 2 sitemap (Home, Tentang Kami, Produk, Layanan, Manufacturing, Portfolio — no separate Kontak page, see Phase 9), centralized `config('company.*')` including `company.whatsapp.number` and `company.whatsapp.default_message`, and a reusable `<x-whatsapp-button>` Blade component.
 **Dependencies:** Approved Phase 2–3 direction; the WhatsApp number from `CONTENT_REQUIREMENTS.md` (a placeholder config value can unblock development, but must not ship to production unconfirmed).
 **Expected result:** Routes resolve; base layout renders at every breakpoint with no real content yet.
 
@@ -49,11 +49,11 @@ This roadmap assumes approval of the direction documented in `SITEMAP.md`, `HOME
 **Dependencies:** Real photography of named historical projects (`CONTENT_REQUIREMENTS.md`).
 **Expected result:** A page that functions as visual proof of delivered work for serious B2B/B2G buyers.
 
-### Phase 9 — About + Contact
-**Purpose:** Build the deepest trust page and the page that finally gives the site a real, dedicated contact destination.
-**What:** `/tentang-kami` (full timeline, vision/mission, stats) and `/kontak` (address + map, WhatsApp, email, phone, optional lightweight quote form), plus the site-wide floating/sticky WhatsApp button and the Track Order decision from `CONTENT_REQUIREMENTS.md`.
+### Phase 9 — About + Location
+**Purpose:** Build the deepest trust page — including proof of where the company actually is. Per explicit instruction (2026-08-28), there is no separate Contact page; this phase is where location/contact information gets its permanent home instead.
+**What:** `/tentang-kami` (full timeline, vision/mission, stats, and a "Lokasi Kami" section with Google Maps for both HQ and factory — done), a compact factory/HQ location card with map on `/manufacturing` (done), a footer address+map-link block on every page (done), plus the site-wide floating/sticky WhatsApp button and the Track Order decision from `CONTENT_REQUIREMENTS.md`.
 **Dependencies:** Phases 5–8 for consistent CTA components; the Track Order decision.
-**Expected result:** Every page has a clear, working path to WhatsApp; the full conversion funnel from `HOMEPAGE_ARCHITECTURE.md` is wired end-to-end.
+**Expected result:** Every page has a clear, working path to WhatsApp or a mapped physical location; the full conversion funnel from `HOMEPAGE_ARCHITECTURE.md` is wired end-to-end.
 
 ### Phase 10 — SEO + Performance + Accessibility
 **Purpose:** Make the finished site discoverable, fast, and usable by everyone, not just visually complete.

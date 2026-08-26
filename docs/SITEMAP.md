@@ -9,8 +9,9 @@ Produk                (Products)
 Layanan               (Services)
 Manufacturing
 Portfolio
-Kontak                (Contact)
 ```
+
+**Update (2026-08-28): no dedicated Kontak/Contact page.** Per explicit instruction, contact/location information is distributed instead across Tentang Kami (a full "Lokasi Kami" section with Google Maps for both locations — §5 below), the footer (address, email, phone, "Lihat di Google Maps" links, on every page), and WhatsApp CTAs. The old `/kontak` route now 301-redirects to `/tentang-kami#lokasi` rather than 404ing, since it may already be indexed or bookmarked.
 
 Persistent navbar CTA on every page: **Konsultasi via WhatsApp**
 
@@ -39,15 +40,12 @@ Deeper explanation of production capability: process flow, facility information 
 **Services vs. Manufacturing distinction:** *Layanan* = "what kind of production arrangement can I buy" (CMT/FOB); *Manufacturing* = "what is your actual production capability, process, and facility." Kept as separate pages to avoid one overloaded page.
 
 ### 5. Tentang Kami (`/tentang-kami`)
-Full company story — the verified 2012–2024 timeline, vision/mission, stats. Answers "who are you and why should I trust you" in depth, for buyers doing real diligence.
+Full company story — the verified 2014–2024 timeline (see `DESIGN_SYSTEM.md`/`config/company.php` for the 2012-vs-2014 and 2018 employee-count discrepancies flagged against the Company Profile PDF), vision/mission, stats, and a **"Lokasi Kami" section** with a full-size Google Maps embed for both the HQ and the production facility, each with a "Lihat di Google Maps" CTA. Answers "who are you and why should I trust you" — including "where are you, really" — in depth, for buyers doing real diligence. This section is also the redirect target for the old `/kontak` URL (`#lokasi`).
 
 ### 6. Portfolio (`/portfolio`)
 Visual proof of delivered work, built from MAI's real named projects (Ministry of Health masks, MPR RI, Bawaslu, Pertamina, Bank Mandiri, Kab. Solok Selatan) — currently unused. Supports category filtering (uniforms, corporate apparel, school apparel, custom merchandise) once real project photography exists.
 
-### 7. Kontak (`/kontak`)
-Does not exist today as a dedicated page. Gives space for: address + embedded map, direct WhatsApp CTA, email, phone, and optionally a lightweight quotation form for buyers who prefer not to start on WhatsApp.
-
-### 8. Lacak Pesanan (`/lacak-pesanan`) — conditional, footer only
+### 7. Lacak Pesanan (`/lacak-pesanan`) — conditional, footer only
 See the optional-link note above. Not part of primary navigation regardless of the decision.
 
 ---
@@ -68,4 +66,4 @@ Per the business model (WhatsApp-first, not ecommerce), the following existing p
 
 - **Produk** stays a single filterable page (not per-product) to avoid thin, near-duplicate SEO pages.
 - **Layanan**, **Manufacturing**, and **Portfolio** as separate pages each target distinct search intent and distinct long-tail Indonesian B2B/B2G garment-procurement queries (e.g., "jasa CMT garment Tangerang," "pabrik garment kapasitas besar," "portofolio produksi seragam").
-- **Tentang Kami** and **Kontak** support branded search and local NAP (name-address-phone) consistency for local SEO / Google Business Profile alignment.
+- **Tentang Kami** carries the site's NAP (name-address-phone) and Google Maps presence for local SEO / Google Business Profile alignment, now that there's no separate Kontak page.

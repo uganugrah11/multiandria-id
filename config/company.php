@@ -30,6 +30,43 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Locations (Google Maps)
+    |--------------------------------------------------------------------------
+    |
+    | Real locations only — see docs/CONTENT_REQUIREMENTS.md. The HQ pin was
+    | verified 2026-08-28 by resolving the business-supplied Google Maps
+    | short link (https://maps.app.goo.gl/TrkkRuZdC2YZ7KLg6), which redirects
+    | to Google's own "PT. MULTI ANDRIA INDONESIA" place record at
+    | -6.2795085, 106.7340992 — so `map_query` uses those exact coordinates
+    | rather than a fuzzy address-text search.
+    |
+    | The factory has no equivalent short link, only a verified postal
+    | address, so its `map_query` is the address text itself — Google
+    | geocodes it directly, same approach used by `maps_url` (a plain
+    | Maps search URL, since no business-supplied pin exists for it).
+    |
+    */
+    'locations' => [
+        [
+            'key' => 'hq',
+            'name' => 'Kantor Pusat',
+            'type' => 'Head Office',
+            'address' => env('COMPANY_HQ_ADDRESS'),
+            'map_query' => '-6.2795085,106.7340992',
+            'maps_url' => 'https://maps.app.goo.gl/TrkkRuZdC2YZ7KLg6',
+        ],
+        [
+            'key' => 'factory',
+            'name' => 'Fasilitas Produksi',
+            'type' => 'Production Facility',
+            'address' => env('COMPANY_FACTORY_ADDRESS'),
+            'map_query' => env('COMPANY_FACTORY_ADDRESS'),
+            'maps_url' => 'https://www.google.com/maps/search/?api=1&query='.rawurlencode((string) env('COMPANY_FACTORY_ADDRESS')),
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Social links
     |--------------------------------------------------------------------------
     |

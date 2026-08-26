@@ -74,6 +74,25 @@
         </div>
     </section>
 
+    <section id="lokasi" class="scroll-mt-24 bg-white py-20 sm:py-24">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <x-section-heading eyebrow="Lokasi Kami" align="center" class="reveal mx-auto">
+                Temukan Multi Andria Indonesia
+            </x-section-heading>
+            <p class="reveal mx-auto mt-4 max-w-xl text-center text-sm text-mai-slate" style="--reveal-delay: 60ms">
+                Kantor pusat dan fasilitas produksi kami — kunjungi langsung atau buka rutenya di Google Maps.
+            </p>
+
+            <div class="mt-12 space-y-6">
+                @foreach(config('company.locations') as $location)
+                    <div class="reveal" style="--reveal-delay: {{ $loop->index * 120 }}ms">
+                        <x-location-card :location="$location" variant="prominent" />
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     <section class="bg-mai-ivory py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <x-section-heading eyebrow="Klien Kami" align="center" class="reveal mx-auto">

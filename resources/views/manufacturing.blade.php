@@ -15,15 +15,14 @@
 
     <section class="bg-mai-ivory py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
-                <div class="reveal rounded-2xl border border-mai-border bg-white p-8 transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
-                    <h2 class="text-lg font-bold text-mai-charcoal">Kantor Pusat — Bintaro</h2>
-                    <p class="mt-2 text-sm leading-relaxed text-mai-slate">{{ config('company.address.hq') }}</p>
+            <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                <div class="reveal" style="--reveal-delay: 0ms">
+                    <x-location-card :location="collect(config('company.locations'))->firstWhere('key', 'hq')" variant="compact" />
                 </div>
-                <div class="reveal rounded-2xl border border-mai-border bg-white p-8 transition-all duration-200 hover:-translate-y-1 hover:shadow-md" style="--reveal-delay: 80ms">
-                    <h2 class="text-lg font-bold text-mai-charcoal">Pabrik Produksi — Sukabumi</h2>
-                    <p class="mt-2 text-sm leading-relaxed text-mai-slate">{{ config('company.address.factory') }}</p>
-                    <p class="mt-2 text-xs text-mai-slate">Luas bangunan 1.860 m² (didirikan 2020).</p>
+                <div class="reveal" style="--reveal-delay: 100ms">
+                    <x-location-card :location="collect(config('company.locations'))->firstWhere('key', 'factory')" variant="compact">
+                        Luas bangunan 1.860 m² (didirikan 2020).
+                    </x-location-card>
                 </div>
             </div>
 

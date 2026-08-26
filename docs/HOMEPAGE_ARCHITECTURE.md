@@ -88,7 +88,7 @@ Section order follows the required visitor journey (Who are they? → What do th
 - **Mobile behavior:** Stacked, full-width tap-target CTAs.
 
 ### 12. Footer
-Logo + short description, primary navigation, Produk, Layanan, Kontak, address, email, phone, WhatsApp, social links (`CONTENT NEEDED`), copyright.
+Logo + short description, primary navigation (Tentang Kami, Produk, Layanan, Manufacturing, Portfolio — no Kontak link, per the no-dedicated-contact-page decision), email, phone, HQ and factory addresses each with a "Lihat di Google Maps" link, social links (`CONTENT NEEDED`), copyright. This is the page-wide, compact counterpart to the full Google Maps section on `/tentang-kami`.
 
 ---
 

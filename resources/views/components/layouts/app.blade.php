@@ -39,7 +39,6 @@
                         'services' => ['route' => 'services', 'label' => 'Layanan'],
                         'manufacturing' => ['route' => 'manufacturing', 'label' => 'Manufacturing'],
                         'portfolio.index' => ['route' => 'portfolio.index', 'label' => 'Portfolio'],
-                        'contact' => ['route' => 'contact', 'label' => 'Kontak'],
                     ];
                 @endphp
                 @foreach($navLinks as $key => $link)
@@ -138,14 +137,22 @@
 
                 <div>
                     <p class="text-xs font-bold uppercase tracking-wider text-mai-slate">Kontak</p>
-                    <ul class="mt-4 space-y-3 text-sm text-mai-charcoal">
-                        <li>{{ config('company.address.hq') }}</li>
+                    <ul class="mt-4 space-y-4 text-sm text-mai-charcoal">
                         @if(config('company.email'))
                             <li><a href="mailto:{{ config('company.email') }}" class="hover:text-mai-red">{{ config('company.email') }}</a></li>
                         @endif
                         @if(config('company.phone'))
                             <li><a href="tel:{{ config('company.phone') }}" class="hover:text-mai-red">{{ config('company.phone') }}</a></li>
                         @endif
+                        @foreach(config('company.locations') as $location)
+                            <li>
+                                <p class="text-xs font-semibold text-mai-slate">{{ $location['type'] }}</p>
+                                <p class="mt-0.5">{{ $location['address'] }}</p>
+                                <a href="{{ $location['maps_url'] }}" target="_blank" rel="noopener noreferrer" class="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-mai-red hover:text-mai-wine">
+                                    Lihat di Google Maps &rarr;
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

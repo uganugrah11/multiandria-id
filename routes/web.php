@@ -16,7 +16,11 @@ Route::get('/produk', [ProductController::class, 'index'])->name('products.index
 Route::get('/layanan', [PageController::class, 'services'])->name('services');
 Route::get('/manufacturing', [PageController::class, 'manufacturing'])->name('manufacturing');
 Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
-Route::get('/kontak', [PageController::class, 'contact'])->name('contact');
+
+// No dedicated Contact page — location/contact info lives on Tentang Kami,
+// the footer, and WhatsApp CTAs (see docs/SITEMAP.md). Old /kontak URLs
+// redirect there instead of 404ing.
+Route::permanentRedirect('/kontak', '/tentang-kami#lokasi');
 
 // Admin auth (internal content management only — no public registration)
 Route::get('/login', [LoginController::class, 'create'])->name('login')->middleware('guest');

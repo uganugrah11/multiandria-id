@@ -18,9 +18,4 @@ class PageController extends Controller
     {
         return view('manufacturing');
     }
-
-    public function contact()
-    {
-        return view('contact');
-    }
 }
