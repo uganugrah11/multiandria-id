@@ -13,9 +13,34 @@
         </div>
     </section>
 
+    {{-- Production Process --}}
     <section class="bg-mai-ivory py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <x-section-heading eyebrow="Proses Produksi" align="center" class="reveal mx-auto">
+                Dari brief hingga produk sampai di tangan Anda
+            </x-section-heading>
+
+            <div class="mt-14">
+                <x-process-flow :steps="config('company.process_steps')" />
+            </div>
+
+            <div class="reveal mx-auto mt-4 flex max-w-xl items-center justify-center gap-2 rounded-full border border-mai-border bg-white px-5 py-2.5 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-4 w-4 shrink-0 text-mai-red" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <p class="text-xs font-semibold text-mai-charcoal">Quality Control diterapkan pada setiap tahap — dari desain hingga pengiriman.</p>
+            </div>
+        </div>
+    </section>
+
+    {{-- Production Facilities --}}
+    <section class="bg-white py-16 sm:py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <x-section-heading eyebrow="Fasilitas Produksi" align="center" class="reveal mx-auto">
+                Beroperasi dari dua lokasi
+            </x-section-heading>
+
+            <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
                 <div class="reveal" style="--reveal-delay: 0ms">
                     <x-location-card :location="collect(config('company.locations'))->firstWhere('key', 'hq')" variant="compact">
                         Termasuk fasilitas produksi & warehouse — gedung 4 lantai sejak 2023.
@@ -28,26 +53,22 @@
                 </div>
             </div>
 
-            <div class="reveal mt-8 rounded-2xl border border-mai-border bg-white p-8">
-                <h2 class="text-center text-lg font-bold text-mai-charcoal">Proses Produksi</h2>
-                <div class="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-5">
-                    @foreach(['Desain', 'Pemilihan Bahan', 'Penjahitan & Perapihan', 'Pengemasan', 'Pengiriman'] as $step)
-                        <div class="rounded-lg border border-mai-border bg-mai-ivory p-4 text-center">
-                            <p class="text-xs font-bold text-mai-charcoal sm:text-sm">{{ $step }}</p>
-                        </div>
-                    @endforeach
-                </div>
-                <p class="mt-6 text-center text-sm leading-relaxed text-mai-slate">
-                    Quality Control kami komprehensif di setiap tahap. Kapabilitas mesin dan jumlah lini produksi spesifik masih menunggu konfirmasi resmi.
-                </p>
-                <p class="mt-2 text-center text-xs font-semibold uppercase tracking-wide text-mai-red">
-                    [CONTENT NEEDED — lihat docs/CONTENT_REQUIREMENTS.md]
-                </p>
-            </div>
+            <p class="reveal mx-auto mt-8 max-w-2xl text-center text-xs text-mai-slate">
+                [CONTENT NEEDED — kapabilitas mesin dan jumlah lini produksi spesifik masih menunggu konfirmasi resmi. Lihat docs/CONTENT_REQUIREMENTS.md.]
+            </p>
+        </div>
+    </section>
 
-            <div class="reveal mt-10 text-center">
-                <x-whatsapp-button size="lg" :message="'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai kebutuhan produksi garment.'">
-                    Konsultasikan Kebutuhan Produksi
+    <section class="bg-mai-red py-16 sm:py-20">
+        <div class="reveal mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-extrabold text-white sm:text-3xl">Konsultasikan Kebutuhan Produksi Anda</h2>
+            <div class="mt-8">
+                <x-whatsapp-button
+                    size="lg"
+                    class="bg-white! text-mai-red! hover:bg-mai-ivory!"
+                    :message="'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai proses dan kebutuhan produksi garment.'"
+                >
+                    Konsultasi via WhatsApp
                 </x-whatsapp-button>
             </div>
         </div>

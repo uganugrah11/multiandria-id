@@ -130,6 +130,75 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Production process
+    |--------------------------------------------------------------------------
+    |
+    | Verified against two Company Profile sources, not invented or assumed:
+    | - The "Keunggulan Kami" QC description names the stage sequence: "mulai
+    |   dari tahap desain, pemilihan bahan, penjahitan & perapihan,
+    |   pengemasan, dan pengiriman."
+    | - The "Jasa CMT" definition separately names the three verbs "potong,
+    |   jahit, dan perapihan" (cut, sew, trim/finish) — which is why cutting
+    |   and sewing appear as distinct steps here rather than staying folded
+    |   into one "penjahitan & perapihan" step.
+    | "Konsultasi & Brief" is included as step 1 because it's the site's own
+    | established starting point (every WhatsApp CTA is that consultation),
+    | not a manufacturing-capability claim needing separate verification.
+    |
+    | Deliberately NOT included as steps, because nothing in the Company
+    | Profile or live site confirms MAI performs them in-house: sample-making,
+    | printing, and embroidery (see docs/CONTENT_REQUIREMENTS.md). Quality
+    | Control is likewise not a numbered step here — the Profile describes QC
+    | as applying across every stage ("dari tahap desain... hingga
+    | pengiriman"), not as one discrete stage in the sequence — so it's
+    | surfaced as a supporting note on the Manufacturing page instead.
+    |
+    */
+    'process_steps' => [
+        [
+            'title' => 'Konsultasi & Brief',
+            'description' => 'Kami memahami kebutuhan produksi, spesifikasi produk, jumlah, dan material yang diperlukan sebelum produksi dimulai.',
+            'icon' => 'chat',
+        ],
+        [
+            'title' => 'Desain',
+            'description' => 'Tim kami menyiapkan desain sesuai kebutuhan dan spesifikasi yang telah disepakati.',
+            'icon' => 'pencil',
+        ],
+        [
+            'title' => 'Pemilihan Material',
+            'description' => 'Bahan dipilih dan disiapkan sesuai jenis produk dan kebutuhan konsumen.',
+            'icon' => 'swatch',
+        ],
+        [
+            'title' => 'Cutting',
+            'description' => 'Proses pemotongan bahan sesuai pola dan ukuran yang telah ditentukan.',
+            'icon' => 'scissors',
+        ],
+        [
+            'title' => 'Sewing',
+            'description' => 'Proses penjahitan dilakukan oleh tim produksi kami.',
+            'icon' => 'needle',
+        ],
+        [
+            'title' => 'Finishing',
+            'description' => 'Perapihan detail produk untuk memastikan hasil akhir yang rapi dan konsisten.',
+            'icon' => 'sparkle',
+        ],
+        [
+            'title' => 'Pengemasan',
+            'description' => 'Produk dikemas dengan standar yang terjaga sebelum dikirim.',
+            'icon' => 'box',
+        ],
+        [
+            'title' => 'Pengiriman',
+            'description' => 'Produk jadi dikirim ke lokasi tujuan sesuai kesepakatan.',
+            'icon' => 'truck',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Locations (Google Maps)
     |--------------------------------------------------------------------------
     |
