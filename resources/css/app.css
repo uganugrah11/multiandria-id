@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* MAI brand palette — see docs/DESIGN_SYSTEM.md */
+    --color-mai-red: #af2222;
+    --color-mai-wine: #7f171a;
+    --color-mai-soft-red: #d84a4a;
+    --color-mai-ivory: #f8f6f2;
+    --color-mai-gray: #f1f0ed;
+    --color-mai-charcoal: #181818;
+    --color-mai-slate: #626262;
+    --color-mai-border: #dedcd7;
+}
+
+@layer utilities {
+    .prefers-reduced-motion {
+        @media (prefers-reduced-motion: reduce) {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
+}
+
+[x-cloak] {
+    display: none !important;
+}

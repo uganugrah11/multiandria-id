@@ -12,57 +12,60 @@ Portfolio
 Kontak                (Contact)
 ```
 
-Primary navbar CTA (persistent, all pages): **Konsultasi via WhatsApp**
-No cart / checkout / account / order-creation in navigation, per instructions.
+Persistent navbar CTA on every page: **Konsultasi via WhatsApp**
 
-Optional utility link (only if the business confirms it should be kept — see `DISCOVERY.md` §6): **Lacak Pesanan** (Track Order), placed in the footer utility row rather than primary nav, since it is a secondary, low-frequency utility rather than a marketing page.
+No Cart, Checkout, Account, or Order pages appear anywhere in navigation, per the business model — this is not an ecommerce site.
+
+**Optional footer utility link (conditional, pending your decision — see `CONTENT_REQUIREMENTS.md`):** *Lacak Pesanan* (Track Order). The current site has a working order-status lookup (`/track-order`) with a real 5-stage lifecycle. If MAI still fulfills confirmed orders through an internal tracking process after the WhatsApp conversation happens, a lightweight, footer-only status-lookup page could still have value post-sale — it is not an ordering mechanism, so it doesn't conflict with the "no ecommerce" rule. Flagged as a proposal requiring explicit approval, not assumed.
 
 ---
 
 ## Pages
 
 ### 1. Home (`/`)
-**Why it exists:** Primary landing page and main conversion engine; must answer the seven questions in instructions Section 4 within seconds. See `HOMEPAGE_ARCHITECTURE.md` for full section breakdown.
+Primary landing page and main conversion engine. Must answer, in order: who they are → what they manufacture → can they produce what I need → can I trust them → how do they manufacture → what have they produced → how do I contact them. Full section breakdown in `HOMEPAGE_ARCHITECTURE.md`.
 
-### 2. Products (`/produk`)
-**Why it exists:** Visual catalog answering "can you make what I need," grouped by category with WhatsApp CTA per product — **not** an ecommerce listing (no cart, no per-product detail route required per instructions' "Product Catalog" section).
-**Note:** Per instructions ("Do not create a separate product detail route unless there is a compelling UX or SEO reason"), the default recommendation is **one Products page with category filtering and expandable/rich cards**, not individual `/produk/{slug}` pages. This is a deliberate change from the current site's per-product detail-page structure.
-**Open decision for approval:** if the business wants individual product pages for SEO (e.g., to rank for "konveksi kaos custom Tangerang" type queries per product type), we can add category landing pages (`/produk/kaos-custom`, `/produk/jaket-custom`, etc.) instead of per-SKU pages — this gets SEO benefit without recreating an ecommerce detail-page pattern. Flagged as a recommendation, not yet decided.
+### 2. Produk (`/produk`)
+Visual catalog answering "can you make what I need," grouped by category, with a WhatsApp CTA per product — not an ecommerce listing.
 
-### 3. Services (`/layanan`)
-**Why it exists:** Explains CMT / FOB / other service models MAI actually offers (per instructions Section 7.5) — mirrors the clear service-card pattern from the AFIT reference, using only MAI-verified services.
+**Decision point:** the current site uses individual `/products/{slug}` detail pages with Add-to-Cart forms. Per the instructions, individual product detail pages should **not** be built unless there's a strong, explicitly-approved SEO/UX reason. Default recommendation: **one `/produk` page with category filtering and rich showcase cards**, no per-SKU route. If the business later wants SEO reach for queries like "konveksi kaos custom Tangerang," category landing pages (`/produk/kaos-custom`, `/produk/jaket-custom`) are a lower-risk alternative to per-SKU pages — flagged as a future option, not decided here.
+
+### 3. Layanan (`/layanan`)
+Explains the service models MAI actually offers (e.g., CMT / FOB — `CONTENT NEEDED` to confirm which apply to MAI). Mirrors the clear service-card pattern seen on the AFIT reference, using only MAI-verified services.
 
 ### 4. Manufacturing (`/manufacturing`)
-**Why it exists:** Deeper explanation of production capability — process flow (Design → Material → Cutting → Sewing → Finishing → QC → Packaging → Delivery), facility information (Bintaro HQ, Sukabumi factory), and capacity figures (5,000 pcs/day, 600 employees, verified from About page timeline). Answers "can they handle bulk orders?" directly.
-**Note:** Services vs. Manufacturing distinction: **Services** = "what kind of production arrangement can I buy" (CMT/FOB); **Manufacturing** = "what is your actual production capability/process/facility." Keeping them separate avoids one overloaded page, matching the instructions' explicit separate-section treatment of Sections 7.5 and 9.
+Deeper explanation of production capability: process flow, facility information (Bintaro HQ, Sukabumi factory), and verified capacity figures (5,000 pcs/day, 600 employees). Answers "can they handle bulk orders?" directly.
 
-### 5. About Us (`/tentang-kami`)
-**Why it exists:** Full company story — timeline, vision/mission, vision for scale — using the verified 2012–2024 timeline already on the current site. Answers "who are you and why should I trust you" in depth for buyers doing real diligence (this is where a "Download Company Profile"-style asset could live, if one exists — `CONTENT NEEDED`).
+**Services vs. Manufacturing distinction:** *Layanan* = "what kind of production arrangement can I buy" (CMT/FOB); *Manufacturing* = "what is your actual production capability, process, and facility." Kept as separate pages to avoid one overloaded page.
+
+### 5. Tentang Kami (`/tentang-kami`)
+Full company story — the verified 2012–2024 timeline, vision/mission, stats. Answers "who are you and why should I trust you" in depth, for buyers doing real diligence.
 
 ### 6. Portfolio (`/portfolio`)
-**Why it exists:** Visual proof of delivered work — currently missing entirely despite MAI having real named projects (Ministry of Health masks, MPR RI, Bawaslu, Pertamina, Bank Mandiri, Kab. Solok Selatan) sitting unused in the About page timeline. Should support category filtering (uniforms, corporate apparel, school apparel, custom merchandise) per instructions Section 11.
+Visual proof of delivered work, built from MAI's real named projects (Ministry of Health masks, MPR RI, Bawaslu, Pertamina, Bank Mandiri, Kab. Solok Selatan) — currently unused. Supports category filtering (uniforms, corporate apparel, school apparel, custom merchandise) once real project photography exists.
 
-### 7. Contact (`/kontak`)
-**Why it exists:** Currently does not exist as a page at all (contact info only lives in the footer). A dedicated Contact page gives space for: address + embedded map, direct WhatsApp CTA, email, phone, and (optionally) a lightweight quotation form for buyers who prefer not to use WhatsApp first.
+### 7. Kontak (`/kontak`)
+Does not exist today as a dedicated page. Gives space for: address + embedded map, direct WhatsApp CTA, email, phone, and optionally a lightweight quotation form for buyers who prefer not to start on WhatsApp.
 
-### 8. Track Order (`/lacak-pesanan`) — conditional
-**Why it exists (if kept):** Preserves an existing piece of functionality (order-status lookup) that may still matter internally after a sale is confirmed via WhatsApp. **Recommendation:** demote from primary nav to footer utility link, and clarify copy so it's clearly for *confirmed* orders, not a way to initiate one. **This page's fate depends on the open question in `DISCOVERY.md` §6/§7 — pending your decision.**
+### 8. Lacak Pesanan (`/lacak-pesanan`) — conditional, footer only
+See the optional-link note above. Not part of primary navigation regardless of the decision.
 
 ---
 
 ## Pages Deliberately Not Included
 
-Per the "Commerce & Conversion Model" section of the instructions, the following existing pages/features are **not** carried into the new IA:
+Per the business model (WhatsApp-first, not ecommerce), the following existing pages/features are **not** carried into the new IA:
 
 - Shopping Cart (`/cart`)
-- Any checkout/payment flow
+- Any checkout or payment flow
 - Customer ecommerce account/login
 - Individual product "Add to Cart" ordering forms
+- Individual product detail pages (`/produk/{slug}`) — unless explicitly approved later for SEO, as noted above
 
 ---
 
 ## SEO Rationale Summary
 
-- **Products** page remains a single page (not per-product) to avoid thin, near-duplicate SEO pages, per instructions' explicit SEO guidance ("do not create hundreds of thin product pages").
-- **Services**, **Manufacturing**, and **Portfolio** as separate pages each target distinct search intent (service model vs. capability vs. proof-of-work) and distinct long-tail keywords relevant to Indonesian B2B/B2G garment procurement searches (e.g., "jasa CMT garment Tangerang," "pabrik garment kapasitas besar," "portofolio produksi seragam").
-- **About Us** and **Contact** support branded search and local/NAP (name-address-phone) consistency for local SEO and Google Business Profile alignment.
+- **Produk** stays a single filterable page (not per-product) to avoid thin, near-duplicate SEO pages.
+- **Layanan**, **Manufacturing**, and **Portfolio** as separate pages each target distinct search intent and distinct long-tail Indonesian B2B/B2G garment-procurement queries (e.g., "jasa CMT garment Tangerang," "pabrik garment kapasitas besar," "portofolio produksi seragam").
+- **Tentang Kami** and **Kontak** support branded search and local NAP (name-address-phone) consistency for local SEO / Google Business Profile alignment.

@@ -1,79 +1,76 @@
-# Implementation Roadmap — Multi Andria Indonesia (Proposed)
+# Implementation Roadmap — Multi Andria Indonesia
 
-This roadmap assumes approval of the direction in `SITEMAP.md`, `HOMEPAGE_ARCHITECTURE.md`, and `DESIGN_DIRECTION.md`, and does not begin until that approval is given (per instructions §41/§37).
+This roadmap assumes approval of the direction documented in `SITEMAP.md`, `HOMEPAGE_ARCHITECTURE.md`, `DESIGN_DIRECTION.md`, and `DESIGN_SYSTEM.md`. No implementation begins until that approval is given.
 
 ---
 
-## Phase 0 — Repository & Content Intake (blocking, before any code)
-**What:** Obtain access to the existing Laravel repository (if one exists) and collect the highest-priority `CONTENT NEEDED` items (WhatsApp number, logo/brand assets, CMT/FOB confirmation, at least a handful of real photographs).
-**Dependencies:** None — this can start immediately.
-**Expected result:** A real technical audit becomes possible (replacing the inferred-from-live-site assessment in `DISCOVERY.md`), and enough real content exists to avoid placeholder-heavy first pages.
-**Testing:** N/A (content/access gathering phase).
+### Phase 1 — Discovery
+**Purpose:** Understand what exists (repository, live site, references, brand) before designing or building anything.
+**Result:** `docs/DISCOVERY.md` — confirms this repository has no existing application code (from-scratch build), documents the current live site's real content and structure, analyzes both reference sites for transferable UX principles, and confirms the brand red (`#AF2222`) directly from the logo file.
+**Status:** Complete (this pass).
 
-## Phase 1 — Foundation
-**What:** Laravel project setup/verification (routing skeleton for the new sitemap, base layout, Blade component scaffolding per instructions §27), Tailwind + Vite configuration, base `config('company.*')` structure including the WhatsApp config.
-**Dependencies:** Phase 0 repo access (or confirmed from-scratch start).
-**Expected result:** Clean project skeleton with routes for Home, Products, Services, Manufacturing, About, Portfolio, Contact (and Track Order if retained) — no visual design yet.
-**Testing:** Routes resolve; base layout renders on all breakpoints without content.
+### Phase 2 — UX Architecture
+**Purpose:** Decide what the new site's structure and homepage flow should be, based on Phase 1 findings.
+**Result:** `docs/UX_AUDIT.md` (prioritized problems/solutions), `docs/SITEMAP.md` (proposed IA), `docs/HOMEPAGE_ARCHITECTURE.md` (section-by-section homepage plan) — all WhatsApp-first, zero ecommerce.
+**Status:** Complete (this pass).
 
-## Phase 2 — Design System
-**What:** Build `docs/DESIGN_SYSTEM.md` (colors, typography, spacing, radius, shadows, buttons, cards, forms, containers, breakpoints, motion) based on the approved direction from `DESIGN_DIRECTION.md`. Implement as Tailwind config + core Blade UI components (Button, Container, Section, Badge, Card, Heading, Input, Select, Modal, ProductCard, TestimonialCard, ClientLogo, CTA, WhatsAppButton).
-**Dependencies:** Phase 1; approved color/typography direction.
-**Expected result:** A working component library visible on a style-guide/demo page, reusable across every subsequent page.
-**Testing:** Visual review of each component in isolation, at each breakpoint, with keyboard navigation and focus states checked (per instructions §22).
+### Phase 3 — Design System
+**Purpose:** Turn the brand direction into concrete, reusable tokens before any UI is built, so every later page draws from one system instead of ad hoc styling.
+**Result:** `docs/DESIGN_DIRECTION.md` (brand personality, color ratio, photography/animation principles) and `docs/DESIGN_SYSTEM.md` (color tokens, chosen typeface with rationale, spacing/radius/shadow scales, button/card specs, breakpoints).
+**Status:** Complete (this pass).
 
-## Phase 3 — Homepage
-**What:** Implement homepage sections per `HOMEPAGE_ARCHITECTURE.md`, in order, using approved/available content; sections with unresolved `CONTENT NEEDED` items ship with clearly marked placeholders rather than invented content.
-**Dependencies:** Phase 2 component library; at least partial content from Phase 0.
-**Expected result:** Fully responsive, functioning homepage establishing brand, layout, and interaction patterns for the rest of the site.
-**Testing:** Cross-browser/breakpoint check; Lighthouse pass for Core Web Vitals baseline; WhatsApp CTA links verified to produce correct pre-filled messages.
+### Phase 4 — Laravel/Tailwind Foundation
+**Purpose:** Stand up the actual project skeleton — nothing here exists yet (see Phase 1 finding).
+**What:** Laravel install, Tailwind + Vite configuration using the tokens from Phase 3, base Blade layout, route skeleton for the Phase 2 sitemap (Home, Tentang Kami, Produk, Layanan, Manufacturing, Portfolio, Kontak), centralized `config('company.*')` including `company.whatsapp.number` and `company.whatsapp.default_message`, and a reusable `<x-whatsapp-button>` Blade component.
+**Dependencies:** Approved Phase 2–3 direction; the WhatsApp number from `CONTENT_REQUIREMENTS.md` (a placeholder config value can unblock development, but must not ship to production unconfirmed).
+**Expected result:** Routes resolve; base layout renders at every breakpoint with no real content yet.
 
-## Phase 4 — Products
-**What:** Build the Products page (category-filterable visual catalog, no cart/checkout), reusing existing product data (category, price, MOQ, materials, sizes, colors) with rewritten, confident copy and a WhatsApp CTA per product per the "Product CTA Behavior" spec.
-**Dependencies:** Phase 2; decision on per-product-page vs. single-page-with-filters (see `SITEMAP.md` §2 open decision).
-**Expected result:** Clean, professional catalog page replacing the current ecommerce grid/cart flow.
-**Testing:** Filter/sort functionality; WhatsApp message correctly includes product name; mobile card layout reviewed given prior mobile risk flagged in `UX_AUDIT.md`.
+### Phase 5 — Homepage
+**Purpose:** Build the homepage first, since it establishes the visual language every other page will reuse.
+**What:** Implement each section from `HOMEPAGE_ARCHITECTURE.md` in order, using confirmed content where available and clearly marked placeholders where `CONTENT NEEDED` items remain unresolved — never invented content.
+**Dependencies:** Phase 4 component/layout foundation.
+**Expected result:** A fully responsive, functioning homepage that establishes brand, layout, and interaction patterns for the rest of the site.
 
-## Phase 5 — Services & Manufacturing
-**What:** Build Services and Manufacturing pages (and corresponding homepage sections) using only confirmed service/capability content from Phase 0.
-**Dependencies:** Phase 0 content confirmation (CMT/FOB, process steps, capacity figures).
-**Expected result:** Pages that directly answer "can they make what I need, at what scale, how."
-**Testing:** Content review against `CONTENT_REQUIREMENTS.md` to confirm nothing unverified was published.
+### Phase 6 — Products Catalog
+**Purpose:** Replace the current ecommerce grid/cart flow with the showcase-only catalog defined in `SITEMAP.md`.
+**What:** Build the `/produk` page (category-filterable, no cart/checkout), reusing existing product data (category, materials, sizes, colors) with rewritten, confident copy and a per-product WhatsApp CTA carrying a product-specific pre-filled message.
+**Dependencies:** Phase 3 card spec; the per-product-page vs. single-page decision noted in `SITEMAP.md` (default: single page).
+**Expected result:** A clean, professional showcase page with zero purchasing mechanics.
 
-## Phase 6 — About & Portfolio
-**What:** Build About Us (full timeline, vision/mission, stats) and Portfolio (real project photography where available, otherwise clearly marked placeholders) pages.
-**Dependencies:** Phase 0 real photography for portfolio items; otherwise ships with placeholders and a note to revisit.
-**Expected result:** Deep trust-building pages supporting serious procurement diligence.
-**Testing:** Timeline data cross-checked once more against the verified source (current About page) to avoid transcription drift.
+### Phase 7 — Services + Manufacturing
+**Purpose:** Answer "can they make what I need, at what scale, and how does working with them work."
+**What:** Build `/layanan` and `/manufacturing` pages (and the corresponding homepage section), using only confirmed service/capability content — CMT/FOB status, process steps, and capacity figures from `CONTENT_REQUIREMENTS.md`.
+**Dependencies:** Business confirmation of the manufacturing-capability content items.
+**Expected result:** Pages that directly and credibly answer the buyer's core diligence question, with no unverifiable claims published.
 
-## Phase 7 — Contact & Conversion
-**What:** Build dedicated Contact page (map, WhatsApp, email, phone, optional lightweight quote form per instructions §33), finalize Final CTA section, floating/sticky WhatsApp button site-wide, and (decision-dependent) the retained/simplified Track Order page.
-**Dependencies:** Phases 3–6 for consistent CTA components; Phase 0 decision on Track Order.
-**Expected result:** Every page has a clear, working path to WhatsApp; the conversion funnel described in `HOMEPAGE_ARCHITECTURE.md` is fully wired end-to-end.
-**Testing:** Every CTA on every page manually click-tested for the correct destination/message; form validation tested if a quote form is included.
+### Phase 8 — Portfolio
+**Purpose:** Surface the real project history that currently sits unused in the About page timeline.
+**What:** Build `/portfolio` with category filtering, using real project photography where supplied; items without photography ship as clearly marked placeholders, not stock substitutes.
+**Dependencies:** Real photography of named historical projects (`CONTENT_REQUIREMENTS.md`).
+**Expected result:** A page that functions as visual proof of delivered work for serious B2B/B2G buyers.
 
-## Phase 8 — SEO
-**What:** Titles, meta descriptions, canonical URLs, Open Graph/Twitter metadata, structured data (Organization, Product, Breadcrumb, FAQ where applicable), image alt text audit, internal linking pass.
-**Dependencies:** All pages built (Phases 3–7).
-**Expected result:** Every page meets the SEO checklist in instructions §28, with structured data only where genuinely supported by visible content.
-**Testing:** Structured data validated (e.g., Rich Results Test); meta tags spot-checked per page.
+### Phase 9 — About + Contact
+**Purpose:** Build the deepest trust page and the page that finally gives the site a real, dedicated contact destination.
+**What:** `/tentang-kami` (full timeline, vision/mission, stats) and `/kontak` (address + map, WhatsApp, email, phone, optional lightweight quote form), plus the site-wide floating/sticky WhatsApp button and the Track Order decision from `CONTENT_REQUIREMENTS.md`.
+**Dependencies:** Phases 5–8 for consistent CTA components; the Track Order decision.
+**Expected result:** Every page has a clear, working path to WhatsApp; the full conversion funnel from `HOMEPAGE_ARCHITECTURE.md` is wired end-to-end.
 
-## Phase 9 — Performance
-**What:** Image optimization/responsive sizes, lazy loading, JS minimization, caching strategy, animation/motion audit for `prefers-reduced-motion` compliance.
-**Dependencies:** Real photography in place (heavier real images need real optimization, not placeholder sizing).
-**Expected result:** Strong Core Web Vitals scores; smooth mobile performance despite image-heavy design.
-**Testing:** Lighthouse/PageSpeed Insights pass on mobile and desktop; manual test with reduced-motion OS setting enabled.
+### Phase 10 — SEO + Performance + Accessibility
+**Purpose:** Make the finished site discoverable, fast, and usable by everyone, not just visually complete.
+**What:** Unique titles/meta descriptions, canonical URLs, Open Graph metadata, Organization/FAQ/Breadcrumb structured data where genuinely supported by visible content, image alt text, semantic heading hierarchy; image optimization, lazy loading, minimal JS, caching strategy; keyboard navigation, focus states, WCAG-AA contrast check on all red usage, `prefers-reduced-motion` support.
+**Dependencies:** All pages built (Phases 5–9).
+**Expected result:** Every page passes the SEO checklist with real structured data, and a Lighthouse pass shows strong Core Web Vitals and accessibility scores.
 
-## Phase 10 — Testing & Launch
-**What:** Full cross-device/browser QA, accessibility pass (keyboard nav, contrast, screen reader spot-check), content final review against `CONTENT_REQUIREMENTS.md` to confirm no placeholder text ships unintentionally, stakeholder sign-off, DNS/deployment cutover.
+### Phase 11 — Testing + Final Polish
+**Purpose:** Confirm the site actually works end-to-end before launch, not just that each page looks right in isolation.
+**What:** Cross-device/browser QA, accessibility spot-check (keyboard-only pass, screen reader spot-check), full content review against `CONTENT_REQUIREMENTS.md` to confirm no placeholder text ships unintentionally, every CTA on every page manually click-tested for the correct WhatsApp destination and message, 404/redirect check for any old ecommerce URLs (`/cart`, `/checkout`, old `/products/{slug}`) to avoid broken inbound links, stakeholder sign-off, deployment cutover.
 **Dependencies:** All prior phases.
-**Expected result:** Production launch of the new site.
-**Testing:** End-to-end conversion path testing (every CTA → WhatsApp with correct message); 404/redirect check for any old ecommerce URLs (`/cart`, `/checkout`, old `/products/{slug}` routes if the IA changes) to avoid broken inbound links/SEO loss.
+**Expected result:** Production launch.
 
 ---
 
 ## Cross-Cutting Risk Notes
 
-- **Content-blocked phases:** Phases 5, 6, and 8 (structured data/FAQ schema) are the most exposed to `CONTENT_REQUIREMENTS.md` gaps. Recommend prioritizing Phase 0 content collection in parallel with Phases 1–2 (which don't require final content) so implementation isn't blocked later.
-- **URL changes are an SEO risk:** if per-product detail pages (`/products/{slug}`) are removed in favor of a single filterable Products page, old URLs should 301-redirect rather than 404, to preserve any existing search equity.
-- **Track Order ambiguity:** left unresolved, this could block Phase 7. Recommend getting a decision from the business early (ideally during Phase 0).
+- **Content-blocked phases:** Phases 7, 8, and 9 (structured data/FAQ schema in Phase 10) are the most exposed to open `CONTENT_REQUIREMENTS.md` items. Recommend starting content collection (WhatsApp number, logo vector export, CMT/FOB confirmation, at least a handful of real photographs) in parallel with Phases 4–5, which don't require final content, so later phases aren't blocked.
+- **URL changes are an SEO risk:** if per-product detail pages (`/products/{slug}`) are retired in favor of a single filterable `/produk` page, old URLs should 301-redirect rather than 404, to preserve any existing search equity.
+- **Track Order ambiguity:** left unresolved, this could stall Phase 9. Recommend getting a decision from the business early, ideally before Phase 4 begins.

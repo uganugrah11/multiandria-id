@@ -1,1543 +1,224 @@
-# Multi Andria Indonesia — Website Redesign & Rebuild Instructions
+# Multi Andria Indonesia
 
-## 1. Project Objective
+## Website Redesign & Rebuild — Project Instructions
 
-You are the lead UI/UX designer, frontend engineer, and Laravel engineer for the redesign and rebuild of:
+You are the lead UI/UX designer, frontend engineer, and Laravel engineer responsible for completely redesigning and rebuilding the Multi Andria Indonesia website.
+
+The goal is to create a modern, premium, professional website for a garment and textile manufacturing company.
+
+The website should communicate:
+
+**Garment Manufacturing + Fashion + Textile + Production Capability + Trust + Professional B2B Service**
+
+---
+
+# 1. Project Context
+
+Company:
 
 **PT Multi Andria Indonesia**
 
 Current website:
 
-https://multiandriaindonesia.com/
+**multiandriaindonesia.com**
 
-The goal is to completely redesign and modernize the website from the ground up.
+Design references:
 
-The new website should position Multi Andria Indonesia as a:
+**andriafesyenindonesiatekstil.id**
 
-- Professional garment manufacturer
-- Textile and fashion product manufacturer
-- B2B garment production partner
-- B2G/institutional production partner
-- Custom garment manufacturing company
-- Reliable Indonesian garment supplier
+**akarsa.co.id**
 
-The website must feel:
+The reference websites are inspiration only.
 
-- Modern
-- Premium
-- Professional
-- Trustworthy
-- Industrial but elegant
-- Fashion-oriented
-- Corporate
-- Clean
-- Conversion-focused
-- Responsive
-- Fast
-- Easy to maintain
-
-Do not simply modify the current site's CSS.
-
-Treat the project as a **new website implementation** while preserving useful business data and functionality from the existing website.
-
----
-
-# 2. Design References
-
-Use the following websites as visual and UX references:
-
-1. https://andriafesyenindonesiatekstil.id/
-2. https://akarsa.co.id/
-
-The references are for:
-
-- Information architecture
-- Section organization
-- Visual hierarchy
-- Manufacturing/company presentation
-- Typography inspiration
-- CTA placement
-- Product presentation
-- Company credibility
-- Production capability presentation
-- Service presentation
-- Portfolio/gallery presentation
-- Testimonials
-- Responsive behavior
-
-## Important
-
-Do NOT create a pixel-perfect copy of either reference website.
+Do NOT clone them.
 
 Do NOT copy:
 
-- Their HTML
-- Their CSS
-- Their exact layouts
-- Their exact wording
-- Their branding
-- Their images
-- Their icons
-- Their proprietary visual identity
-
-Instead, extract the **design principles and UX patterns** and create an original visual identity for Multi Andria Indonesia.
-
-The final website should look like it belongs to the same professional industry, while still being clearly its own brand.
-
----
-
-# 3. Current Website Analysis
-
-Before implementing anything, inspect the current website:
-
-https://multiandriaindonesia.com/
-
-Understand and preserve relevant business information.
-
-The current website contains concepts such as:
-
-- Garment manufacturing
-- Textile products
-- Fashion products
-- Product catalog
-- Product categories
-- Featured products
-- Custom designs
-- MOQ
-- Product pricing
-- B2B clients
-- B2G/BUMN clients
-- Company information
-- Contact information
-- Product ordering
-- Order tracking
-
-Do not remove important functionality without a clear reason.
-
-If existing functionality is unclear, inspect the existing implementation before replacing it.
-
----
-
-# 4. Primary UX Goal
-
-The website should answer these questions within the first few seconds:
-
-1. Who is Multi Andria Indonesia?
-2. What does the company manufacture?
-3. Can they manufacture custom products?
-4. Can they handle bulk orders?
-5. Why should a company trust them?
-6. What products/services do they provide?
-7. How can I request a quotation or contact them?
-
-The website should be optimized primarily for **B2B conversion**, not just product browsing.
-
-The primary conversion should be:
-
-**Request a Quote / Konsultasi Produksi**
-
-Secondary conversions:
-
-- Browse Products
-- View Manufacturing Services
-- View Portfolio
-- Contact WhatsApp
-- Track Order
-
----
-
-# 5. Target Audience
-
-Design primarily for:
-
-### B2B
-
-- Fashion brands
-- Clothing brands
-- Retail businesses
-- Corporate companies
-- Event organizers
-- Distributors
-- Resellers
-- Startups
-- SMEs
-
-### B2G / Institutional
-
-- Government institutions
-- Schools
-- Universities
-- Organizations
-- Foundations
-- Corporate institutions
-
-### Individual / Small Business
-
-- Custom apparel buyers
-- Community merchandise
-- Event merchandise
-- School uniforms
-- Corporate uniforms
-
-The UI should feel professional enough for procurement managers and corporate clients while remaining approachable for SMEs.
-
----
-
-# 6. Recommended Website Structure
-
-Use the following information architecture as the initial direction.
-
-## Main Navigation
-
-- Home
-- Products
-- Services
-- Manufacturing
-- About Us
-- Portfolio
-- Contact
-
-Primary CTA:
-
-**Request a Quote**
-
-Secondary CTA:
-
-**WhatsApp**
-
-Possible additional utility navigation:
-
-- Track Order
-
-Keep navigation simple.
-
-Do not overload the navbar.
-
----
-
-# 7. Homepage Structure
-
-Design the homepage as a strong marketing landing page.
-
-Recommended sections:
-
-## 7.1 Hero
-
-The hero should immediately communicate:
-
-- Garment manufacturing
-- Custom production
-- Professional quality
-- Bulk/B2B capability
-
-Possible messaging direction:
-
-> Your Trusted Garment Manufacturing Partner
-
-Supporting copy should explain that Multi Andria Indonesia manufactures custom garment and textile products for businesses, institutions, and organizations.
-
-Primary CTA:
-
-**Request a Quote**
-
-Secondary CTA:
-
-**Explore Products**
-
-Hero visual should preferably use:
-
-- High-quality garment photography
-- Manufacturing/factory photography
-- Production workers
-- Fabric/textile details
-- Finished garments
-
-Avoid generic stock-photo-looking visuals whenever possible.
-
----
-
-## 7.2 Trust / Company Statistics
-
-Create a visually strong statistics section.
-
-Possible metrics:
-
-- Years of Experience
-- Products Manufactured
-- Orders Completed
-- Production Capacity
-- Clients Served
-- B2B/B2G Clients
-
-Only use factual numbers available from the business.
-
-Never invent statistics.
-
-If a statistic cannot be verified, leave it as a placeholder.
-
----
-
-## 7.3 Company Introduction
-
-Introduce Multi Andria Indonesia.
-
-Explain:
-
-- Who the company is
-- What the company does
-- Experience
-- Manufacturing capability
-- Target customers
-- Commitment to quality
-
-Use a split layout:
-
-Image / video + text.
-
----
-
-## 7.4 Product Categories
-
-Display product categories visually.
-
-Potential categories include:
-
-- T-Shirts
-- Jackets
-- Pants
-- Joggers
-- Dress
-- Gamis
-- Hijab
-- Mukena
-- Alma Mater
-- Tote Bags
-- Other custom products
-
-Do not make the section look like a generic ecommerce grid.
-
-It should feel like a professional garment manufacturer's catalog.
-
-Use large imagery and concise category descriptions.
-
----
-
-## 7.5 Manufacturing / Services
-
-Create a dedicated section explaining the manufacturing capabilities.
-
-Potential services:
-
-- CMT
-- FOB
-- Custom Garment Manufacturing
-- Cutting
-- Sewing
-- Embroidery
-- Printing
-- Screen Printing
-- Quality Control
-- Packaging
-
-Only include services that Multi Andria actually provides.
-
-If information is unavailable, mark it as a placeholder instead of inventing it.
-
-Use visual process cards or a horizontal production journey.
-
-Example:
-
-Design → Material → Cutting → Sewing → Finishing → QC → Packaging → Delivery
-
----
-
-# 8. Why Choose Multi Andria
-
-Create a strong trust section.
-
-Potential themes:
-
-### Quality Control
-
-Consistent production quality with controlled manufacturing processes.
-
-### Custom Production
-
-Custom colors, materials, sizes, logos, and designs.
-
-### Competitive Pricing
-
-Direct manufacturer pricing.
-
-### Production Capability
-
-Ability to handle bulk orders.
-
-### Reliable Lead Time
-
-Clear production timeline.
-
-### Professional Support
-
-Dedicated consultation throughout production.
-
-Only make claims supported by actual business capabilities.
-
----
-
-# 9. Manufacturing Process
-
-Create a visually engaging process section.
-
-Example:
-
-01 — Consultation
-
-02 — Design & Specification
-
-03 — Material Selection
-
-04 — Sample / Approval
-
-05 — Cutting
-
-06 — Sewing
-
-07 — Printing / Embroidery
-
-08 — Quality Control
-
-09 — Packaging
-
-10 — Delivery
-
-This section should communicate operational professionalism.
-
-Use subtle animations or scroll interactions if they improve UX.
-
-Do not over-animate.
-
----
-
-# 10. Featured Products
-
-Show selected products.
-
-Each product card should support:
-
-- Product image
-- Category
-- Product name
-- Short description
-- MOQ
-- Starting price if available
-- View details
-
-Primary CTA:
-
-**View Product**
-
-Do not make price the dominant visual element.
-
-The site should feel like a manufacturer portfolio/catalog rather than a discount ecommerce store.
-
----
-
-# 11. Portfolio / Previous Work
-
-Create a strong visual portfolio section.
-
-Show:
-
-- Garment production
-- Uniforms
-- Corporate apparel
-- School apparel
-- Fashion products
-- Custom merchandise
-- Finished products
-
-Use a premium image grid.
-
-Possible layout:
-
-- Large featured project
-- Supporting smaller projects
-- Category filtering
-
-Project information can include:
-
-- Client
-- Product
-- Quantity
-- Production type
-- Year
-
-Only show information that is actually available.
-
----
-
-# 12. Client / Trust Section
-
-Create a premium client logo section.
-
-Separate, where appropriate:
-
-### B2B Clients
-
-and
-
-### B2G / Government / Institutional Clients
-
-Use grayscale or subtle logo treatment unless brand guidelines require otherwise.
-
-The goal is to communicate:
-
-> Trusted by businesses and institutions.
-
-Avoid making the logo section visually overwhelming.
-
----
-
-# 13. Testimonials
-
-Create a modern testimonial section.
-
-Each testimonial should contain:
-
-- Quote
-- Customer name
-- Company
-- Optional company logo
-
-Do not fabricate testimonials.
-
-Use existing testimonials if available.
-
----
-
-# 14. FAQ
-
-Create a useful FAQ section.
-
-Possible questions:
-
-- What is the minimum order quantity?
-- Can I request a custom design?
-- Can I order custom colors?
-- Can I provide my own material?
-- How long does production take?
-- Do you accept CMT?
-- Do you accept FOB?
-- Can you produce uniforms?
-- Can you produce large quantities?
-- How do I request a quotation?
-
-Only answer questions using verified company information.
-
-Unknown answers should become placeholders.
-
----
-
-# 15. Final CTA
-
-End the homepage with a strong conversion section.
-
-Example direction:
-
-> Ready to Start Your Production?
-
-Supporting text:
-
-> Discuss your garment production requirements with our team.
-
-CTA:
-
-**Request a Quote**
-
-Secondary:
-
-**Chat on WhatsApp**
-
-The CTA should visually stand out from the rest of the page.
-
----
-
-# 16. Footer
-
-Footer should contain:
-
-- Company logo
-- Short company description
-- Navigation
-- Products
-- Services
-- Contact
-- Address
-- Email
-- Phone
-- WhatsApp
-- Social media
-- Copyright
-
-Keep it clean and professional.
-
----
-
-# 17. Visual Design Direction
-
-Create a completely modern visual system.
-
-Preferred characteristics:
-
-- Strong typography
-- Large headlines
-- Generous whitespace
-- Editorial-style layouts
-- Large photography
-- Clean cards
-- Subtle borders
-- Soft shadows
-- Refined spacing
-- High-quality hover states
-- Modern CTA buttons
-- Strong visual hierarchy
-
-Avoid:
-
-- Excessive gradients
-- Excessive rounded cards
-- Cheap-looking glassmorphism
-- Excessive shadows
-- Overly colorful UI
-- Template-looking layouts
-- Excessive animations
-- Generic SaaS aesthetics
-
-The design should feel like:
-
-**Modern Indonesian garment manufacturer + premium fashion brand + industrial company.**
-
----
-
-# 18. Color Direction
-
-First inspect the existing Multi Andria Indonesia branding and logo.
-
-Do not arbitrarily replace the brand identity.
-
-Build a refined palette around the existing brand colors.
-
-The palette should include:
-
-- Primary
-- Secondary
-- Accent
-- Background
-- Surface
-- Text
-- Muted text
-- Border
-- Success
-- Warning
-- Error
-
-Use mostly neutral backgrounds with strong brand accents.
-
-If the existing brand does not provide sufficient guidance, propose 2–3 visual directions before implementation.
-
----
-
-# 19. Typography
-
-Use a modern professional typeface.
-
-Prefer fonts such as:
-
-- Inter
-- Manrope
-- Plus Jakarta Sans
-- DM Sans
-- Geist
-
-Choose a maximum of two font families.
-
-Use a clear typographic hierarchy:
-
-- Display
-- H1
-- H2
-- H3
-- Body
-- Caption
-- Label
-
-Avoid excessive font weights.
-
----
-
-# 20. Photography
-
-Photography is extremely important.
-
-Prefer:
-
-- Factory photography
-- Garment production
-- Sewing machines
-- Fabric
-- Workers
-- Close-up garment details
-- Finished products
-- Product photography
-- Packaging
-- Quality inspection
-
-Use real company photography wherever available.
-
-Do not invent company facilities or employees.
-
-If images are missing, use clearly marked placeholders and recommend what photography should be supplied.
-
----
-
-# 21. Responsive Design
-
-The website must be designed mobile-first.
-
-Required breakpoints:
-
-- Mobile
-- Tablet
-- Laptop
-- Desktop
-- Large desktop
-
-Pay particular attention to:
-
-- Navigation
-- Hero
-- Product grids
-- Image galleries
-- Tables
-- CTA sections
-- Forms
-- Typography
-- Spacing
-
-Do not simply shrink desktop layouts.
-
-Create intentional mobile layouts.
-
----
-
-# 22. Accessibility
-
-Follow WCAG principles.
-
-Requirements:
-
-- Semantic HTML
-- Proper heading hierarchy
-- Accessible forms
-- Keyboard navigation
-- Visible focus states
-- Sufficient color contrast
-- Alt text for meaningful images
-- Decorative images appropriately handled
-- Accessible buttons
-- Accessible navigation
-- Reduced-motion support
-
----
-
-# 23. Performance
-
-Prioritize performance.
-
-Requirements:
-
-- Optimized images
-- Lazy loading where appropriate
-- Responsive image sizes
-- Minimal JavaScript
-- Avoid unnecessary dependencies
-- Avoid excessive animation
-- Good Core Web Vitals
-- Proper caching
-- Clean Laravel architecture
-
-Do not introduce a frontend library simply because it is popular.
-
----
-
-# 24. Technology Stack
-
-Build the project from scratch using:
-
-- Laravel
-- PHP
-- Blade
-- Tailwind CSS
-- Alpine.js where useful
-- Vite
-
-Prefer server-rendered Blade unless there is a strong reason to introduce a SPA.
-
-Do not use React/Next.js for this project unless explicitly requested.
-
----
-
-# 25. Laravel Architecture
-
-Use clean and maintainable Laravel conventions.
-
-Recommended structure:
-
-- Models
-- Controllers
-- Form Requests
-- Services where business logic requires them
-- Policies
-- Resources where appropriate
-- Blade Components
+- HTML
+- CSS
 - Layouts
-- View Components
-- Enums where appropriate
+- Text
+- Images
+- Branding
+- Logos
+- Exact components
+- Exact visual identity
 
-Avoid putting complex business logic directly inside Blade templates.
-
-Avoid massive controllers.
-
-Avoid unnecessary abstractions.
-
----
-
-# 26. Tailwind CSS
-
-Use Tailwind CSS for styling.
-
-Create reusable design primitives:
-
-- Button
-- Container
-- Section
-- Badge
-- Card
-- Heading
-- Input
-- Select
-- Modal
-- ProductCard
-- TestimonialCard
-- ClientLogo
-- CTA
-
-Do not repeatedly duplicate large Tailwind class strings when a reusable component is appropriate.
+Instead, study their UX and design principles and create an original visual identity for Multi Andria Indonesia.
 
 ---
 
-# 27. Component Philosophy
+# 2. Business Model
 
-Build reusable components.
+This is NOT a traditional ecommerce website.
 
-For example:
+Multi Andria Indonesia uses **WhatsApp Business as the primary sales and ordering channel**.
 
-```text
-resources/views/
-├── components/
-│   ├── ui/
-│   │   ├── button.blade.php
-│   │   ├── badge.blade.php
-│   │   ├── container.blade.php
-│   │   └── section.blade.php
-│   ├── navigation/
-│   ├── products/
-│   ├── services/
-│   ├── portfolio/
-│   ├── testimonials/
-│   └── marketing/
-├── layouts/
-└── pages/
-```
+Visitors do not complete purchases directly on the website.
 
-Components should be reusable without becoming unnecessarily complicated.
+The website exists to:
 
----
-
-# 28. SEO
-
-Implement proper SEO.
-
-Every important page should have:
-
-- Unique title
-- Meta description
-- Canonical URL
-- Open Graph metadata
-- Twitter/X metadata
-- Proper headings
-- Structured semantic HTML
-- Image alt text
-- SEO-friendly URLs
-
-Implement structured data where appropriate, especially for:
-
-- Organization
-- Product
-- Breadcrumb
-- FAQ
-
-Do not add structured data that is not supported by visible page content.
-
----
-
-# 29. Content Rules
-
-Do not hallucinate company information.
-
-Never invent:
-
-- Production capacity
-- Number of employees
-- Clients
-- Certifications
-- Factory locations
-- Testimonials
-- Revenue
-- Years of experience
-- Manufacturing capabilities
-- Awards
-- Partnerships
-
-If information is missing:
-
-```text
-[CONTENT NEEDED]
-```
-
-or:
-
-```text
-TODO: Confirm production capacity with client
-```
-
-Use factual existing website content whenever possible.
-
----
-
-# 30. Indonesian Language
-
-The primary website language should be:
-
-**Bahasa Indonesia**
-
-The tone should be:
-
-- Professional
-- Confident
-- Clear
-- Modern
-- Concise
-- Business-oriented
-
-Avoid overly formal corporate language.
-
-Avoid generic marketing phrases that provide no information.
-
-Prefer specific statements.
-
-Bad:
-
-> Kami memberikan solusi terbaik untuk kebutuhan Anda.
-
-Better:
-
-> Produksi garment custom untuk kebutuhan brand, perusahaan, sekolah, dan institusi dalam jumlah kecil hingga skala besar.
-
-Only use claims that are factually supported.
-
----
-
-# 31. UX Writing
-
-CTA labels should be action-oriented.
-
-Prefer:
-
-- Konsultasi Sekarang
-- Minta Penawaran
-- Lihat Produk
-- Lihat Layanan
-- Lihat Portfolio
-- Hubungi Kami
-- Chat WhatsApp
-
-Avoid generic:
-
-- Click Here
-- Learn More everywhere
-- Submit
-- More
-
----
-
-# 32. Animation
-
-Use animation carefully.
-
-Preferred:
-
-- Fade
-- Slide
-- Scale
-- Image reveal
-- Number counters
-- Hover transitions
-- Scroll reveal
-
-Animation should support hierarchy and perceived quality.
-
-Do not animate every element.
-
-Respect:
-
-```css
-prefers-reduced-motion
-```
-
----
-
-# 33. Forms
-
-Important forms should be optimized for conversion.
-
-Quotation form should potentially collect:
-
-- Name
-- Company
-- WhatsApp
-- Email
-- Product
-- Quantity
-- Required deadline
-- Custom design
-- Additional notes
-
-Keep the first interaction simple.
-
-Do not create an unnecessarily long form.
-
----
-
-# 34. Product Experience
-
-The product catalog should feel professional.
-
-Product detail pages should include:
-
-- Large image gallery
-- Product name
-- Category
-- Description
-- Materials
-- Available sizes
-- Available colors
-- MOQ
-- Customization options
-- Production notes
-- Request quotation CTA
-
-If an ecommerce/cart system already exists, preserve the functionality where appropriate.
-
-However, prioritize **B2B quotation flow** over consumer ecommerce behavior.
-
----
-
-# 35. Security
-
-Follow Laravel security best practices.
-
-Use:
-
-- CSRF protection
-- Validation
-- Authorization
-- Rate limiting where appropriate
-- Secure file uploads
-- Proper file type validation
-- Safe output escaping
-- Secure environment configuration
-
-Never expose secrets in source code.
-
----
-
-# 36. Development Workflow
-
-Always work in phases.
-
-## Phase 1 — Discovery
-
-Inspect:
-
-- Existing website
-- Existing routes
-- Existing Laravel application
-- Existing database
-- Existing models
-- Existing assets
-- Existing functionality
-
-Create:
-
-`docs/DISCOVERY.md`
-
-Document:
-
-- Existing features
-- Existing routes
-- Existing data
-- Existing problems
-- Existing reusable functionality
-- Missing content
-- UX problems
-
-Do not start coding before completing this analysis.
-
----
-
-## Phase 2 — UX Architecture
-
-Create:
-
-`docs/UX_ARCHITECTURE.md`
-
-Define:
-
-- Sitemap
-- Navigation
-- Page hierarchy
-- Homepage sections
-- User journeys
-- Conversion points
-- Product journey
-- Quote journey
-
----
-
-## Phase 3 — Design System
-
-Create:
-
-`docs/DESIGN_SYSTEM.md`
-
-Define:
-
-- Colors
-- Typography
-- Spacing
-- Border radius
-- Shadows
-- Buttons
-- Cards
-- Forms
-- Containers
-- Breakpoints
-- Motion principles
-
----
-
-## Phase 4 — Homepage
-
-Implement the homepage first.
-
-Do not build every page simultaneously.
-
-The homepage establishes:
-
-- Brand
-- Typography
-- Color
-- Components
-- Layout
-- Animation
-- Photography treatment
-
----
-
-## Phase 5 — Core Pages
-
-Then implement:
-
-1. Products
-2. Product Detail
-3. Services
-4. Manufacturing
-5. About
-6. Portfolio
-7. Contact
-8. Track Order
-
-Prioritize pages according to business value.
-
----
-
-# 37. Working Rules for Claude
-
-Before making major changes:
-
-1. Inspect the repository.
-2. Understand the current implementation.
-3. Identify dependencies.
-4. Identify existing functionality.
-5. Avoid breaking working functionality.
-6. Explain architectural decisions briefly.
-7. Implement incrementally.
-8. Test after meaningful changes.
-
-Do not rewrite everything blindly.
-
----
-
-# 38. Code Quality
-
-Code should be:
-
-- Readable
-- Maintainable
-- DRY where appropriate
-- Type-safe where applicable
-- Semantically structured
-- Easy for another developer to understand
-
-Do not over-engineer.
-
-Prefer simple Laravel solutions.
-
----
-
-# 39. Visual Quality Standard
-
-Before considering a page complete, evaluate:
-
-### Typography
-
-- Does the hierarchy feel premium?
-- Are headings visually strong?
-- Is body text readable?
-
-### Layout
-
-- Is spacing intentional?
-- Does the page have rhythm?
-- Are sections visually distinct?
-
-### Images
-
-- Are images high quality?
-- Do they support the content?
-- Are aspect ratios consistent?
-
-### Components
-
-- Are buttons consistent?
-- Are cards consistent?
-- Are hover states polished?
-
-### Conversion
-
-- Is the next action obvious?
-- Is the CTA visible?
-- Does the page communicate trust?
-
-### Responsive
-
-- Does mobile feel intentionally designed?
-- Does tablet work properly?
-- Does large desktop avoid excessive empty space?
-
----
-
-# 40. Important Design Principle
-
-Do not create a generic Laravel/Tailwind template.
-
-Do not create a generic SaaS landing page.
-
-Do not create a generic ecommerce website.
-
-The final visual identity should communicate:
-
-**GARMENT MANUFACTURING + TEXTILE + FASHION + INDUSTRIAL CAPABILITY + TRUST**
-
-The website should look credible enough that a procurement manager could consider Multi Andria Indonesia as a serious production partner.
-
----
-
-# 41. First Priority
-
-When beginning this project, do NOT immediately start writing the homepage.
-
-First:
-
-1. Inspect the current website.
-2. Inspect the project repository.
-3. Inspect the reference websites.
-4. Identify reusable business data.
-5. Identify current functionality.
-6. Identify UX problems.
-7. Create the discovery document.
-8. Propose the new sitemap.
-9. Propose the homepage information architecture.
-10. Propose the visual direction.
-
-Then wait for approval before implementing the full redesign.
-
----
-
-# 42. Communication Style
-
-When working on this project:
-
-- Be direct.
-- Be technical when discussing implementation.
-- Explain important tradeoffs.
-- Do not ask unnecessary questions.
-- Make reasonable assumptions when possible.
-- Clearly identify assumptions.
-- Clearly identify missing information.
-- Never invent business facts.
-- Prefer implementation over excessive explanation once the direction is approved.
-
-Your role is not only to write code.
-
-You are responsible for ensuring that the final website provides a **significantly better UX, visual identity, credibility, and conversion experience** than the current website.
-
-# Commerce & Conversion Model
-
-Multi Andria Indonesia does **not** use a traditional ecommerce checkout flow.
-
-All product inquiries, orders, quotations, and purchasing conversations are handled through **WhatsApp Business**.
-
-Therefore, this website should NOT be designed as a traditional ecommerce website.
-
-## Do NOT build
-
-- Shopping cart
-- Checkout
-- Online payment
-- Customer ecommerce accounts
-- Product detail pages
-- Order creation system
-- Order history
-- Ecommerce checkout forms
-- Payment gateway
-- Shipping calculation
-- Ecommerce wishlist
-- Product purchasing workflow inside the website
-
-Unless explicitly requested later, these features should not be implemented.
-
----
-
-# Website Business Model
-
-The website is primarily:
-
-**B2B Garment Manufacturing Website + Product Showcase + Lead Generation**
-
-The website's purpose is to:
-
-1. Introduce Multi Andria Indonesia
-2. Establish credibility
+1. Introduce the company
+2. Build trust
 3. Showcase products
 4. Explain manufacturing capabilities
 5. Showcase previous work
 6. Explain the production process
-7. Generate inquiries
-8. Move interested visitors to WhatsApp Business
+7. Answer common customer questions
+8. Generate leads
+9. Move interested visitors to WhatsApp Business
 
-The final conversion happens outside the website through WhatsApp.
+The core journey is:
 
----
-
-# Primary Conversion
-
-The primary CTA throughout the website should be:
-
-**Konsultasi via WhatsApp**
-
-or:
-
-**Minta Penawaran**
-
-Both should open WhatsApp Business.
-
-Secondary CTA:
-
-**Lihat Produk**
+**Discover → Trust → Explore → Inquire → WhatsApp → Sales**
 
 ---
 
-# Product Catalog
+# 3. Do NOT Build Ecommerce Features
 
-Products should be treated as a **visual catalog**, not ecommerce products.
+Unless explicitly requested later, do NOT implement:
 
-There should be no requirement for a product detail page.
+- Shopping cart
+- Checkout
+- Payment gateway
+- Online payment
+- Customer ecommerce accounts
+- Product purchasing
+- Ecommerce order creation
+- Order history
+- Product detail pages
+- Wishlist
+- Shipping calculation
+- Online invoice/payment flow
 
-Products can be displayed using:
+There is no need for an ecommerce purchasing workflow.
 
-- Product cards
-- Category sections
-- Image galleries
-- Featured product grids
-- Portfolio-style layouts
+The website should behave as:
 
-A product card may contain:
+**Company Profile + Product Showcase + Manufacturing Portfolio + Lead Generation**
+
+---
+
+# 4. Product Philosophy
+
+Products are presented as a **catalog/showcase**, not as ecommerce inventory.
+
+There should be one main:
+
+**Products**
+
+page.
+
+Products should be displayed using:
+
+- Visual product cards
+- Category filters
+- Product grids
+- Editorial layouts
+- Product galleries
+
+A product card can contain:
 
 - Product image
 - Product name
 - Category
 - Short description
-- Available customization information if known
+- Optional customization information
 - Optional MOQ if verified
-- WhatsApp CTA
+- "Tanya via WhatsApp" CTA
 
-Example:
+Do NOT create individual product detail pages unless there is a strong SEO or UX reason and the decision is explicitly approved.
 
-```text
-┌──────────────────────────────┐
-│                              │
-│       PRODUCT IMAGE          │
-│                              │
-├──────────────────────────────┤
-│ Kaos Custom                  │
-│                              │
-│ Produksi kaos custom untuk   │
-│ brand, perusahaan, komunitas │
-│ dan kebutuhan event.         │
-│                              │
-│ [ Tanya via WhatsApp → ]     │
-└──────────────────────────────┘
-```
+The user should not feel like they are shopping in an online store.
 
-Do not create a separate product detail route unless there is a compelling UX or SEO reason.
+The user should feel like:
+
+> "This company can manufacture the products I need."
 
 ---
 
-# WhatsApp Integration
+# 5. WhatsApp-First Conversion
 
-All meaningful conversion CTAs should be capable of opening WhatsApp Business.
+WhatsApp Business is the primary conversion mechanism.
 
-Examples:
+Important CTAs should include:
 
 - Konsultasi via WhatsApp
-- Tanya Produk
 - Minta Penawaran
-- Mulai Produksi
-- Hubungi Sales
-- Diskusikan Kebutuhan Anda
+- Tanya Produk
+- Hubungi Kami
+- Diskusikan Kebutuhan
+- Mulai Konsultasi
 
-Where possible, generate a contextual pre-filled WhatsApp message.
+All should open the company's WhatsApp Business.
 
-For example, a product CTA should generate something similar to:
+The WhatsApp number must be centralized.
 
-```text
-Halo Multi Andria Indonesia,
+Do NOT hardcode the WhatsApp number throughout Blade templates.
 
-Saya tertarik dengan produk "Kaos Custom".
+Use a centralized Laravel configuration.
 
-Saya ingin mendapatkan informasi mengenai:
-- Harga
-- Minimum order
-- Pilihan bahan
-- Pilihan warna
-- Estimasi produksi
-
-Terima kasih.
-```
-
-The exact message should be configurable rather than hardcoded throughout the application.
-
----
-
-# WhatsApp Configuration
-
-Do not scatter the WhatsApp number throughout Blade templates.
-
-Create a centralized configuration.
-
-For example:
+Conceptually:
 
 ```php
-config('company.whatsapp')
+config('company.whatsapp.number')
 ```
 
-or an appropriate Laravel configuration structure.
-
-The WhatsApp number should be configurable through environment/configuration where appropriate.
-
-Example conceptual structure:
+and:
 
 ```php
-'whatsapp' => [
-    'number' => env('COMPANY_WHATSAPP'),
-    'default_message' => 'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai produk garment.',
-],
+config('company.whatsapp.default_message')
 ```
 
-Use a reusable Blade component for WhatsApp CTAs.
+Create a reusable WhatsApp CTA component.
 
-Example conceptual usage:
+Conceptual usage:
 
 ```blade
 <x-whatsapp-button
-    message="Halo, saya tertarik dengan produk Kaos Custom."
+    message="Halo Multi Andria Indonesia, saya tertarik dengan produk Kaos Custom."
 >
     Tanya via WhatsApp
 </x-whatsapp-button>
 ```
 
-Do not hardcode the WhatsApp number into individual components.
+---
+
+# 6. Contextual WhatsApp Messages
+
+Different sections should generate contextual messages.
+
+## Homepage
+
+Example:
+
+"Hallo Multi Andria Indonesia, saya ingin berkonsultasi mengenai kebutuhan garment."
+
+## Product
+
+Example:
+
+"Hallo Multi Andria Indonesia, saya tertarik dengan produk [PRODUCT NAME]. Saya ingin mendapatkan informasi mengenai harga dan minimum order."
+
+## Portfolio
+
+Example:
+
+"Hallo Multi Andria Indonesia, saya tertarik dengan produksi seperti [PROJECT NAME]. Saya ingin berkonsultasi mengenai kebutuhan produksi saya."
+
+## Manufacturing
+
+Example:
+
+"Hallo Multi Andria Indonesia, saya ingin berkonsultasi mengenai kebutuhan produksi garment."
+
+The exact messages should be configurable.
 
 ---
 
-# Product CTA Behavior
+# 7. Website Information Architecture
 
-Different contexts should produce different messages.
-
-### Homepage CTA
-
-```text
-Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai kebutuhan garment saya.
-```
-
-### Product CTA
-
-```text
-Halo Multi Andria Indonesia, saya tertarik dengan produk [PRODUCT NAME].
-Saya ingin mendapatkan informasi mengenai harga dan minimum order.
-```
-
-### Portfolio CTA
-
-```text
-Halo Multi Andria Indonesia, saya tertarik dengan produksi seperti portfolio [PROJECT NAME].
-Saya ingin berkonsultasi mengenai kebutuhan produksi saya.
-```
-
-### Manufacturing CTA
-
-```text
-Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai kebutuhan produksi garment.
-```
-
----
-
-# Recommended Navigation
-
-Use a simple navigation:
+Recommended main navigation:
 
 - Home
 - Tentang Kami
@@ -1551,7 +232,7 @@ Primary navbar CTA:
 
 **Konsultasi via WhatsApp**
 
-Do not add:
+Do NOT add:
 
 - Cart
 - Checkout
@@ -1560,153 +241,1076 @@ Do not add:
 
 ---
 
-# Recommended Homepage Flow
+# 8. Homepage Structure
 
-The homepage should follow this general conversion journey:
+The homepage should function as the primary sales/marketing page.
 
-```text
-Hero
-   ↓
-Who We Are
-   ↓
-Company / Production Statistics
-   ↓
-Product Categories
-   ↓
-Manufacturing Capabilities
-   ↓
-Why Multi Andria
-   ↓
-Manufacturing Process
-   ↓
-Portfolio
-   ↓
-Client / Trust Signals
-   ↓
-Testimonials
-   ↓
-FAQ
-   ↓
-Final WhatsApp CTA
-```
+Recommended structure:
 
-The user should be able to reach WhatsApp from multiple points without making the website feel overly sales-oriented.
+1. Hero
+2. Company Introduction
+3. Trust / Statistics
+4. Product Categories
+5. Manufacturing Capabilities
+6. Why Multi Andria
+7. Manufacturing Process
+8. Portfolio
+9. Client / Trust Signals
+10. Testimonials
+11. FAQ
+12. Final WhatsApp CTA
+
+The exact structure may be adjusted after the UX audit.
 
 ---
 
-# Product Page Philosophy
+# 9. Hero
 
-There should be one main **Products** page containing the catalog.
+The hero must immediately communicate:
 
-Products can be grouped by category.
+- Who Multi Andria is
+- What the company manufactures
+- Who they serve
+- Why the visitor should contact them
 
-Example:
+Potential positioning:
 
-```text
-Products
+**Your Garment Manufacturing Partner**
 
-[All]
+or an Indonesian equivalent such as:
 
-[Kaos]
-[Jacket]
-[Uniform]
-[Hoodie]
-[Alma Mater]
-[Sportswear]
-[Other]
-```
+**Partner Produksi Garment untuk Bisnis Anda**
 
-Each product should remain relatively lightweight.
+Do not blindly use these examples.
 
-The purpose is to answer:
+Develop stronger copy after analyzing the existing company positioning.
 
-> "Can Multi Andria manufacture what I need?"
+Primary CTA:
 
-not:
+**Konsultasi via WhatsApp**
 
-> "Can I purchase this product directly from the website?"
+Secondary CTA:
 
----
+**Lihat Produk**
 
-# Lead Generation Philosophy
+Use high-quality visual imagery related to:
 
-The website should continuously answer three questions:
+- Garment manufacturing
+- Textile
+- Sewing
+- Fabric
+- Finished garments
+- Production
+- Fashion
 
-### 1. Can you make what I need?
-
-Products + manufacturing capabilities.
-
-### 2. Can I trust you?
-
-Company profile + portfolio + clients + testimonials + production process.
-
-### 3. How do I start?
-
-WhatsApp CTA.
-
-The third question should always have an obvious answer.
+Avoid generic corporate stock photography whenever possible.
 
 ---
 
-# Conversion Rule
+# 10. Product Section
 
-Every major marketing section should have an intentional next step.
+Products should be visually attractive.
 
-For example:
+Potential categories may include:
 
-Products:
+- Kaos
+- Polo Shirt
+- Hoodie
+- Jacket
+- Uniform
+- Alma Mater
+- Sportswear
+- Pants
+- Fashion
+- Custom Garment
 
-**Tanya via WhatsApp**
+Only use categories that are actually supported by the business.
 
-Manufacturing:
+Do not invent products.
 
-**Konsultasikan Kebutuhan Produksi**
+Product cards should prioritize:
 
-Portfolio:
+**Visual → Product name → Short description → WhatsApp CTA**
+
+rather than:
+
+**Price → Buy → Checkout**
+
+---
+
+# 11. Manufacturing Section
+
+Manufacturing capability should be one of the strongest parts of the website.
+
+Communicate actual capabilities such as:
+
+- Cutting
+- Sewing
+- Printing
+- Embroidery
+- Finishing
+- Quality Control
+- Packaging
+- Custom production
+
+Only include capabilities that can be verified.
+
+Potential visual journey:
+
+**Consultation → Design → Material → Cutting → Sewing → Finishing → QC → Packaging → Delivery**
+
+The process should feel professional and industrial.
+
+---
+
+# 12. Why Multi Andria
+
+Create a strong trust section.
+
+Potential themes:
+
+- Production Quality
+- Custom Manufacturing
+- Production Capability
+- Competitive Pricing
+- Professional Support
+- Quality Control
+- Reliable Production
+
+Do not make unsupported claims.
+
+Never invent:
+
+- Production capacity
+- Number of employees
+- Certifications
+- Awards
+- Client numbers
+- Years of experience
+- Factory size
+- Production volume
+
+If information is missing, mark:
+
+**CONTENT NEEDED**
+
+---
+
+# 13. Portfolio
+
+Portfolio should communicate manufacturing capability.
+
+Show:
+
+- Finished garments
+- Uniforms
+- Corporate apparel
+- School apparel
+- Custom garments
+- Fashion products
+- Event merchandise
+- Production photography
+
+Prefer an editorial image-grid approach instead of generic ecommerce cards.
+
+The portfolio should answer:
+
+> "Has this company produced something similar before?"
+
+CTA:
 
 **Buat Produk Serupa**
 
-About:
-
-**Hubungi Kami**
-
-Final CTA:
-
-**Mulai Konsultasi**
-
-Avoid placing a generic "Learn More" CTA everywhere.
+which opens WhatsApp.
 
 ---
 
-# SEO Consideration
-
-Even though there are no product detail pages, the Products page should still be SEO-friendly.
+# 14. Trust Signals
 
 Use:
 
-- Proper H1
-- Category headings
-- Descriptive product names
-- Product descriptions
-- Image alt text
-- Structured content
-- Internal links
-- Organization schema where appropriate
+- Client logos
+- Company information
+- Production statistics
+- Certifications if verified
+- Testimonials
+- Portfolio
+- Manufacturing process
 
-Do not create hundreds of thin product pages simply for SEO.
+Do not fabricate any trust signal.
 
-Quality and relevance are more important than page count.
+Trust should feel earned rather than artificially exaggerated.
 
 ---
 
-# Core Principle
+# 15. FAQ
 
-The website is NOT:
+The FAQ should answer practical B2B questions.
 
-> Ecommerce → Checkout → Payment
+Potential questions:
 
-It is:
+- Apa minimum order?
+- Apakah bisa custom desain?
+- Apakah bisa custom warna?
+- Apakah bisa menggunakan bahan sendiri?
+- Berapa lama waktu produksinya?
+- Apakah menerima produksi dalam jumlah besar?
+- Apakah bisa produksi seragam?
+- Bagaimana cara mendapatkan penawaran harga?
+- Bagaimana proses produksinya?
 
-> Discover → Trust → Explore → Inquire → WhatsApp → Sales
+Only answer questions using verified company information.
 
-Every UI/UX decision should support this journey.
+---
+
+# 16. Final CTA
+
+The final CTA should be visually strong.
+
+Possible direction:
+
+**Siap Memulai Produksi?**
+
+Supporting message:
+
+**Diskusikan kebutuhan garment Anda bersama tim Multi Andria Indonesia.**
+
+Primary:
+
+**Konsultasi via WhatsApp**
+
+Secondary:
+
+**Lihat Produk**
+
+---
+
+# 17. BRAND VISUAL DIRECTION
+
+The uploaded Multi Andria Indonesia logo establishes the primary visual identity.
+
+The logo uses a strong red approximately around:
+
+**#AF2222**
+
+This red must remain the primary brand color.
+
+Do not replace the logo's identity with blue, purple, green, or another dominant corporate color.
+
+However, DO NOT make the entire website red.
+
+Red should be an accent and conversion color.
+
+---
+
+# 18. Official Color System
+
+Use this as the initial design system.
+
+## Primary Brand
+
+```text
+MAI Red
+#AF2222
+```
+
+Use for:
+
+- Primary CTA
+- Important links
+- Active navigation
+- Selected states
+- Small accents
+- Key statistics
+- Brand elements
+- Hover states
+
+---
+
+## Deep Brand
+
+```text
+Deep Wine
+#7F171A
+```
+
+Use for:
+
+- Dark red backgrounds
+- Hover states
+- Strong section accents
+- Premium visual moments
+
+Use sparingly.
+
+---
+
+## Secondary Brand
+
+```text
+Soft Red
+#D84A4A
+```
+
+Use for:
+
+- Light accents
+- Tags
+- Subtle highlights
+- Hover backgrounds
+- Decorative elements
+
+Do not use it as the dominant page color.
+
+---
+
+## Main Background
+
+```text
+Warm Ivory
+#F8F6F2
+```
+
+Use for:
+
+- Main marketing sections
+- Editorial areas
+- Large content sections
+
+This gives the website a warmer fashion/textile feeling than pure white.
+
+---
+
+## Secondary Background
+
+```text
+Soft Gray
+#F1F0ED
+```
+
+Use for:
+
+- Alternating sections
+- Cards
+- Form areas
+- Supporting content
+
+---
+
+## Surface
+
+```text
+White
+#FFFFFF
+```
+
+Use for:
+
+- Cards
+- Navigation
+- Forms
+- Product surfaces
+
+---
+
+## Main Text
+
+```text
+Charcoal
+#181818
+```
+
+Use instead of pure black for most typography.
+
+---
+
+## Secondary Text
+
+```text
+Slate
+#626262
+```
+
+Use for:
+
+- Descriptions
+- Metadata
+- Supporting information
+
+---
+
+## Border
+
+```text
+Warm Gray
+#DEDCD7
+```
+
+Use for:
+
+- Card borders
+- Dividers
+- Inputs
+- Navigation separators
+
+---
+
+# 19. Color Ratio
+
+Follow approximately:
+
+**60% — White / Warm Ivory**
+
+**25% — Charcoal / Neutral**
+
+**10% — Soft Gray / Supporting Neutral**
+
+**5% — MAI Red**
+
+The 5% red is intentional.
+
+The site should feel sophisticated rather than saturated.
+
+Red should attract attention to important actions.
+
+---
+
+# 20. Color Usage Rules
+
+Prefer:
+
+```text
+Warm Ivory background
++
+Charcoal typography
++
+White cards
++
+MAI Red CTA
+```
+
+Avoid:
+
+```text
+Red background
++
+Red cards
++
+Red buttons
++
+Red text
+```
+
+Avoid excessive gradients.
+
+If gradients are used, they should be extremely subtle and remain within the red/wine family.
+
+Do not introduce unrelated bright colors into the brand system.
+
+---
+
+# 21. Visual Personality
+
+The visual personality should be:
+
+**Modern**
+**Premium**
+**Fashion-oriented**
+**Industrial**
+**Professional**
+**Confident**
+**Warm**
+**Minimal**
+**Trustworthy**
+
+Think:
+
+**Modern fashion brand + Indonesian garment manufacturer + premium B2B company**
+
+Do NOT make it look like:
+
+- Generic SaaS
+- Generic ecommerce
+- Generic corporate template
+- Cheap garment marketplace
+- Overly colorful fashion website
+
+---
+
+# 22. Typography
+
+Use a modern sans-serif.
+
+Preferred options:
+
+- Manrope
+- Plus Jakarta Sans
+- Inter
+- DM Sans
+- Geist
+
+Choose one primary font.
+
+Typography should have:
+
+- Large editorial headlines
+- Strong section headings
+- Comfortable body text
+- Clear CTA labels
+- Restrained font weights
+
+Use typography as a major visual element.
+
+---
+
+# 23. Layout Direction
+
+Use:
+
+- Large whitespace
+- Strong visual hierarchy
+- Large imagery
+- Editorial grids
+- Asymmetrical layouts where appropriate
+- Generous section spacing
+- Clear containers
+- Strong horizontal rhythm
+- Full-width visual sections
+- Subtle borders
+
+Avoid making every section:
+
+```text
+Title
+3 cards
+Title
+3 cards
+Title
+3 cards
+```
+
+The page should have visual rhythm.
+
+Alternate between:
+
+- Editorial layouts
+- Large images
+- Product grids
+- Statistics
+- Process diagrams
+- Split layouts
+- Full-width CTA sections
+
+---
+
+# 24. Cards
+
+Cards should be modern and restrained.
+
+Prefer:
+
+- Small border radius
+- Thin borders
+- Minimal shadows
+- Large imagery
+- Strong typography
+
+Avoid:
+
+- Excessive rounded corners
+- Huge shadows
+- Floating glassmorphism
+- Excessive gradients
+
+---
+
+# 25. Photography Direction
+
+Photography is extremely important.
+
+Prioritize:
+
+- Real production photography
+- Sewing machines
+- Fabric
+- Garment workers
+- Cutting
+- Sewing
+- Quality control
+- Finished products
+- Product details
+- Packaging
+- Factory environment
+
+Use authentic company photography whenever available.
+
+Do not pretend stock photography is the company's actual factory.
+
+---
+
+# 26. Animation
+
+Use subtle animation.
+
+Good examples:
+
+- Fade-in
+- Image reveal
+- Slight slide
+- Hover transitions
+- Number counters
+- Image scale on hover
+- Navigation transitions
+
+Do not animate everything.
+
+Animation should communicate quality, not distract the visitor.
+
+Respect:
+
+```css
+prefers-reduced-motion
+```
+
+---
+
+# 27. Mobile Design
+
+Mobile must be intentionally designed.
+
+Do not simply shrink the desktop design.
+
+Pay special attention to:
+
+- Mobile navigation
+- Hero
+- WhatsApp CTA
+- Product grids
+- Portfolio
+- Forms
+- Typography
+- Image cropping
+- Sticky CTA if appropriate
+
+Consider a mobile bottom CTA:
+
+**💬 Konsultasi via WhatsApp**
+
+if it improves conversion without becoming intrusive.
+
+---
+
+# 28. Technology
+
+Use:
+
+- Laravel
+- PHP
+- Blade
+- Tailwind CSS
+- Alpine.js where useful
+- Vite
+
+Do not use React/Next.js unless explicitly requested.
+
+Prefer server-rendered Blade.
+
+---
+
+# 29. Laravel Architecture
+
+Use maintainable Laravel architecture.
+
+Prefer:
+
+- Models
+- Controllers
+- Form Requests
+- Services when necessary
+- Policies where needed
+- Blade Components
+- Layouts
+- Reusable view components
+- Configuration for company information
+
+Avoid:
+
+- Massive controllers
+- Business logic in Blade
+- Duplicated UI markup
+- Unnecessary abstractions
+- Hardcoded business configuration
+
+---
+
+# 30. Recommended View Structure
+
+Use a structure similar to:
+
+```text
+resources/views/
+├── components/
+│   ├── ui/
+│   ├── navigation/
+│   ├── products/
+│   ├── services/
+│   ├── portfolio/
+│   ├── marketing/
+│   └── whatsapp/
+├── layouts/
+└── pages/
+```
+
+Build reusable components.
+
+---
+
+# 31. SEO
+
+Implement:
+
+- Unique page titles
+- Meta descriptions
+- Canonical URLs
+- Open Graph metadata
+- Semantic HTML
+- Proper heading hierarchy
+- Image alt text
+- Organization structured data
+- FAQ structured data where appropriate
+- Breadcrumb structured data where appropriate
+
+Do not create thin product detail pages simply for SEO.
+
+---
+
+# 32. Accessibility
+
+Follow WCAG principles.
+
+Include:
+
+- Semantic HTML
+- Keyboard navigation
+- Focus states
+- Proper labels
+- Good color contrast
+- Accessible buttons
+- Accessible forms
+- Image alt text
+- Reduced motion support
+
+The MAI red must be checked for sufficient contrast depending on where it is used.
+
+Do not use red text on backgrounds where readability is poor.
+
+---
+
+# 33. Performance
+
+Prioritize:
+
+- Optimized images
+- Responsive images
+- Lazy loading
+- Minimal JavaScript
+- Minimal dependencies
+- Good Core Web Vitals
+- Clean Laravel architecture
+- Efficient asset loading
+
+Do not introduce dependencies simply because they are fashionable.
+
+---
+
+# 34. Content Rules
+
+Never hallucinate company information.
+
+Never invent:
+
+- Clients
+- Testimonials
+- Certifications
+- Production capacity
+- Factory size
+- Employees
+- Revenue
+- Awards
+- Years of experience
+- Manufacturing capabilities
+- Product specifications
+
+If information is unavailable:
+
+```text
+[CONTENT NEEDED]
+```
+
+or:
+
+```text
+TODO: Confirm with Multi Andria Indonesia
+```
+
+---
+
+# 35. Indonesian Copywriting
+
+Primary language:
+
+**Bahasa Indonesia**
+
+Tone:
+
+- Professional
+- Modern
+- Confident
+- Concise
+- Human
+- Business-oriented
+
+Avoid empty marketing language.
+
+Prefer specific communication.
+
+Bad:
+
+"Kami memberikan solusi terbaik untuk kebutuhan Anda."
+
+Better:
+
+"Produksi garment custom untuk kebutuhan brand, perusahaan, institusi, dan berbagai kebutuhan bisnis."
+
+Only use claims that can be verified.
+
+---
+
+# 36. Development Workflow
+
+Always work in phases.
+
+## Phase 1 — Discovery
+
+Inspect:
+
+- Current website
+- Existing repository
+- Existing Laravel implementation
+- Existing assets
+- Existing data
+- Existing functionality
+- Existing content
+
+Create:
+
+`docs/DISCOVERY.md`
+
+---
+
+## Phase 2 — UX Architecture
+
+Create:
+
+`docs/UX_ARCHITECTURE.md`
+
+Document:
+
+- Sitemap
+- User journeys
+- Navigation
+- Homepage architecture
+- Product discovery
+- WhatsApp conversion journey
+
+---
+
+## Phase 3 — Design System
+
+Create:
+
+`docs/DESIGN_SYSTEM.md`
+
+Document:
+
+- Color tokens
+- Typography
+- Spacing
+- Components
+- Buttons
+- Cards
+- Forms
+- Responsive behavior
+- Animation
+
+Use the MAI red palette defined in this document.
+
+---
+
+## Phase 4 — Homepage
+
+Implement the homepage first.
+
+The homepage establishes the visual language.
+
+---
+
+## Phase 5 — Supporting Pages
+
+Then implement:
+
+1. Products
+2. Services
+3. Manufacturing
+4. Portfolio
+5. About
+6. Contact
+
+---
+
+# 37. Before Coding
+
+Before implementing the redesign:
+
+1. Inspect the existing repository.
+2. Inspect the current website.
+3. Inspect the existing business content.
+4. Analyze the reference websites.
+5. Identify existing functionality.
+6. Identify content that can be reused.
+7. Identify missing content.
+8. Perform a UX audit.
+9. Propose the sitemap.
+10. Propose the homepage architecture.
+11. Propose the design system.
+
+Do not immediately rewrite the application.
+
+---
+
+# 38. Design Quality Standard
+
+Before considering a page complete, evaluate:
+
+## Brand
+
+Does the page clearly feel like Multi Andria Indonesia?
+
+## Visual Quality
+
+Does it feel premium and modern?
+
+## Industry
+
+Does it communicate garment/textile manufacturing?
+
+## Trust
+
+Does it look credible to B2B customers?
+
+## Conversion
+
+Is WhatsApp consultation obvious?
+
+## Typography
+
+Is the hierarchy strong?
+
+## Layout
+
+Does the page have visual rhythm?
+
+## Photography
+
+Are images treated professionally?
+
+## Responsive
+
+Does mobile feel intentionally designed?
+
+## Accessibility
+
+Can the interface be used comfortably by different users?
+
+---
+
+# 39. Core Design Principle
+
+The final website should feel like:
+
+**A premium Indonesian garment manufacturer with a modern fashion-oriented digital presence.**
+
+Not:
+
+**An ecommerce store.**
+
+Not:
+
+**A generic corporate website.**
+
+Not:
+
+**A SaaS landing page.**
+
+The visitor should immediately understand:
+
+> Multi Andria Indonesia can manufacture garments professionally, can handle business/institutional requirements, and can be contacted directly through WhatsApp.
+
+---
+
+# 40. Core Conversion Principle
+
+Every major section should lead naturally toward the next step.
+
+The ultimate journey is:
+
+**Discover**
+
+↓
+
+**Understand**
+
+↓
+
+**Trust**
+
+↓
+
+**Explore**
+
+↓
+
+**Become Interested**
+
+↓
+
+**Contact via WhatsApp**
+
+The website should make the final step extremely easy.
+
+---
+
+# 41. Claude Working Style
+
+You are expected to act as both:
+
+- Senior UI/UX designer
+- Senior Laravel engineer
+
+Do not blindly follow existing design patterns.
+
+Do not blindly copy reference websites.
+
+Make thoughtful design decisions.
+
+When information is missing:
+
+- Identify it
+- Explain why it matters
+- Use a clearly marked placeholder
+
+Do not invent facts.
+
+When a design decision has significant consequences, briefly explain the reasoning.
+
+Prefer implementation over excessive discussion after the direction has been approved.

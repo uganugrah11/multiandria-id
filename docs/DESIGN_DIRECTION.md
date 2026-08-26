@@ -1,88 +1,112 @@
-# Design Direction — Multi Andria Indonesia (Proposed)
+# Design Direction — Multi Andria Indonesia
 
-## Brand Color Starting Point
+## Brand Foundation
 
-The current site was inspected for existing brand color usage. Observed: the logo assets (`logo-mai-bg-white.png`, `logo-mai-bg-none.png`) were referenced but not visually analyzed pixel-by-pixel in this text-based inspection — **CONTENT NEEDED: the actual logo file(s) and brand guideline, if one exists**, so the palette can be built around real brand color rather than guessed.
+The uploaded logo (`logo-mai-bg-white.png`) was inspected at the pixel level: its red fill measures **`#AF2222`**, exactly matching the brand red specified for this project — the palette below is therefore grounded in the real brand mark, not a guess (see `DISCOVERY.md` Task 4). The mark itself — a pen-nib/pin inside a solid circle, single flat color, no gradient — signals precision and craft, and supports a restrained, flat-color system rather than a gradient- or multi-tone-heavy one.
 
-Because the existing site's visible UI (buttons, accents) reads as a generic default Tailwind/Bootstrap-blue ecommerce theme rather than a deliberate brand palette, we cannot confidently say the current on-site blue *is* the intentional brand color versus just a framework default. Per instructions §18, when the existing brand doesn't provide sufficient guidance, we should propose 2–3 directions for approval rather than pick one — done below.
-
-### Direction A — "Industrial Navy" (recommended default)
-- Primary: deep navy/indigo (industrial, trustworthy, common in institutional/government-facing B2B — resonates with the strong B2G client base)
-- Accent: warm amber/gold (signals craftsmanship, premium, and gives CTAs strong visual pop against navy)
-- Background: warm off-white / paper tone, not stark white — supports the "editorial, premium" feel from §17
-- Use case fit: strongest for the B2G/institutional positioning given MPR RI, Bawaslu, Pertamina, Kementerian client base
-
-### Direction B — "Textile Neutral"
-- Primary: charcoal/near-black
-- Accent: terracotta or clay red — a warmer, fabric/textile-associated accent
-- Background: soft warm grey
-- Use case fit: leans more fashion/textile-editorial, slightly less "government contractor," more suited if MAI wants to emphasize the fashion/textile side (dresses, gamis, mukena) as much as institutional uniforms
-
-### Direction C — "Confident Corporate Blue" (closest to current, evolved)
-- Primary: refined mid-blue (evolved, not default-framework blue) — keeps some visual continuity with the current site if the business has informal brand recognition around blue
-- Accent: steel grey + a single sharp accent (e.g., safety-orange or amber) used sparingly for CTAs only
-- Background: cool light grey
-- Use case fit: safest choice if the business wants to preserve some visual continuity with existing brand recognition rather than a full color pivot
-
-**Recommendation:** Direction A, pending brand asset review. All three avoid excessive gradients, glassmorphism, or oversaturated "SaaS" color use per instructions §17.
-
-Full semantic palette (primary/secondary/accent/background/surface/text/muted/border/success/warning/error) will be finalized in `docs/DESIGN_SYSTEM.md` during Phase 3, once a direction is approved.
+`CONTENT NEEDED`: a transparent-background and/or vector export of the logo, for use on dark surfaces (footer, WhatsApp CTA band) and as a favicon — the current white-background PNG cannot sit cleanly on a non-white background as supplied.
 
 ---
 
-## Visual Personality
+## Brand Personality
 
-**Modern Indonesian garment manufacturer + premium fashion brand + industrial company** (per instructions §17/§40) — concretely, this means:
-- Confident, large typography and generous whitespace, not a dense catalog-grid feel
-- Photography-led, not icon/illustration-led
-- Straight lines, subtle borders, soft (not heavy) shadows — avoid rounded "friendly SaaS" card treatments
-- Numbers and specifics (5,000 pcs/day, 600 employees, 1,860 m² factory) treated as hero content, not buried in paragraphs
+**Modern + Premium + Fashion-oriented + Industrial + Professional + Confident + Warm + Minimal + Trustworthy.**
+
+Concretely, this means: confident, large editorial typography and generous whitespace rather than a dense catalog-grid feel; photography-led rather than icon/illustration-led sections; straight lines, thin borders, and soft (not heavy) shadows rather than rounded "friendly SaaS" card treatments; and real numbers (5,000 pcs/day, 600 employees, 1,860 m² factory) treated as hero content, not buried in paragraphs.
+
+Explicitly avoided: generic SaaS, generic ecommerce, generic corporate template, cheap garment-marketplace feel, or an overly colorful fashion-website feel.
+
+---
+
+## Color System
+
+### Palette
+
+| Token | Hex | Role |
+|---|---|---|
+| MAI Red (Primary) | `#AF2222` | Primary CTA, active nav, selected states, key statistics, brand accents, hover states |
+| Deep Wine (Deep Brand) | `#7F171A` | Dark-red backgrounds, hover states, strong section accents, premium moments — used sparingly |
+| Soft Red (Secondary Brand) | `#D84A4A` | Light accents, tags, subtle highlights, hover backgrounds — never the dominant page color |
+| Warm Ivory (Main Background) | `#F8F6F2` | Main marketing/editorial sections — warmer than pure white, fits a fashion/textile feel |
+| Soft Gray (Secondary Background) | `#F1F0ED` | Alternating sections, cards, form areas |
+| White (Surface) | `#FFFFFF` | Cards, navigation, forms, product surfaces |
+| Charcoal (Main Text) | `#181818` | Body/heading text, instead of pure black |
+| Slate (Secondary Text) | `#626262` | Descriptions, metadata, supporting text |
+| Border (Warm Gray) | `#DEDCD7` | Card borders, dividers, inputs, nav separators |
+
+### Ratio
+
+**60% Warm Ivory / White · 25% Charcoal / Neutral · 10% Soft Gray · 5% MAI Red.**
+
+The 5% is intentional — red marks the next action, not the page. Prefer:
+
+```
+Warm Ivory background + Charcoal typography + White cards + MAI Red CTA
+```
+
+Avoid:
+
+```
+Red background + Red cards + Red buttons + Red text
+```
+
+Gradients, if used at all, stay extremely subtle and within the red/wine family — no unrelated bright colors enter the system.
+
+### Where red appears
+
+Primary CTAs (all WhatsApp buttons), active/selected states, key statistics, small accent marks, and the final full-width CTA band — one of the only places the brand red is allowed to dominate a section, precisely because it's the last, highest-intent moment on the page.
+
+### Accessibility note
+
+`#AF2222` on `#FFFFFF` and on `#F8F6F2` both pass WCAG AA for large text and UI components, but **white text on `#AF2222` should be checked against WCAG AA for body-size text** before use — prefer `#AF2222` as a large-CTA fill with white button label (already a proven high-contrast pairing) rather than as small red-on-white or red-on-ivory body copy, which reads poorly at small sizes. Final contrast values will be verified against real component sizes in Phase 3 implementation, not asserted here without testing.
+
+---
 
 ## Typography Direction
 
-- Two-family maximum, per instructions §19: a confident **Display/Heading** face (e.g., **Plus Jakarta Sans** or **Manrope**, both support Bahasa Indonesia diacritics well and read as modern-corporate without being generic) paired with a highly legible **Body** face (e.g., **Inter** or **DM Sans**).
-- Recommended pairing: **Plus Jakarta Sans** (headings, Semibold/Bold only — avoid using more than 2 weights) + **Inter** (body, Regular/Medium).
-- Clear hierarchy: Display (hero) → H1 → H2 → H3 → Body → Caption → Label, each with a deliberate size/weight step, not just size changes.
-
-## Photography Direction
-
-- Prioritize real: factory floor, sewing lines, fabric/material close-ups, finished garments, packaging, QC inspection, workers (with appropriate consent/anonymity as the business prefers).
-- **CONTENT NEEDED for essentially all real photography** — the current site uses only product-mockup-style images and one generic Unsplash stock photo on the About page (`images.unsplash.com/photo-1441986300917...`), which does not represent MAI's actual facility and should not be treated as final content.
-- Until real photography is supplied, use clearly labeled placeholders in any working build — never present a generic stock image as if it depicts MAI's real facility.
-
-## Layout Principles
-
-- Editorial section rhythm: alternate full-width and split-content sections to avoid monotony (per §17).
-- Consistent container max-width and section vertical rhythm (finalized as tokens in Phase 3 `DESIGN_SYSTEM.md`).
-- Cards used sparingly and consistently (product cards, service cards, portfolio cards, testimonial cards) — one card system, not several ad hoc styles.
-
-## Button & CTA Style
-
-- Primary CTA (WhatsApp actions): solid fill, accent color, consistent icon (WhatsApp glyph) — same visual weight everywhere it appears so it's instantly recognizable as "the next step."
-- Secondary CTA: outline or text-link style, lower visual weight than primary, never competing with it.
-- No more than one primary-styled CTA visible per section/viewport, to keep the "next action" obvious per instructions §39.
-
-## Border Radius & Shadows
-
-- Small-to-moderate radius (subtle, not pill-shaped/bubbly) — consistent with "industrial but elegant," avoiding both harsh sharp-corner brutalism and overly soft SaaS rounding.
-- Soft, low-opacity shadows only where they aid hierarchy (elevated cards, sticky header on scroll) — avoid decorative shadow stacking.
-
-## Animation Principles
-
-- Scroll-reveal and fade/slide entrances used sparingly on section entry, not per-element.
-- Numeric counters animate on scroll-into-view, but must render their **final/base value server-side first** so nothing ever visibly reads "0" before JS executes (directly addressing the bug observed on the AFIT reference site).
-- Respect `prefers-reduced-motion` throughout, per instructions §32/§22.
-- No parallax, no heavy scroll-jacking — keep the industrial/professional tone rather than a flashy consumer feel.
-
-## Responsive Principles
-
-- Mobile-first construction for every section (per instructions §21), with intentional mobile layouts (not shrunk desktop layouts) — in particular:
-  - Dense data (product specs, stat grids) reflow to 1–2 columns, never a horizontally-scrolling table on mobile unless explicitly designed for it (e.g., logo strips).
-  - Sticky WhatsApp CTA on mobile (small persistent floating button) given how central this conversion path is.
-- Breakpoints: Mobile / Tablet / Laptop / Desktop / Large desktop, finalized as concrete pixel tokens in Phase 3.
+See `DESIGN_SYSTEM.md` for the final font choice and full type scale. Direction: one confident sans-serif family used across both display and body weights (reduces font-loading overhead and keeps the system restrained, per the "not generic SaaS" brief), large editorial headlines, strong section headings, comfortable body text, and clear CTA labels. Restrained weight range — avoid using more than 2–3 weights on a single page.
 
 ---
 
-## What to Avoid (explicit, per instructions §17/§40)
+## Layout Direction
 
-Excessive gradients, glassmorphism, oversaturated "colorful SaaS" UI, template-feeling generic layouts, over-animation, generic ecommerce visual language (the exact failure mode of the current site), and any pixel-level copying of either reference site's layout, imagery, or wording.
+- Large whitespace, strong visual hierarchy, large imagery, editorial grids, asymmetrical layouts where appropriate, generous section spacing, full-width visual sections, subtle borders.
+- Explicitly avoid a monotonous rhythm of `Title → 3 cards → Title → 3 cards`. Alternate editorial layouts, large images, product grids, statistics, process diagrams, split layouts, and full-width CTA sections, matching the section-by-section direction in `HOMEPAGE_ARCHITECTURE.md`.
+
+---
+
+## Cards
+
+Small border radius, thin borders, minimal shadows, large imagery, strong typography. Avoid excessive rounded corners, heavy shadows, floating glassmorphism, and gradients — a card should read as a clean surface, not a decorative object. Concrete tokens defined in `DESIGN_SYSTEM.md`.
+
+---
+
+## Photography Direction
+
+Photography carries most of the credibility burden on this site and is prioritized over illustration or iconography. Real production photography — sewing machines, fabric, garment workers, cutting, sewing, quality control, finished products, packaging, factory environment — should be used wherever available.
+
+`CONTENT NEEDED` for essentially all real photography: the current live site uses only product-mockup-style images and generic stock photography, none of which represents MAI's actual facility or process. Until real photography is supplied, any working build should use clearly labeled placeholders — never present a generic stock image as if it depicts MAI's real factory.
+
+---
+
+## Iconography
+
+Simple, single-weight line icons only, used sparingly (process steps, "Why Multi Andria" cards, FAQ). Icons support text, they don't replace it — this is a photography-led site, not an icon-led one.
+
+---
+
+## Animation
+
+Subtle only: fade-in, image reveal, slight slide, hover transitions, number counters that animate on scroll-into-view but render their final/base value server-side first (directly avoiding the "0+" flash bug observed on the AFIT reference site), and gentle image scale on hover. No parallax, no heavy scroll-jacking, no per-element animation. Always respects `prefers-reduced-motion`.
+
+---
+
+## Responsive Design & Mobile Navigation
+
+Mobile-first construction for every section, not a shrunk desktop layout. Dense data (stat grids, process steps) reflows to 1–2 columns rather than a horizontally-scrolling table, except logo strips, which are intentionally horizontally scrollable. Mobile navigation collapses to a simple menu with the WhatsApp CTA kept visible or reachable within one tap at all times — including a persistent bottom WhatsApp bar if testing shows it improves conversion without feeling intrusive.
+
+---
+
+## WhatsApp CTA Treatment
+
+The WhatsApp CTA is the single most important interactive element on the site and must be visually consistent everywhere it appears: same fill color (MAI Red), same icon, same label pattern, so it is instantly recognizable as "the next step" regardless of which section it appears in. No more than one primary-styled CTA visible per section/viewport, so the next action is never ambiguous. Full button spec in `DESIGN_SYSTEM.md`.
