@@ -17,7 +17,9 @@
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
                 <div class="reveal" style="--reveal-delay: 0ms">
-                    <x-location-card :location="collect(config('company.locations'))->firstWhere('key', 'hq')" variant="compact" />
+                    <x-location-card :location="collect(config('company.locations'))->firstWhere('key', 'hq')" variant="compact">
+                        Termasuk fasilitas produksi & warehouse — gedung 4 lantai sejak 2023.
+                    </x-location-card>
                 </div>
                 <div class="reveal" style="--reveal-delay: 100ms">
                     <x-location-card :location="collect(config('company.locations'))->firstWhere('key', 'factory')" variant="compact">

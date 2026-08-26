@@ -11,7 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ $title ? $title.' — Multi Andria Indonesia' : 'Multi Andria Indonesia — Partner Produksi Garment untuk Bisnis dan Institusi' }}</title>
-    <meta name="description" content="{{ $description ?? 'PT. Multi Andria Indonesia — produsen garment dan tekstil untuk kebutuhan bisnis, institusi, dan pemerintahan. Konsultasi produksi langsung via WhatsApp.' }}">
+    <meta name="description" content="{{ $description ?? 'PT. Multi Andria Indonesia — konveksi & distributor bahan tekstil serta produk fashion untuk bisnis, institusi, dan pemerintahan. Konsultasi produksi langsung via WhatsApp.' }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -107,7 +107,7 @@
                         <span class="text-base font-bold">Multi Andria Indonesia</span>
                     </div>
                     <p class="mt-4 max-w-sm text-sm leading-relaxed text-mai-slate">
-                        Produsen garment dan tekstil untuk kebutuhan bisnis, institusi, dan pemerintahan sejak 2014.
+                        Konveksi & distributor bahan tekstil serta produk fashion untuk bisnis, institusi, dan pemerintahan sejak 2014.
                     </p>
                     @if(config('company.social.instagram') || config('company.social.tiktok') || config('company.social.linkedin'))
                         <div class="mt-6 flex items-center gap-4">

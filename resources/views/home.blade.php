@@ -34,7 +34,7 @@
                 Dari konveksi kecil di Bintaro, kini melayani bisnis dan institusi di seluruh Indonesia
             </x-section-heading>
             <p class="reveal mx-auto mt-6 max-w-2xl text-base leading-relaxed text-mai-slate" style="--reveal-delay: 60ms">
-                PT. Multi Andria Indonesia berdiri sejak 2014 dan resmi berbadan hukum pada 2018. Kini kami mengoperasikan kantor pusat di Bintaro dan pabrik produksi di Sukabumi, melayani klien B2B maupun B2G/BUMN.
+                PT. Multi Andria Indonesia berdiri sejak 2014 dan resmi berbadan hukum pada 2018. Kini kami mengoperasikan kantor pusat, fasilitas produksi, dan warehouse di Bintaro, serta fasilitas produksi dan warehouse di Sukabumi — melayani klien B2B maupun B2G/BUMN.
             </p>
             <a href="{{ route('about') }}" class="reveal mt-6 inline-flex items-center gap-1 text-sm font-semibold text-mai-red transition-transform duration-200 hover:gap-2 hover:text-mai-wine" style="--reveal-delay: 100ms">
                 Selengkapnya tentang kami &rarr;
@@ -111,23 +111,23 @@
         </div>
     </section>
 
-    {{-- 6. Why Multi Andria --}}
+    {{-- 6. Why Multi Andria — verbatim "Keunggulan Kami" from the Company Profile,
+         shared with about.blade.php via config('company.advantages') so both
+         pages state the same thing the same way. --}}
     <section class="bg-white py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <x-section-heading eyebrow="Keunggulan Kami" align="center" class="reveal mx-auto">
-                Dipercaya bisnis dan institusi di seluruh Indonesia
+                3 poin keunggulan kami dibanding kompetitor
             </x-section-heading>
 
             <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
-                @foreach([
-                    ['title' => 'Produksi Skala Besar', 'desc' => 'Kapasitas dan infrastruktur yang mumpuni untuk memfasilitasi produksi skala besar, memastikan setiap pesanan dipenuhi tepat waktu dengan kualitas konsisten.'],
-                    ['title' => 'Jaminan Kualitas & Pengiriman', 'desc' => 'Standar Quality Control yang komprehensif — mulai dari desain, pemilihan bahan, penjahitan & perapihan, pengemasan, hingga pengiriman.'],
-                    ['title' => 'After Sales Service', 'desc' => 'Layanan purna jual untuk memastikan kebutuhan Anda selalu terpenuhi setelah produksi selesai.'],
-                ] as $item)
+                @foreach(config('company.advantages') as $item)
                     <div class="reveal rounded-xl border border-mai-border p-6 transition-all duration-200 hover:-translate-y-1 hover:shadow-md" style="--reveal-delay: {{ $loop->index * 90 }}ms">
-                        <div class="mb-4 h-10 w-10 rounded-full bg-mai-red/10"></div>
-                        <h3 class="text-base font-bold text-mai-charcoal">{{ $item['title'] }}</h3>
-                        <p class="mt-2 text-sm leading-relaxed text-mai-slate">{{ $item['desc'] }}</p>
+                        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-mai-red/10 text-sm font-black text-mai-red">
+                            {{ $loop->iteration }}
+                        </span>
+                        <h3 class="mt-4 text-base font-bold text-mai-charcoal">{{ $item['title'] }}</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-mai-slate">{{ $item['description'] }}</p>
                     </div>
                 @endforeach
             </div>
@@ -165,8 +165,22 @@
         </section>
     @endif
 
-    {{-- 8. Client / Trust Signals --}}
+    {{-- 7b. Testimonials — no fabricated quotes; see config('company.testimonials')
+         and docs/CONTENT_AUDIT.md. Section still appears (with a designed empty
+         state) rather than being silently removed, per instruction. --}}
     <section class="bg-white py-20 sm:py-24">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <x-section-heading eyebrow="Testimoni" align="center" class="reveal mx-auto">
+                Apa kata klien kami
+            </x-section-heading>
+            <div class="reveal mt-12" style="--reveal-delay: 100ms">
+                <x-testimonial-carousel :testimonials="config('company.testimonials')" />
+            </div>
+        </div>
+    </section>
+
+    {{-- 8. Client / Trust Signals --}}
+    <section class="bg-mai-ivory py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <x-section-heading eyebrow="Klien Kami" align="center" class="reveal mx-auto">
                 Dipercaya oleh brand dan institusi terkemuka
@@ -178,7 +192,7 @@
     </section>
 
     {{-- 9. FAQ --}}
-    <section class="bg-mai-ivory py-20 sm:py-24" x-data="{ open: 0 }">
+    <section class="bg-white py-20 sm:py-24" x-data="{ open: 0 }">
         <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <x-section-heading eyebrow="FAQ" align="center" class="reveal mx-auto">
                 Pertanyaan yang sering diajukan

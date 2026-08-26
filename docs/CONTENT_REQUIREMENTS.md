@@ -24,11 +24,18 @@ Everything below is information the new site will need that could **not** be ver
 - `CONTENT NEEDED`: Whether factory visits/surveys are offered to prospective clients.
 - `CONTENT NEEDED`: Payment terms/scheme (DP percentage, payment tempo options, etc.).
 
-**Resolved, not needed (from `public/company_profile.pdf`, verified 2026-08-27):**
+**Resolved, not needed (from `public/company_profile.pdf`, verified 2026-08-27–28):**
 - Service models — MAI offers both **Jasa CMT** (cut/sew/finish only, customer supplies material) and **Jasa FOB** (full package including material sourcing through finished product). Now live on `/layanan`.
 - Production process scope — QC covers design, material selection, sewing & finishing, packaging, and delivery. Now live on `/manufacturing` and the homepage.
-- Certification — **ISO 9001:2015**. Not yet surfaced on any page; consider adding a small trust badge once the certificate document/number is confirmed for display.
+- Certification & legal registration — **ISO 9001:2015**, Akta Pendirian (7 November 2018), NIB 8120016161003. Now live as a trust strip on `/tentang-kami` — see `docs/CONTENT_AUDIT.md`.
+- Facility scope — Bintaro is confirmed to host a production facility and warehouse, not just the head office (the Company Profile's facilities page lists Kantor Pusat, Fasilitas Produksi, and Warehouse all at Bintaro, plus Fasilitas Produksi and Warehouse at Sukabumi). Now reflected on `/manufacturing` and the homepage.
+- Vision & mission — corrected to the Company Profile's verbatim wording (the vision statement's closing clause had been silently dropped; the mission list had 6 items, one of which — "Keunggulan berkelanjutan" — isn't in the Company Profile at all). See `docs/CONTENT_AUDIT.md`.
+- "Why choose us" copy — replaced with the Company Profile's actual "Keunggulan Kami" (3 points), shared between Home and About via `config('company.advantages')`.
 - Company profile PDF — supplied at `public/company_profile.pdf`, linked from `/tentang-kami`.
+
+**New discrepancy found (2026-08-28), not yet resolved:**
+- `CONTENT NEEDED`: The Company Profile's own "Kantor dan Fasilitas Produksi" page states the Bintaro address as **No. 157**, while its own "Kontak" page (and the live site, and the old codebase's `.env`) all say **No. 197**. This is an inconsistency *within the Company Profile itself*, not something the site introduced. The site keeps **197** (three independent sources agree on it) — business should confirm which is correct so the Company Profile can be corrected at the source.
+- `CONTENT NEEDED`: The Company Profile's table of contents lists a "Pencapaian" (Achievements) page — likely the authoritative source for the site's stat strip (12+ years / 100+ clients / 10 categories / 4+ countries) — but it renders as a graphic with no extractable text in this environment (no PDF image/OCR tooling available). Confirm these figures still match that page.
 
 ## Products
 - `CONTENT NEEDED`: Additional product examples per category — currently only 1 SKU exists per category; confirm whether more are available, or whether the section should be explicitly framed as illustrative capability examples rather than a full catalog.
@@ -38,9 +45,11 @@ Everything below is information the new site will need that could **not** be ver
 ## Portfolio
 - `CONTENT NEEDED`: Real photographs of the named historical projects already in the verified company timeline (Ministry of Health mask production 2020, MPR RI procurement 2021, Ministry of Industry 2021, Bawaslu/Pertamina/Bank Mandiri/Kab. Solok Selatan 2023). None currently have accompanying imagery.
 - `CONTENT NEEDED`: Any additional completed projects (client, product, quantity, year) the business wants to showcase beyond what's in the current timeline.
+- **New lead (2026-08-28):** the Company Profile's "Contoh Hasil Produksi Kami" pages list many additional real, named production examples not yet on the site — uniforms for Korps POLRI/TNI/Korps Brimob, seragam dinas BUMN/PNS/ASN, branded client work (Dress Aurany, Dress Nha Miranda, Kaos Cressida, Rompi & Hijab Zoya, Kaos Coconut Island, Hijab Thoiba), institutional wear (Jersey Pertamina, Tactical Bawaslu), and accessories (tas, lanyard, topi for Bawaslu/Pos Indonesia/Politeknik/Dishub/UN). These exist in the PDF only as image captions — no extractable photos (no PDF image-extraction tool in this environment) — so they weren't added to `/portfolio` this pass, but are a strong candidate for the next Portfolio-focused update once photos are supplied. See `docs/CONTENT_AUDIT.md`.
 
 ## Testimonials
-- `CONTENT NEEDED`: Real client testimonials (quote, name, company, optional logo). None currently exist on MAI's own site. Recommend collecting 3–5 before launch; the homepage Testimonials section should be omitted until then rather than filled with placeholder or borrowed content.
+- `CONTENT NEEDED`: Real client testimonials (quote, name, company, optional logo, role if verified). None exist on MAI's own site, in the old codebase, or anywhere in the Company Profile (checked 2026-08-28 — its "Pelanggan" page is a client-logo wall, not quotes). Recommend collecting 3–5 before launch.
+- **Resolved (2026-08-28):** the display infrastructure is built and ready — `<x-testimonial-carousel>` (responsive, keyboard/swipe-accessible, no autoplay) and `<x-testimonial-card>`, wired to `config('company.testimonials')`. That array is intentionally empty; the homepage section renders a designed "coming soon" state rather than fabricated quotes or being hidden entirely. Populating the array with real testimonials is the only remaining step — no further development work needed.
 
 ## Photography
 - `CONTENT NEEDED`: Real factory/production photography — sewing lines, cutting, fabric close-ups, finished garments, packaging, QC — for the hero, Manufacturing, and Portfolio sections. The old codebase's 29 product images (`storage/app/public/products/`) were inspected directly and are CGI/3D-rendered garment mockups on a mannequin bust or floating, not real photography — usable as interim product-card imagery only, not as a substitute for authentic factory/production photos.

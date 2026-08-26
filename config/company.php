@@ -30,6 +30,106 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Company description, vision & mission
+    |--------------------------------------------------------------------------
+    |
+    | Verbatim from the Company Profile PDF (public/company_profile.pdf),
+    | "Tentang Kami" / "Visi & Misi" pages — the source of truth per explicit
+    | instruction (2026-08-28). See docs/CONTENT_AUDIT.md for the full
+    | before/after comparison against what the site previously said.
+    |
+    | Two corrections applied to the raw PDF text:
+    | - "sejak tahun 2012" → kept as 2014 throughout the site, matching the
+    |   PDF's own timeline graphic (see the 'timeline' note below) rather
+    |   than its intro paragraph, which disagrees with itself.
+    | - "Pelayanan profresional" → fixed to "Pelayanan profesional" (typo
+    |   in the source PDF itself).
+    |
+    */
+    'description' => 'PT Multi Andria Indonesia (PT MAI) adalah perusahaan yang bergerak di bidang konveksi & distributor bahan tekstil serta produk fashion. Berdiri sejak 2014, PT MAI dikenal karena kualitas & standar tinggi dalam produksinya, lead time yang singkat, serta berkomitmen pada praktik bisnis yang berkelanjutan dan bertanggung jawab.',
+
+    'vision' => "Menjadi perusahaan industri garmen terintegrasi nomor 1 di Indonesia yang memberikan pelayanan profesional dan kualitas produk terbaik, serta berkontribusi pada perkembangan industri tekstil nasional.",
+
+    /*
+    | The PDF lists exactly 5 mission points. The site previously showed 6
+    | (including a "Keunggulan berkelanjutan" / Continuous Excellence item
+    | that isn't in the Company Profile at all — it was carried over from
+    | the old live site's separate, six-pillar English mission). Dropped
+    | per "prefer the Company Profile" — see docs/CONTENT_AUDIT.md.
+    */
+    'mission' => [
+        'Produk berkualitas tinggi.',
+        'Berinovasi dalam desain dan teknologi.',
+        'Pelayanan profesional.',
+        'Menerapkan praktik produksi yang ramah lingkungan.',
+        'Berkontribusi positif pada masyarakat & lingkungan sekitar.',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Keunggulan Kami (Our Advantages)
+    |--------------------------------------------------------------------------
+    |
+    | Verbatim from the Company Profile's "Keunggulan Kami" page — "3 poin
+    | keunggulan kami dibanding kompetitor." Replaces the site's previous
+    | "Why Multi Andria" cards, which were staff-written rather than sourced
+    | from the business (see docs/CONTENT_AUDIT.md).
+    |
+    */
+    'advantages' => [
+        [
+            'title' => 'Dapat Memfasilitasi Produksi Skala Besar',
+            'description' => 'Kami memiliki kapasitas dan infrastruktur yang mumpuni untuk memfasilitasi produksi dalam skala besar, memastikan setiap pesanan dipenuhi tepat waktu dengan kualitas yang konsisten.',
+        ],
+        [
+            'title' => 'Jaminan Kualitas Produk & Pengiriman Premium',
+            'description' => 'Kami memiliki standar untuk Quality Control (QC) yang komprehensif, mulai dari tahap desain, pemilihan bahan, penjahitan & perapihan, pengemasan, dan pengiriman.',
+        ],
+        [
+            'title' => 'After Sales Service',
+            'description' => 'Kami menyediakan layanan purna jual untuk memastikan kebutuhan konsumen selalu terpenuhi.',
+        ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Certifications & legal registration
+    |--------------------------------------------------------------------------
+    |
+    | Verified from the Company Profile's "Sertifikat dan Legalitas Kami"
+    | page. Previously the site stated no certifications existed — this was
+    | true only because the live site never mentioned any; the Company
+    | Profile shows PT MAI is ISO 9001:2015 certified.
+    |
+    */
+    'certifications' => [
+        ['label' => 'Akta Pendirian', 'value' => '7 November 2018'],
+        ['label' => 'NIB', 'value' => '8120016161003'],
+        ['label' => 'ISO 9001:2015', 'value' => 'Bersertifikat'],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Testimonials
+    |--------------------------------------------------------------------------
+    |
+    | CONTENT NEEDED: intentionally empty. No testimonial appears anywhere
+    | in the Company Profile, the old codebase, or the live site — see
+    | docs/CONTENT_AUDIT.md and docs/CONTENT_REQUIREMENTS.md. Per explicit
+    | instruction, testimonials must never be fabricated, so this stays an
+    | empty array (not placeholder/dummy entries) until the business
+    | supplies real ones. The homepage section still exists and renders a
+    | designed "coming soon" state rather than being fabricated or removed
+    | — see <x-testimonial-carousel> and its usage in home.blade.php.
+    |
+    | Shape once populated:
+    | ['quote' => '...', 'name' => '...', 'company' => '...', 'role' => null, 'logo' => null]
+    |
+    */
+    'testimonials' => [],
+
+    /*
+    |--------------------------------------------------------------------------
     | Locations (Google Maps)
     |--------------------------------------------------------------------------
     |
@@ -89,6 +189,13 @@ return [
     | Sourced from the live About Us page and the old codebase's timeline
     | data (see docs/DISCOVERY.md Task 2). Never invented — update only when
     | the business confirms new figures.
+    |
+    | The Company Profile PDF's table of contents lists a "Pencapaian"
+    | (Achievements) page that would be the more authoritative source for
+    | these — but its content renders as a graphic/infographic with no
+    | extractable text layer, so it could not be read or cross-checked here.
+    | CONTENT NEEDED: confirm these figures still match that page. See
+    | docs/CONTENT_AUDIT.md.
     |
     */
     'stats' => [
