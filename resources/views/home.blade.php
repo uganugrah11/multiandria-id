@@ -145,7 +145,7 @@
                         <div class="reveal group overflow-hidden rounded-xl border border-mai-border bg-white" style="--reveal-delay: {{ $loop->index * 80 }}ms">
                             <div class="aspect-square overflow-hidden bg-mai-gray">
                                 @if($project->cover_image_url)
-                                    <img src="{{ $project->cover_image_url }}" alt="{{ $project->title }}" class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
+                                    <img src="{{ $project->cover_image_url }}" alt="{{ $project->title }}" class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" width="800" height="800">
                                 @endif
                             </div>
                             <div class="p-4">
@@ -215,12 +215,22 @@
                     <div class="reveal overflow-hidden rounded-xl border border-mai-border bg-white transition-colors duration-200 hover:border-mai-red/40" style="--reveal-delay: {{ $index * 70 }}ms">
                         <button
                             @click="open = open === {{ $index }} ? null : {{ $index }}"
+                            type="button"
+                            :aria-expanded="open === {{ $index }}"
+                            :aria-controls="'faq-panel-{{ $index }}'"
                             class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                         >
                             <span class="text-sm font-bold text-mai-charcoal">{{ $faq['q'] }}</span>
                             <span class="text-mai-red transition-transform duration-200" :class="open === {{ $index }} ? 'rotate-45' : ''" aria-hidden="true">+</span>
                         </button>
-                        <div x-show="open === {{ $index }}" x-transition x-cloak class="px-6 pb-5 text-sm leading-relaxed text-mai-slate">
+                        <div
+                            :id="'faq-panel-{{ $index }}'"
+                            x-show="open === {{ $index }}"
+                            x-transition
+                            x-cloak
+                            class="px-6 pb-5 text-sm leading-relaxed text-mai-slate"
+                            role="region"
+                        >
                             {{ $faq['a'] }}
                         </div>
                     </div>

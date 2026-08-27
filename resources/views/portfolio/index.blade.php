@@ -24,7 +24,7 @@
                         <div class="reveal group overflow-hidden rounded-xl border border-mai-border bg-white transition-all duration-200 hover:-translate-y-1 hover:border-mai-red hover:shadow-md" style="--reveal-delay: {{ min($loop->index * 60, 360) }}ms">
                             <div class="aspect-square overflow-hidden bg-mai-gray">
                                 @if($project->cover_image_url)
-                                    <img src="{{ $project->cover_image_url }}" alt="{{ $project->title }}" class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105">
+                                    <img src="{{ $project->cover_image_url }}" alt="{{ $project->title }}" class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105" width="800" height="800">
                                 @endif
                             </div>
                             <div class="p-5">

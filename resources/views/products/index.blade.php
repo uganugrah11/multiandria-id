@@ -13,12 +13,12 @@
     <section class="bg-mai-ivory py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-            <div class="flex flex-wrap gap-2">
-                <a href="{{ route('products.index') }}" class="rounded-full border px-4 py-2 text-xs font-semibold transition-colors duration-150 {{ request('type') ? 'border-mai-border text-mai-charcoal hover:border-mai-charcoal' : 'border-mai-red bg-mai-red text-white' }}">
+            <div class="flex flex-wrap gap-2" aria-label="Filter produk">
+                <a href="{{ route('products.index') }}" class="rounded-full border px-4 py-2 text-xs font-semibold transition-colors duration-150 {{ request('type') ? 'border-mai-border text-mai-charcoal hover:border-mai-charcoal' : 'border-mai-red bg-mai-red text-white' }}" {{ request('type') ? '' : 'aria-current="page"' }}>
                     Semua
                 </a>
                 @foreach($productTypes as $slug => $label)
-                    <a href="{{ route('products.index', ['type' => $slug]) }}" class="rounded-full border px-4 py-2 text-xs font-semibold transition-colors duration-150 {{ request('type') === $slug ? 'border-mai-red bg-mai-red text-white' : 'border-mai-border text-mai-charcoal hover:border-mai-charcoal' }}">
+                    <a href="{{ route('products.index', ['type' => $slug]) }}" class="rounded-full border px-4 py-2 text-xs font-semibold transition-colors duration-150 {{ request('type') === $slug ? 'border-mai-red bg-mai-red text-white' : 'border-mai-border text-mai-charcoal hover:border-mai-charcoal' }}" {{ request('type') === $slug ? 'aria-current="page"' : '' }}>
                         {{ $label }}
                     </a>
                 @endforeach
@@ -36,6 +36,8 @@
                                     alt="{{ $product->name }}"
                                     class="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                                     loading="lazy"
+                                    width="800"
+                                    height="800"
                                 >
                             </div>
                             <div class="p-5">

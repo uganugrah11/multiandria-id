@@ -21,7 +21,7 @@
                 @forelse($products as $product)
                     <tr>
                         <td class="flex items-center gap-3 px-4 py-3">
-                            <img src="{{ $product->primary_image_url }}" alt="" class="h-10 w-10 rounded-lg object-cover">
+                            <img src="{{ $product->primary_image_url }}" alt="" class="h-10 w-10 rounded-lg object-cover" width="40" height="40">
                             <span class="font-semibold text-mai-charcoal">{{ $product->name }}</span>
                         </td>
                         <td class="px-4 py-3 text-mai-slate">{{ $product->product_type_name }}</td>
