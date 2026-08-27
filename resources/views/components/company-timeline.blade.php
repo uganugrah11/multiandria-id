@@ -6,7 +6,7 @@
 {{-- Desktop: horizontal, scrollable timeline with a connected line running through normal flow (so it scrolls in sync with the cards — no absolute-positioned line to fall out of alignment). --}}
 <div class="hidden lg:block">
     <div class="-mx-4 overflow-x-auto px-4 pb-4" style="scroll-snap-type: x proximity;">
-        <div class="flex w-max items-start">
+        <div class="flex w-max items-stretch">
             @foreach($timeline as $item)
                 @php $isLatest = $loop->index === $lastIndex; @endphp
 
@@ -21,7 +21,7 @@
                         aria-hidden="true"
                     ></span>
 
-                    <div class="group mt-4 rounded-xl border border-mai-border bg-white p-5 transition-all duration-200 hover:-translate-y-1 hover:border-mai-red hover:shadow-md">
+                    <div class="group mt-4 flex w-full flex-1 flex-col rounded-xl border border-mai-border bg-white p-5 transition-all duration-200 hover:-translate-y-1 hover:border-mai-red hover:shadow-md">
                         <h3 class="text-sm font-bold text-mai-charcoal">{{ $item['title'] }}</h3>
                         @if(is_array($item['description']))
                             <ul class="mt-2 space-y-1.5 text-xs leading-relaxed text-mai-slate">
@@ -48,7 +48,7 @@
             <div class="flex w-56 shrink-0 flex-col items-start">
                 <span class="text-xs font-bold uppercase tracking-widest text-mai-red">Sekarang</span>
                 <span class="mt-3 block h-4 w-4 rounded-full bg-mai-red" aria-hidden="true"></span>
-                <div class="mt-4 rounded-xl border border-dashed border-mai-red/40 bg-mai-red/5 p-5">
+                <div class="mt-4 flex w-full flex-1 flex-col justify-center rounded-xl border border-dashed border-mai-red/40 bg-mai-red/5 p-5">
                     <p class="text-xs leading-relaxed text-mai-charcoal">Berkat kepercayaan Anda, kami terus bertumbuh.</p>
                 </div>
             </div>
