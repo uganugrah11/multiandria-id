@@ -123,12 +123,17 @@
                 Kantor pusat dan fasilitas produksi kami — kunjungi langsung atau buka rutenya di Google Maps.
             </p>
 
-            <div class="mt-12 space-y-6">
-                @foreach(config('company.locations') as $location)
-                    <div class="reveal" style="--reveal-delay: {{ $loop->index * 120 }}ms">
-                        <x-location-card :location="$location" variant="prominent" />
-                    </div>
-                @endforeach
+            <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+                <div class="reveal" style="--reveal-delay: 0ms">
+                    <x-location-card :location="collect(config('company.locations'))->firstWhere('key', 'hq')" variant="compact">
+                        Termasuk fasilitas produksi & warehouse — gedung 4 lantai sejak 2023.
+                    </x-location-card>
+                </div>
+                <div class="reveal" style="--reveal-delay: 100ms">
+                    <x-location-card :location="collect(config('company.locations'))->firstWhere('key', 'factory')" variant="compact">
+                        Luas bangunan 1.860 m² (didirikan 2020).
+                    </x-location-card>
+                </div>
             </div>
         </div>
     </section>
