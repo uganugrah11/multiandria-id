@@ -4,23 +4,43 @@
 <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
     <div class="space-y-6 lg:col-span-2">
         <div class="rounded-xl border border-mai-border bg-white p-6">
-            <label class="block text-xs font-semibold uppercase tracking-wide text-mai-slate">Nama Produk</label>
-            <input name="name" type="text" required value="{{ old('name', $product->name ?? '') }}"
-                class="mt-1 w-full rounded-lg border border-mai-border px-4 py-2.5 text-sm focus:border-mai-red focus:outline-none focus:ring-1 focus:ring-mai-red">
+            <div>
+                <label for="product-name" class="block text-xs font-semibold uppercase tracking-wide text-mai-slate">Nama Produk</label>
+                <input id="product-name" name="name" type="text" required value="{{ old('name', $product->name ?? '') }}" aria-invalid="{{ $errors->has('name') ? 'true' : 'false' }}"
+                    class="mt-1 w-full rounded-lg border border-mai-border px-4 py-2.5 text-sm focus:border-mai-red focus:outline-none focus:ring-1 focus:ring-mai-red {{ $errors->has('name') ? 'border-red-300' : '' }}">
+                @error('name')
+                    <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
 
-            <label class="mt-4 block text-xs font-semibold uppercase tracking-wide text-mai-slate">Kategori</label>
-            <select name="product_type" required class="mt-1 w-full rounded-lg border border-mai-border px-4 py-2.5 text-sm focus:border-mai-red focus:outline-none focus:ring-1 focus:ring-mai-red">
-                @foreach($productTypes as $slug => $label)
-                    <option value="{{ $slug }}" @selected(old('product_type', $product->product_type ?? '') === $slug)>{{ $label }}</option>
-                @endforeach
-            </select>
+            <div class="mt-4">
+                <label for="product-type" class="block text-xs font-semibold uppercase tracking-wide text-mai-slate">Kategori</label>
+                <select id="product-type" name="product_type" required aria-invalid="{{ $errors->has('product_type') ? 'true' : 'false' }}" class="mt-1 w-full rounded-lg border border-mai-border px-4 py-2.5 text-sm focus:border-mai-red focus:outline-none focus:ring-1 focus:ring-mai-red {{ $errors->has('product_type') ? 'border-red-300' : '' }}">
+                    @foreach($productTypes as $slug => $label)
+                        <option value="{{ $slug }}" @selected(old('product_type', $product->product_type ?? '') === $slug)>{{ $label }}</option>
+                    @endforeach
+                </select>
+                @error('product_type')
+                    <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
 
-            <label class="mt-4 block text-xs font-semibold uppercase tracking-wide text-mai-slate">Deskripsi Singkat</label>
-            <textarea name="description" rows="3" class="mt-1 w-full rounded-lg border border-mai-border px-4 py-2.5 text-sm focus:border-mai-red focus:outline-none focus:ring-1 focus:ring-mai-red">{{ old('description', $product->description ?? '') }}</textarea>
+            <div class="mt-4">
+                <label for="product-description" class="block text-xs font-semibold uppercase tracking-wide text-mai-slate">Deskripsi Singkat</label>
+                <textarea id="product-description" name="description" rows="3" aria-invalid="{{ $errors->has('description') ? 'true' : 'false' }}" class="mt-1 w-full rounded-lg border border-mai-border px-4 py-2.5 text-sm focus:border-mai-red focus:outline-none focus:ring-1 focus:ring-mai-red {{ $errors->has('description') ? 'border-red-300' : '' }}">{{ old('description', $product->description ?? '') }}</textarea>
+                @error('description')
+                    <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
 
-            <label class="mt-4 block text-xs font-semibold uppercase tracking-wide text-mai-slate">MOQ (opsional)</label>
-            <input name="moq" type="number" min="1" value="{{ old('moq', $product->moq ?? '') }}"
-                class="mt-1 w-40 rounded-lg border border-mai-border px-4 py-2.5 text-sm focus:border-mai-red focus:outline-none focus:ring-1 focus:ring-mai-red">
+            <div class="mt-4">
+                <label for="product-moq" class="block text-xs font-semibold uppercase tracking-wide text-mai-slate">MOQ (opsional)</label>
+                <input id="product-moq" name="moq" type="number" min="1" value="{{ old('moq', $product->moq ?? '') }}" aria-invalid="{{ $errors->has('moq') ? 'true' : 'false' }}"
+                    class="mt-1 w-40 rounded-lg border border-mai-border px-4 py-2.5 text-sm focus:border-mai-red focus:outline-none focus:ring-1 focus:ring-mai-red {{ $errors->has('moq') ? 'border-red-300' : '' }}">
+                @error('moq')
+                    <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
         </div>
 
         <div class="rounded-xl border border-mai-border bg-white p-6">
@@ -31,7 +51,7 @@
                 <div class="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-4">
                     @foreach($product->images as $image)
                         <label class="relative block cursor-pointer overflow-hidden rounded-lg border {{ $image->is_primary ? 'border-mai-red' : 'border-mai-border' }}">
-                            <img src="{{ $image->url }}" alt="" class="aspect-square w-full object-cover">
+                            <img src="{{ $image->url }}" alt="" class="aspect-square w-full object-cover" width="200" height="200">
                             <span class="absolute inset-x-0 bottom-0 flex items-center justify-between bg-black/60 px-2 py-1 text-[10px] text-white">
                                 <span class="flex items-center gap-1">
                                     <input type="radio" name="primary_image_id" value="{{ $image->id }}" @checked($image->is_primary)>

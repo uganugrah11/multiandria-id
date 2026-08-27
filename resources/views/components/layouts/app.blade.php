@@ -13,6 +13,10 @@
     <title>{{ $title ? $title.' — Multi Andria Indonesia' : 'Multi Andria Indonesia — Partner Produksi Garment untuk Bisnis dan Institusi' }}</title>
     <meta name="description" content="{{ $description ?? 'PT. Multi Andria Indonesia — konveksi & distributor bahan tekstil serta produk fashion untuk bisnis, institusi, dan pemerintahan. Konsultasi produksi langsung via WhatsApp.' }}">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-mai-ivory font-sans text-mai-charcoal antialiased">
@@ -24,7 +28,7 @@
     <header x-data="{ mobileOpen: false }" data-site-header class="sticky top-0 z-40 border-b border-mai-border bg-mai-ivory/95 backdrop-blur">
         <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             <a href="{{ route('home') }}" class="flex items-center gap-2">
-                <img src="{{ asset('images/logo-mai-transparent.png') }}" alt="Multi Andria Indonesia" class="h-10 w-10 object-contain">
+                <img src="{{ asset('images/logo-mai-transparent.png') }}" alt="Multi Andria Indonesia" class="h-10 w-10 object-contain" width="40" height="40">
                 <span class="text-sm font-bold leading-tight sm:text-base">
                     Multi Andria<br class="sm:hidden"> Indonesia
                 </span>
@@ -61,6 +65,7 @@
                 type="button"
                 class="inline-flex items-center justify-center rounded-lg p-2 text-mai-charcoal lg:hidden"
                 aria-label="Buka menu"
+                aria-controls="mobile-navigation-menu"
                 :aria-expanded="mobileOpen"
             >
                 <svg x-show="!mobileOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -73,6 +78,7 @@
         </div>
 
         <div
+            id="mobile-navigation-menu"
             x-show="mobileOpen"
             x-cloak
             x-transition
@@ -103,7 +109,7 @@
             <div class="grid grid-cols-1 gap-12 md:grid-cols-4">
                 <div class="md:col-span-2">
                     <div class="flex items-center gap-2">
-                        <img src="{{ asset('images/logo-mai-transparent.png') }}" alt="Multi Andria Indonesia" class="h-10 w-10 object-contain">
+                        <img src="{{ asset('images/logo-mai-transparent.png') }}" alt="Multi Andria Indonesia" class="h-10 w-10 object-contain" width="40" height="40">
                         <span class="text-base font-bold">Multi Andria Indonesia</span>
                     </div>
                     <p class="mt-4 max-w-sm text-sm leading-relaxed text-mai-slate">
