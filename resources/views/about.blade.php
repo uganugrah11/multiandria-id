@@ -1,27 +1,24 @@
 <x-layouts.app title="Tentang Kami">
 
-    <section class="bg-mai-charcoal py-20 sm:py-28">
-        <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-            <p class="animate-fade-up text-xs font-bold uppercase tracking-widest text-mai-soft-red">Tentang Kami</p>
-            <h1 class="animate-fade-up mt-4 text-4xl font-extrabold text-white sm:text-5xl" style="--reveal-delay: 80ms">PT. Multi Andria Indonesia</h1>
-            <p class="animate-fade-up mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/70" style="--reveal-delay: 160ms">
-                {{ config('company.description') }}
-            </p>
-            <div class="animate-fade-up mt-8" style="--reveal-delay: 220ms">
-                <a
-                    href="{{ asset('company_profile.pdf') }}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-white motion-reduce:hover:translate-y-0"
-                >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-4 w-4" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/>
-                    </svg>
-                    Unduh Company Profile (PDF)
-                </a>
-            </div>
-        </div>
-    </section>
+    <x-page-hero
+        eyebrow="Tentang Kami"
+        title="PT. Multi Andria Indonesia"
+        :description="config('company.description')"
+    >
+        <x-slot name="actions">
+            <a
+                href="{{ asset('company_profile.pdf') }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-white motion-reduce:hover:translate-y-0"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-4 w-4" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/>
+                </svg>
+                Unduh Company Profile (PDF)
+            </a>
+        </x-slot>
+    </x-page-hero>
 
     <section class="bg-mai-wine py-16">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -29,10 +26,7 @@
         </div>
     </section>
 
-    {{-- Vision & Mission — one cohesive "Arah Kami" section rather than two
-         separate, disconnected blocks. Vision reads as a large editorial
-         statement; Mission is a scannable numbered list. Both come verbatim
-         from the Company Profile (config('company.vision')/('company.mission')). --}}
+    {{-- Vision & Mission --}}
     <section class="bg-white py-20 sm:py-28">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <p class="reveal text-center text-xs font-bold uppercase tracking-widest text-mai-red">Arah Kami</p>
@@ -63,7 +57,7 @@
                 </div>
             </div>
 
-            {{-- Legalitas & sertifikasi — small trust strip, not a dominant section. --}}
+            {{-- Legalitas & sertifikasi --}}
             <div class="mt-16 grid grid-cols-1 gap-4 border-t border-mai-border pt-10 sm:grid-cols-3">
                 @foreach(config('company.certifications') as $cert)
                     <div class="reveal flex items-center gap-3" style="--reveal-delay: {{ $loop->index * 70 }}ms">
@@ -82,7 +76,7 @@
         </div>
     </section>
 
-    {{-- Keunggulan Kami — the business's own stated advantages, not staff-written copy. --}}
+    {{-- Keunggulan Kami --}}
     <section class="bg-mai-ivory py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <x-section-heading eyebrow="Keunggulan Kami" align="center" class="reveal mx-auto">
@@ -149,15 +143,10 @@
         </div>
     </section>
 
-    <section class="bg-mai-red py-20">
-        <div class="reveal mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-extrabold text-white sm:text-4xl">Siap Bekerja Sama dengan Kami?</h2>
-            <div class="mt-8 flex flex-wrap justify-center gap-4">
-                <a href="https://wa.me/{{ config('company.whatsapp.number') }}?text={{ rawurlencode(config('company.whatsapp.default_message')) }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-lg bg-white px-8 py-4 text-base font-semibold text-mai-red shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-mai-ivory hover:shadow-md motion-reduce:hover:translate-y-0">
-                    Konsultasi via WhatsApp
-                </a>
-            </div>
-        </div>
-    </section>
+    <x-cta-section
+        heading="Siap Bekerja Sama dengan Kami?"
+        description="Diskusikan kebutuhan garment Anda bersama tim Multi Andria Indonesia."
+        :whatsapp-message="'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai kebutuhan produksi garment.'"
+    />
 
 </x-layouts.app>
