@@ -39,10 +39,9 @@
                     $navLinks = [
                         'home' => ['route' => 'home', 'label' => 'Home'],
                         'about' => ['route' => 'about', 'label' => 'Tentang Kami'],
-                        'products.index' => ['route' => 'products.index', 'label' => 'Produk'],
+                        'products' => ['route' => 'products', 'label' => 'Produk'],
                         'services' => ['route' => 'services', 'label' => 'Layanan'],
-                        'manufacturing' => ['route' => 'manufacturing', 'label' => 'Manufacturing'],
-                        'portfolio.index' => ['route' => 'portfolio.index', 'label' => 'Portfolio'],
+                        'portfolio' => ['route' => 'portfolio', 'label' => 'Portofolio'],
                     ];
                 @endphp
                 @foreach($navLinks as $key => $link)
@@ -134,10 +133,9 @@
                     <p class="text-xs font-bold uppercase tracking-wider text-mai-slate">Navigasi</p>
                     <ul class="mt-4 space-y-3 text-sm">
                         <li><a href="{{ route('about') }}" class="text-mai-charcoal hover:text-mai-red">Tentang Kami</a></li>
-                        <li><a href="{{ route('products.index') }}" class="text-mai-charcoal hover:text-mai-red">Produk</a></li>
+                        <li><a href="{{ route('products') }}" class="text-mai-charcoal hover:text-mai-red">Produk</a></li>
                         <li><a href="{{ route('services') }}" class="text-mai-charcoal hover:text-mai-red">Layanan</a></li>
-                        <li><a href="{{ route('manufacturing') }}" class="text-mai-charcoal hover:text-mai-red">Manufacturing</a></li>
-                        <li><a href="{{ route('portfolio.index') }}" class="text-mai-charcoal hover:text-mai-red">Portfolio</a></li>
+                        <li><a href="{{ route('portfolio') }}" class="text-mai-charcoal hover:text-mai-red">Portofolio</a></li>
                     </ul>
                 </div>
 

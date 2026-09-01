@@ -1,11 +1,10 @@
-<x-layouts.app title="Portfolio">
+<x-layouts.app title="Portofolio">
 
-    <section class="bg-mai-charcoal py-16 sm:py-20">
-        <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-            <p class="animate-fade-up text-xs font-bold uppercase tracking-widest text-mai-soft-red">Portfolio</p>
-            <h1 class="animate-fade-up mt-4 text-3xl font-extrabold text-white sm:text-4xl" style="--reveal-delay: 80ms">Hasil Produksi Kami</h1>
-        </div>
-    </section>
+    <x-page-hero
+        eyebrow="Portofolio"
+        title="Hasil Produksi Kami"
+        description="Proyek-proyek yang telah kami kerjakan untuk brand, institusi, dan pemerintahan di seluruh Indonesia."
+    />
 
     <section class="bg-mai-ivory py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -37,13 +36,15 @@
                     @endforeach
                 </div>
             @endif
-
-            <div class="reveal mt-10 text-center">
-                <x-whatsapp-button size="md" :message="'Halo Multi Andria Indonesia, saya tertarik dengan produksi seperti portofolio Anda. Saya ingin berkonsultasi mengenai kebutuhan produksi saya.'">
-                    Buat Produk Serupa
-                </x-whatsapp-button>
-            </div>
         </div>
     </section>
+
+    <x-cta-section
+        heading="Ingin Produksi Serupa?"
+        description="Diskusikan kebutuhan produksi garment Anda bersama tim Multi Andria Indonesia."
+        :whatsapp-message="'Halo Multi Andria Indonesia, saya tertarik dengan produksi seperti portofolio Anda. Saya ingin berkonsultasi mengenai kebutuhan produksi saya.'"
+        secondary-label="Lihat Produk"
+        secondary-url="{{ route('products') }}"
+    />
 
 </x-layouts.app>

@@ -1,24 +1,20 @@
 <x-layouts.app title="Produk">
 
-    <section class="bg-mai-charcoal py-16 sm:py-20">
-        <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-            <p class="animate-fade-up text-xs font-bold uppercase tracking-widest text-mai-soft-red">Produk</p>
-            <h1 class="animate-fade-up mt-4 text-3xl font-extrabold text-white sm:text-4xl" style="--reveal-delay: 80ms">Kapabilitas Produksi Kami</h1>
-            <p class="animate-fade-up mx-auto mt-4 max-w-xl text-base text-white/70" style="--reveal-delay: 160ms">
-                Contoh kategori yang kami produksi. Setiap kebutuhan dapat disesuaikan — hubungi kami untuk konsultasi spesifikasi, bahan, dan jumlah pesanan.
-            </p>
-        </div>
-    </section>
+    <x-page-hero
+        eyebrow="Produk"
+        title="Kapabilitas Produk Kami"
+        description="Contoh kategori yang kami produksi. Setiap kebutuhan dapat disesuaikan — hubungi kami untuk konsultasi spesifikasi, bahan, dan jumlah pesanan."
+    />
 
     <section class="bg-mai-ivory py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
             <div class="flex flex-wrap gap-2" aria-label="Filter produk">
-                <a href="{{ route('products.index') }}" class="rounded-full border px-4 py-2 text-xs font-semibold transition-colors duration-150 {{ request('type') ? 'border-mai-border text-mai-charcoal hover:border-mai-charcoal' : 'border-mai-red bg-mai-red text-white' }}" {{ request('type') ? '' : 'aria-current="page"' }}>
+                <a href="{{ route('products') }}" class="rounded-full border px-4 py-2 text-xs font-semibold transition-colors duration-150 {{ request('type') ? 'border-mai-border text-mai-charcoal hover:border-mai-charcoal' : 'border-mai-red bg-mai-red text-white' }}" {{ request('type') ? '' : 'aria-current="page"' }}>
                     Semua
                 </a>
                 @foreach($productTypes as $slug => $label)
-                    <a href="{{ route('products.index', ['type' => $slug]) }}" class="rounded-full border px-4 py-2 text-xs font-semibold transition-colors duration-150 {{ request('type') === $slug ? 'border-mai-red bg-mai-red text-white' : 'border-mai-border text-mai-charcoal hover:border-mai-charcoal' }}" {{ request('type') === $slug ? 'aria-current="page"' : '' }}>
+                    <a href="{{ route('products', ['type' => $slug]) }}" class="rounded-full border px-4 py-2 text-xs font-semibold transition-colors duration-150 {{ request('type') === $slug ? 'border-mai-red bg-mai-red text-white' : 'border-mai-border text-mai-charcoal hover:border-mai-charcoal' }}" {{ request('type') === $slug ? 'aria-current="page"' : '' }}>
                         {{ $label }}
                     </a>
                 @endforeach
@@ -69,5 +65,13 @@
             </p>
         </div>
     </section>
+
+    <x-cta-section
+        heading="Siap Memulai Produksi?"
+        description="Diskusikan kebutuhan garment Anda bersama tim Multi Andria Indonesia."
+        :whatsapp-message="'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai kebutuhan produksi garment.'"
+        secondary-label="Lihat Portofolio"
+        secondary-url="{{ route('portfolio') }}"
+    />
 
 </x-layouts.app>

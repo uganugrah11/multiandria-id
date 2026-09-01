@@ -125,6 +125,11 @@ return [
     | Shape once populated:
     | ['quote' => '...', 'name' => '...', 'company' => '...', 'role' => null, 'logo' => null]
     |
+    | ⚠ TEMPORARY DUMMY DATA BELOW — for local visual preview only, at the
+    | user's explicit request, so they can see the carousel with real cards
+    | instead of the empty state. This is NOT verified content and must be
+    | reverted to an empty array before committing / going live.
+    |
     */
     'testimonials' => [],
 

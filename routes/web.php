@@ -5,21 +5,18 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\PortfolioController;
-use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
-// Public — matches docs/SITEMAP.md. No cart, checkout, account, or order routes.
+// Public — canonical navigation: Home, Tentang Kami, Produk, Layanan, Portofolio.
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tentang-kami', [PageController::class, 'about'])->name('about');
-Route::get('/produk', [ProductController::class, 'index'])->name('products.index');
+Route::get('/produk', [PageController::class, 'products'])->name('products');
 Route::get('/layanan', [PageController::class, 'services'])->name('services');
-Route::get('/manufacturing', [PageController::class, 'manufacturing'])->name('manufacturing');
-Route::get('/portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
+Route::get('/portofolio', [PageController::class, 'portfolio'])->name('portfolio');
 
-// No dedicated Contact page — location/contact info lives on Tentang Kami,
-// the footer, and WhatsApp CTAs (see docs/SITEMAP.md). Old /kontak URLs
-// redirect there instead of 404ing.
+// Legacy URL redirects — preserve inbound links from old IA.
+Route::permanentRedirect('/manufacturing', '/layanan#proses-produksi');
+Route::permanentRedirect('/portfolio', '/portofolio');
 Route::permanentRedirect('/kontak', '/tentang-kami#lokasi');
 
 // Admin auth (internal content management only — no public registration)
