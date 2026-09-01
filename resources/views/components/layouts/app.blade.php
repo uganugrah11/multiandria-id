@@ -1,7 +1,12 @@
 @props([
     'title' => null,
     'description' => null,
+    'solidHeader' => false,
 ])
+
+@php
+    $startSolid = $solidHeader;
+@endphp
 
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
@@ -25,11 +30,23 @@
         Langsung ke konten
     </a>
 
-    <header x-data="{ mobileOpen: false }" data-site-header class="sticky top-0 z-40 border-b border-mai-border bg-mai-ivory/95 backdrop-blur">
+    <header
+        x-data="{ mobileOpen: false, scrolled: @js($startSolid) }"
+        @if(!$startSolid)
+            x-init="scrolled = window.scrollY > 8"
+            @scroll.window="scrolled = window.scrollY > 8"
+        @endif
+        data-site-header
+        class="fixed inset-x-0 top-0 z-40 border-b transition-all duration-300"
+        :class="scrolled || mobileOpen ? 'is-scrolled border-mai-border bg-mai-ivory/95 backdrop-blur' : 'border-transparent bg-transparent'"
+    >
         <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             <a href="{{ route('home') }}" class="flex items-center gap-2">
                 <img src="{{ asset('images/logo-mai-transparent.png') }}" alt="Multi Andria Indonesia" class="h-10 w-10 object-contain" width="40" height="40">
-                <span class="text-sm font-bold leading-tight sm:text-base">
+                <span
+                    class="text-sm font-bold leading-tight transition-colors duration-300 sm:text-base"
+                    :class="scrolled || mobileOpen ? 'text-mai-charcoal' : 'text-white'"
+                >
                     Multi Andria<br class="sm:hidden"> Indonesia
                 </span>
             </a>
@@ -45,10 +62,14 @@
                     ];
                 @endphp
                 @foreach($navLinks as $key => $link)
+                    @php $isActive = request()->routeIs($link['route']); @endphp
                     <a
                         href="{{ route($link['route']) }}"
-                        @if(request()->routeIs($link['route'])) aria-current="page" @endif
-                        class="nav-link text-sm font-semibold transition-colors {{ request()->routeIs($link['route']) ? 'text-mai-red' : 'text-mai-charcoal hover:text-mai-red' }}"
+                        @if($isActive) aria-current="page" @endif
+                        class="nav-link text-sm font-semibold transition-colors duration-300"
+                        :class="(scrolled || mobileOpen)
+                            ? '{{ $isActive ? 'text-mai-red' : 'text-mai-charcoal hover:text-mai-red' }}'
+                            : '{{ $isActive ? 'text-mai-soft-red' : 'text-white hover:text-white/80' }}'"
                     >
                         {{ $link['label'] }}
                     </a>
@@ -62,7 +83,8 @@
             <button
                 @click="mobileOpen = !mobileOpen"
                 type="button"
-                class="inline-flex items-center justify-center rounded-lg p-2 text-mai-charcoal lg:hidden"
+                class="inline-flex items-center justify-center rounded-lg p-2 transition-colors duration-300 lg:hidden"
+                :class="scrolled || mobileOpen ? 'text-mai-charcoal' : 'text-white'"
                 aria-label="Buka menu"
                 aria-controls="mobile-navigation-menu"
                 :aria-expanded="mobileOpen"

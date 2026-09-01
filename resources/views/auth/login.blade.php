@@ -1,4 +1,4 @@
-<x-layouts.app title="Login">
+<x-layouts.app title="Login" solid-header>
 
     <section class="flex min-h-[70vh] items-center justify-center bg-mai-ivory px-4 py-16">
         <div class="w-full max-w-sm rounded-2xl border border-mai-border bg-white p-8">

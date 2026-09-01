@@ -93,18 +93,7 @@ function initCounters() {
     counters.forEach((el) => observer.observe(el));
 }
 
-/** Subtle shadow on the sticky header once the page has scrolled. */
-function initHeaderScrollState() {
-    const header = document.querySelector('[data-site-header]');
-    if (!header) return;
-
-    const toggle = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
-    toggle();
-    window.addEventListener('scroll', toggle, { passive: true });
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     initReveal();
     initCounters();
-    initHeaderScrollState();
 });

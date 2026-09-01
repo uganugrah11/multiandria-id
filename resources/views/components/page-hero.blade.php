@@ -39,7 +39,7 @@
     $maxClass = $alignment === 'center' ? 'max-w-4xl' : 'max-w-4xl';
 @endphp
 
-<section class="{{ $bgClass }} py-16 sm:py-24">
+<section class="{{ $bgClass }} pb-16 pt-28 sm:pb-24 sm:pt-32">
     <div class="mx-auto {{ $maxClass }} px-4 sm:px-6 lg:px-8 {{ $alignClass }}">
         @if($eyebrow)
             <p class="animate-fade-up {{ $eyebrowClass }} text-xs font-bold uppercase tracking-widest">{{ $eyebrow }}</p>

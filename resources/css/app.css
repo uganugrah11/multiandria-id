@@ -107,7 +107,7 @@ textarea:focus-visible {
 }
 
 [data-site-header] {
-    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 [data-site-header].is-scrolled {

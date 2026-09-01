@@ -41,7 +41,31 @@ Avoid:
 - factory floor
 - production capacity proof
 
-### 3. Factory working team — `public/images/factory/a-group-of-people-working-4.jpg`
+### 3. Headquarters / glass building — `public/images/factory/a-building-with-a-glass.jpg`
+
+Description:
+Building exterior with glass facade (1080x650, ~104 KB loader-verified file size).
+
+Role:
+- proof
+- company identity / location
+
+Best usage:
+- Tentang Kami hero background (assigned explicitly by project owner)
+- company identity / location section
+
+Avoid:
+- manufacturing-process proof
+- factory floor
+- production capacity proof
+
+Note:
+- chosen by explicit project-owner instruction for the Tentang Kami hero.
+- Visual inspection was not performed by the redesign agent (model without image input);
+  spot-check on a real device before final release. File name suggests a building, which
+  matches the HQ/office classification, but it must not be presented as a production floor.
+
+### 4. Factory working team — `public/images/factory/a-group-of-people-working-4.jpg`
 
 Description:
 Group of people working in a production environment (1024x806, ~127 KB loader-verified size).
