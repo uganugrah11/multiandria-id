@@ -41,6 +41,27 @@ Avoid:
 - factory floor
 - production capacity proof
 
+### 3. Factory working team — `public/images/factory/a-group-of-people-working-4.jpg`
+
+Description:
+Group of people working in a production environment (1024x806, ~127 KB loader-verified size).
+
+Role:
+- production/proof imagery (hero background)
+
+Best usage:
+- homepage hero background (assigned explicitly by project owner)
+- manufacturing/process section background
+
+Avoid:
+- product showcase grids (it is not a product shot)
+- implying specific product lines
+
+Note:
+- chosen by explicit project-owner instruction for the homepage hero.
+- Visual inspection was not performed by the redesign agent (model without image input);
+  spot-check on a real device before final release.
+
 ## Image Selection Policy
 
 The local working tree is the source of truth for uncommitted image assets.
