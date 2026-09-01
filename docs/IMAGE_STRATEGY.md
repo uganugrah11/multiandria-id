@@ -86,6 +86,28 @@ Note:
 - Visual inspection was not performed by the redesign agent (model without image input);
   spot-check on a real device before final release.
 
+### 5. Production facility / work floor — `public/images/factory/a-factory-with-lots-of.jpg`
+
+Description:
+Wide production-space photograph (1024x664, ~136 KB loader-verified size).
+
+Role:
+- production/facility imagery (hero background)
+
+Best usage:
+- Layanan hero background (assigned explicitly by project owner)
+- manufacturing/process section background
+
+Avoid:
+- product showcase grids (it is not a product shot)
+- implying specific product lines or exact machinery inventory
+
+Note:
+- chosen by explicit project-owner instruction for the Layanan hero.
+- Visual inspection was not performed by the redesign agent (model without image input);
+  spot-check on a real device before final release. Do not caption it as proof of a
+  specific machine or line that MAI has not confirmed.
+
 ## Image Selection Policy
 
 The local working tree is the source of truth for uncommitted image assets.
