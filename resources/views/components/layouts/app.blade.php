@@ -209,5 +209,8 @@
     </div>
     <div class="h-20 lg:hidden"></div>
 
+    {{-- Floating WhatsApp widget --}}
+    <x-whatsapp-float />
+
 </body>
 </html>

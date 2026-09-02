@@ -77,17 +77,24 @@ return [
     |
     */
     'advantages' => [
+        // The `icon` key is presentational only (maps to the icon set in
+        // the advantage rows on the homepage); the copied title/description
+        // text above is verbatim from the Company Profile's "Keunggulan Kami"
+        // page and must not be edited without a source.
         [
             'title' => 'Dapat Memfasilitasi Produksi Skala Besar',
             'description' => 'Kami memiliki kapasitas dan infrastruktur yang mumpuni untuk memfasilitasi produksi dalam skala besar, memastikan setiap pesanan dipenuhi tepat waktu dengan kualitas yang konsisten.',
+            'icon' => 'layers',
         ],
         [
             'title' => 'Jaminan Kualitas Produk & Pengiriman Premium',
             'description' => 'Kami memiliki standar untuk Quality Control (QC) yang komprehensif, mulai dari tahap desain, pemilihan bahan, penjahitan & perapihan, pengemasan, dan pengiriman.',
+            'icon' => 'shield',
         ],
         [
             'title' => 'After Sales Service',
             'description' => 'Kami menyediakan layanan purna jual untuk memastikan kebutuhan konsumen selalu terpenuhi.',
+            'icon' => 'chat',
         ],
     ],
 
@@ -303,20 +310,27 @@ return [
     |
     */
     'timeline' => [
+        // The `icon` key on each entry is presentational (maps to the icon
+        // node in <x-company-timeline>, same convention as `process_steps`);
+        // year/title/description remain verbatim from the Company Profile's
+        // timeline graphic.
         [
             'year' => '2014',
             'title' => 'Awal Mula',
             'description' => 'Fasilitas konveksi pertama kali berdiri di Bintaro, Tangerang Selatan (belum berbadan hukum PT).',
+            'icon' => 'home',
         ],
         [
             'year' => '2018',
             'title' => 'Pendirian Perusahaan',
             'description' => 'PT. Multi Andria Indonesia (PT. MAI) resmi berdiri pada 7 November 2018, dengan 20 karyawan.',
+            'icon' => 'document',
         ],
         [
             'year' => '2019',
             'title' => 'Ekspansi Sukabumi',
             'description' => 'Ekspansi ke Sukabumi dengan menyewa 3 ruko. Total karyawan Sukabumi mencapai 120 orang.',
+            'icon' => 'map-pin',
         ],
         [
             'year' => '2020',
@@ -325,6 +339,7 @@ return [
                 'Pabrik Garmen Sukabumi resmi berdiri dengan luas bangunan 1.860 m².',
                 'Menangani 15 klien, termasuk Kementerian Kesehatan (produksi masker), ZARA, dan Aurany.',
             ],
+            'icon' => 'factory',
         ],
         [
             'year' => '2021–2022',
@@ -333,6 +348,7 @@ return [
                 'Menangani proyek B2G: Kementerian Perindustrian dan Pengadaan MPR RI.',
                 'Klien besar baru: Hush Puppies, Hammer, Coconut Island, ElZatta, Zoya.',
             ],
+            'icon' => 'briefcase',
         ],
         [
             'year' => '2023',
@@ -341,6 +357,7 @@ return [
                 'Perluasan fasilitas Bintaro dengan gedung 4 lantai sebagai kantor pusat & produksi.',
                 'Menangani proyek B2G: Bawaslu, Pertamina, Bank Mandiri, Kabupaten Solok Selatan.',
             ],
+            'icon' => 'building',
         ],
         [
             'year' => '2024',
@@ -349,6 +366,7 @@ return [
                 'Total karyawan mencapai 600 orang.',
                 'Kapasitas produksi mencapai 5.000 pcs per hari.',
             ],
+            'icon' => 'chart',
         ],
     ],
 

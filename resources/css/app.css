@@ -18,6 +18,10 @@
     --color-mai-charcoal: #181818;
     --color-mai-slate: #626262;
     --color-mai-border: #dedcd7;
+
+    /* WhatsApp brand palette for the floating chat widget */
+    --color-whatsapp: #25d366;
+    --color-whatsapp-dark: #1da851;
 }
 
 [x-cloak] {
