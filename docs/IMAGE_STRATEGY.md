@@ -4,6 +4,9 @@
 
 ### 1. Custom black T-shirt project
 
+File:
+- `public/images/produk/a-black-shirt-with-the.jpg` (1080x1080, ~69 KB)
+
 Description:
 A black custom T-shirt shown front and back with institutional branding.
 
@@ -12,7 +15,7 @@ Role:
 - portfolio/product capability
 
 Best usage:
-- Portofolio featured project
+- Portofolio featured project (assigned by explicit project-owner instruction; confirmed in the portfolio redesign)
 - product capability section
 - selected work
 
@@ -21,6 +24,10 @@ Avoid:
 - factory proof
 - production facility
 - generic homepage hero unless the composition is deliberately improved
+
+Note:
+- Visual inspection was not performed by the redesign agent (model without image input);
+  spot-check on a real device before final release.
 
 ### 2. Multi Andria HQ office
 
@@ -104,6 +111,9 @@ Avoid:
 
 Note:
 - chosen by explicit project-owner instruction for the Layanan hero.
+- Also assigned by explicit project-owner instruction as the Portofolio hero background
+  (same asset, taller object-crop treatment) — owner-specified reuse, flagging it here so
+  it is a deliberate decision rather than an accidental duplicate.
 - Visual inspection was not performed by the redesign agent (model without image input);
   spot-check on a real device before final release. Do not caption it as proof of a
   specific machine or line that MAI has not confirmed.

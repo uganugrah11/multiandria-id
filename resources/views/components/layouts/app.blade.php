@@ -56,15 +56,26 @@
                     $navLinks = [
                         'home' => ['route' => 'home', 'label' => 'Home'],
                         'about' => ['route' => 'about', 'label' => 'Tentang Kami'],
-                        'products' => ['route' => 'products', 'label' => 'Produk'],
+                        'products' => [
+                            'route' => 'portfolio',
+                            'anchor' => '#produk',
+                            'label' => 'Produk',
+                            'isActive' => fn () => request()->routeIs('portfolio') && request()->filled('type'),
+                        ],
                         'services' => ['route' => 'services', 'label' => 'Layanan'],
-                        'portfolio' => ['route' => 'portfolio', 'label' => 'Portofolio'],
+                        'portfolio' => [
+                            'route' => 'portfolio',
+                            'label' => 'Portofolio',
+                            'isActive' => fn () => request()->routeIs('portfolio') && ! request()->filled('type'),
+                        ],
                     ];
                 @endphp
                 @foreach($navLinks as $key => $link)
-                    @php $isActive = request()->routeIs($link['route']); @endphp
+                    @php
+                        $isActive = isset($link['isActive']) ? $link['isActive']() : request()->routeIs($link['route']);
+                    @endphp
                     <a
-                        href="{{ route($link['route']) }}"
+                        href="{{ route($link['route']) }}{{ $link['anchor'] ?? '' }}"
                         @if($isActive) aria-current="page" @endif
                         class="nav-link text-sm font-semibold transition-colors duration-300"
                         :class="(scrolled || mobileOpen)
@@ -107,9 +118,12 @@
         >
             <nav class="flex flex-col gap-1">
                 @foreach($navLinks as $key => $link)
+                    @php
+                        $isActive = isset($link['isActive']) ? $link['isActive']() : request()->routeIs($link['route']);
+                    @endphp
                     <a
-                        href="{{ route($link['route']) }}"
-                        class="rounded-lg px-3 py-3 text-sm font-semibold {{ request()->routeIs($link['route']) ? 'bg-white text-mai-red' : 'text-mai-charcoal hover:bg-white' }}"
+                        href="{{ route($link['route']) }}{{ $link['anchor'] ?? '' }}"
+                        class="rounded-lg px-3 py-3 text-sm font-semibold {{ $isActive ? 'bg-white text-mai-red' : 'text-mai-charcoal hover:bg-white' }}"
                     >
                         {{ $link['label'] }}
                     </a>
@@ -155,7 +169,7 @@
                     <p class="text-xs font-bold uppercase tracking-wider text-mai-slate">Navigasi</p>
                     <ul class="mt-4 space-y-3 text-sm">
                         <li><a href="{{ route('about') }}" class="text-mai-charcoal hover:text-mai-red">Tentang Kami</a></li>
-                        <li><a href="{{ route('products') }}" class="text-mai-charcoal hover:text-mai-red">Produk</a></li>
+                        <li><a href="{{ route('portfolio').'#produk' }}" class="text-mai-charcoal hover:text-mai-red">Produk</a></li>
                         <li><a href="{{ route('services') }}" class="text-mai-charcoal hover:text-mai-red">Layanan</a></li>
                         <li><a href="{{ route('portfolio') }}" class="text-mai-charcoal hover:text-mai-red">Portofolio</a></li>
                     </ul>

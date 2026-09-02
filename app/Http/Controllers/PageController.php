@@ -18,8 +18,10 @@ class PageController extends Controller
         return view('services');
     }
 
-    public function products(Request $request)
+    public function portfolio(Request $request)
     {
+        $projects = PortfolioProject::active()->orderBy('sort_order')->get();
+
         $query = Product::active()->orderBy('sort_order');
 
         if ($request->filled('type')) {
@@ -29,13 +31,8 @@ class PageController extends Controller
         $products = $query->get();
         $productTypes = Product::productTypes();
 
-        return view('products', compact('products', 'productTypes'));
-    }
+        $categoryProducts = Product::active()->orderBy('sort_order')->get()->keyBy('product_type');
 
-    public function portfolio()
-    {
-        $projects = PortfolioProject::active()->orderBy('sort_order')->get();
-
-        return view('portfolio', compact('projects'));
+        return view('portfolio', compact('projects', 'products', 'productTypes', 'categoryProducts'));
     }
 }

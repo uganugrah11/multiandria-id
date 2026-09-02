@@ -76,7 +76,7 @@
             <div class="mt-12 grid grid-cols-1 gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
                 @foreach(\App\Models\Product::productTypes() as $slug => $label)
                     <a
-                        href="{{ route('products', ['type' => $slug]) }}"
+                        href="{{ route('portfolio', ['type' => $slug]).'#produk' }}"
                         class="reveal group flex items-center gap-4 border-t border-mai-border py-5 transition-colors duration-200 hover:border-mai-red"
                         style="--reveal-delay: {{ min($loop->index * 40, 300) }}ms"
                     >
@@ -90,7 +90,7 @@
             </div>
 
             <div class="reveal mt-10" style="--reveal-delay: 80ms">
-                <a href="{{ route('products') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border border-mai-border px-8 py-4 text-sm font-semibold text-mai-charcoal transition-all duration-200 hover:-translate-y-0.5 hover:border-mai-charcoal motion-reduce:hover:translate-y-0">
+                <a href="{{ route('portfolio').'#produk' }}" class="inline-flex items-center justify-center gap-2 rounded-lg border border-mai-border px-8 py-4 text-sm font-semibold text-mai-charcoal transition-all duration-200 hover:-translate-y-0.5 hover:border-mai-charcoal motion-reduce:hover:translate-y-0">
                     Lihat Semua Produk
                 </a>
             </div>
@@ -316,7 +316,7 @@
         description="Diskusikan kebutuhan garment Anda bersama tim Multi Andria Indonesia."
         :whatsapp-message="'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai kebutuhan produksi garment.'"
         secondary-label="Lihat Produk"
-        secondary-url="{{ route('products') }}"
+        secondary-url="{{ route('portfolio').'#produk' }}"
     />
 
 </x-layouts.app>
