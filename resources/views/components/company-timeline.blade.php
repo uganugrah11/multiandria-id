@@ -17,23 +17,31 @@
 {{-- Desktop: horizontal, scrollable timeline. The connector line runs in normal flow
      as a flex sibling so it stays in sync with the icon nodes — the icons sit directly
      on the line (mt-7 places the dotted connector through the icon's vertical center). --}}
-<div class="hidden lg:block">
-    <div class="-mx-4 overflow-x-auto px-4 pb-4" style="scroll-snap-type: x proximity;">
-        <div class="flex w-max items-stretch">
+<div data-company-timeline class="hidden lg:block">
+    <div class="relative">
+        <button data-timeline-prev type="button" aria-label="Milestone sebelumnya" class="timeline-control timeline-control-prev" disabled>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-5 w-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button data-timeline-next type="button" aria-label="Milestone berikutnya" class="timeline-control timeline-control-next">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-5 w-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/></svg>
+        </button>
+
+        <div data-timeline-scroller class="timeline-scroller -mx-4 overflow-x-auto px-4 pb-6" role="region" aria-label="Perjalanan perusahaan" tabindex="0">
+            <div data-timeline-track class="flex w-max items-stretch">
             @foreach($timeline as $item)
                 @php $isLatest = $loop->index === $lastIndex; @endphp
 
-                <div class="reveal flex w-64 shrink-0 flex-col items-start" style="scroll-snap-align: start; --reveal-delay: {{ $loop->index * 90 }}ms">
-                    <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border-2 bg-white text-mai-red shadow-sm transition-colors duration-200 {{ $isLatest ? 'border-mai-red bg-mai-red/10' : 'border-mai-border' }}">
+                <div data-timeline-item class="timeline-item flex w-64 shrink-0 flex-col items-start" style="--reveal-delay: {{ $loop->index * 90 }}ms">
+                    <span data-timeline-icon class="timeline-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border-2 bg-white text-mai-red shadow-sm transition-colors duration-200 {{ $isLatest ? 'border-mai-red bg-mai-red/10' : 'border-mai-border' }}">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-6 w-6" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="{{ $icons[$item['icon']] ?? $icons['home'] }}"/>
                         </svg>
                     </span>
-                    <span class="mt-4 inline-flex w-fit items-center rounded-full border border-mai-border bg-mai-ivory px-3 py-1 text-xs font-bold uppercase tracking-widest {{ $isLatest ? 'border-mai-red/40 text-mai-red' : 'text-mai-slate' }}">
+                    <span data-timeline-year class="mt-4 inline-flex w-fit items-center rounded-full border border-mai-border bg-mai-ivory px-3 py-1 text-xs font-bold uppercase tracking-widest {{ $isLatest ? 'border-mai-red bg-mai-red text-white' : 'text-mai-slate' }}">
                         {{ $item['year'] }}
                     </span>
 
-                    <div class="group mt-3 flex w-full flex-1 flex-col rounded-xl border border-mai-border bg-white p-5 transition-all duration-200 hover:-translate-y-1 hover:border-mai-red hover:shadow-md motion-reduce:hover:translate-y-0">
+                    <div data-timeline-card class="group mt-3 flex w-full flex-1 flex-col rounded-xl border border-mai-border bg-white p-5 transition-all duration-200 hover:-translate-y-1 hover:border-mai-red hover:shadow-md motion-reduce:hover:translate-y-0">
                         <h3 class="text-sm font-bold text-mai-charcoal">{{ $item['title'] }}</h3>
                         @if(is_array($item['description']))
                             <ul class="mt-2 space-y-1.5 text-xs leading-relaxed text-mai-slate">
@@ -51,24 +59,26 @@
                 </div>
 
                 @unless($loop->last)
-                    <div class="mt-7 w-10 shrink-0 self-start border-t-2 border-dotted border-mai-border" aria-hidden="true"></div>
+                    <div data-timeline-connector class="timeline-connector mt-7 w-10 shrink-0 self-start" aria-hidden="true"><span></span></div>
                 @endunless
             @endforeach
 
             {{-- Closing "Sekarang" node — presentational only, not a dated claim. --}}
-            <div class="mt-7 w-10 shrink-0 self-start border-t-2 border-dotted border-mai-border" aria-hidden="true"></div>
-            <div class="reveal flex w-56 shrink-0 flex-col items-start" style="--reveal-delay: {{ count($timeline) * 90 }}ms">
-                <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-mai-red text-white shadow-sm">
+            <div data-timeline-connector class="timeline-connector mt-7 w-10 shrink-0 self-start" aria-hidden="true"><span></span></div>
+            <div data-timeline-item class="timeline-item flex w-56 shrink-0 flex-col items-start" style="--reveal-delay: {{ count($timeline) * 90 }}ms">
+                <span data-timeline-icon class="timeline-icon flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-mai-red text-white shadow-sm">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-6 w-6" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="{{ $icons['sparkle'] }}"/>
                     </svg>
                 </span>
-                <span class="mt-4 inline-flex w-fit items-center rounded-full bg-mai-red px-3 py-1 text-xs font-bold uppercase tracking-widest text-white">Sekarang</span>
-                <div class="mt-3 flex w-full flex-1 flex-col justify-center rounded-xl border border-dashed border-mai-red/40 bg-mai-red/5 p-5">
+                <span data-timeline-year class="mt-4 inline-flex w-fit items-center rounded-full bg-mai-red px-3 py-1 text-xs font-bold uppercase tracking-widest text-white">Sekarang</span>
+                <div data-timeline-card class="mt-3 flex w-full flex-1 flex-col justify-center rounded-xl border border-dashed border-mai-red/40 bg-mai-red/5 p-5">
                     <p class="text-xs leading-relaxed text-mai-charcoal">Berkat kepercayaan Anda, kami terus bertumbuh.</p>
                 </div>
             </div>
+            </div>
         </div>
+        <div class="timeline-progress" aria-hidden="true"><span data-timeline-progress></span></div>
     </div>
 </div>
 

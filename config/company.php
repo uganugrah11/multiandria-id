@@ -138,7 +138,25 @@ return [
     | reverted to an empty array before committing / going live.
     |
     */
-    'testimonials' => [],
+    'testimonials' => [
+        // Temporary placeholder data supplied for the prototype; replace with verified client testimonials before launch.
+        ['name' => 'Dimas Prasetyo', 'role' => 'HRD Manager, PT Sinar Abadi Logistik', 'quote' => 'Multi Andria bantu produksi seragam kerja untuk 150 karyawan kami. Kualitas jahitan rapi, bahan sesuai spesifikasi, dan pengerjaan selesai tepat waktu meski jumlahnya besar. Komunikasi via WhatsApp juga cepat direspon.'],
+        ['name' => 'Ratna Kusuma', 'role' => 'Ketua Panitia Alumni, SMA Negeri 3 Bandung', 'quote' => 'Pesan kaos alumni untuk acara reuni akbar, desain custom dari logo sekolah. Prosesnya gampang, tinggal diskusi lewat WhatsApp, revisi desain juga cepat. Hasilnya melebihi ekspektasi, banyak alumni yang puas.'],
+        ['name' => 'Andre Wijaya', 'role' => 'Owner, Brand Fashion Lokal (Streetwear)', 'quote' => 'Sudah dua kali produksi hoodie custom di Multi Andria untuk brand saya. Quality control-nya konsisten, jahitan kuat, dan mereka fleksibel soal MOQ untuk brand kecil seperti kami.'],
+        ['name' => 'Siti Nurhaliza', 'role' => 'Event Organizer, Java Sport Run', 'quote' => 'Produksi jersey lari untuk 500 peserta event kami, dari sablon nomor sampai bahan dry-fit semuanya sesuai request. Pengiriman juga rapi, langsung dikoordinasikan lewat tim mereka.'],
+    ],
+
+    // Temporary FAQ copy supplied for the prototype; replace with business-verified answers before launch.
+    'faqs' => [
+        ['question' => 'Apa minimum order (MOQ) untuk produksi garment di Multi Andria Indonesia?', 'answer' => 'MOQ bervariasi tergantung jenis produk dan kompleksitas desain. Untuk kaos dan polo shirt custom, minimum order umumnya mulai dari 24–50 pcs per desain. Silakan konsultasikan kebutuhan Anda via WhatsApp untuk info MOQ yang sesuai.'],
+        ['question' => 'Apakah bisa custom desain sendiri?', 'answer' => 'Bisa. Anda dapat mengirimkan desain sendiri (file digital) atau berdiskusi dengan tim kami untuk membantu proses desain sesuai kebutuhan brand, instansi, atau event Anda.'],
+        ['question' => 'Apakah bisa menggunakan bahan/kain sendiri?', 'answer' => 'Bisa, dengan catatan bahan sudah dikonfirmasi kompatibel dengan proses produksi kami. Silakan diskusikan spesifikasi bahan Anda dengan tim kami terlebih dahulu.'],
+        ['question' => 'Berapa lama waktu produksinya?', 'answer' => 'Estimasi waktu produksi tergantung jumlah pesanan dan tingkat kerumitan desain, umumnya berkisar 2–4 minggu setelah desain dan bahan disepakati. Untuk kebutuhan mendesak, silakan informasikan di awal agar kami bisa sesuaikan jadwal produksi.'],
+        ['question' => 'Apakah menerima produksi dalam jumlah besar (bulk order)?', 'answer' => 'Ya, kami melayani produksi dalam skala besar untuk kebutuhan korporat, seragam institusi, maupun merchandise event dengan kapasitas produksi yang memadai.'],
+        ['question' => 'Apakah bisa produksi seragam kantor atau sekolah?', 'answer' => 'Bisa. Kami melayani produksi seragam untuk perusahaan, sekolah, organisasi, hingga komunitas, termasuk custom warna dan logo sesuai identitas instansi Anda.'],
+        ['question' => 'Bagaimana cara mendapatkan penawaran harga?', 'answer' => 'Anda bisa menghubungi kami langsung via WhatsApp dengan detail kebutuhan (jenis produk, jumlah, dan desain jika ada), dan tim kami akan memberikan penawaran harga secepatnya.'],
+        ['question' => 'Bagaimana proses produksinya dari awal sampai selesai?', 'answer' => 'Prosesnya meliputi konsultasi kebutuhan, penentuan desain dan bahan, pemotongan (cutting), penjahitan, sablon/bordir jika ada, finishing, quality control, hingga packaging dan pengiriman.'],
+    ],
 
     /*
     |--------------------------------------------------------------------------

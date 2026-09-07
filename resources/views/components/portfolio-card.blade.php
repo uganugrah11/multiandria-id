@@ -1,4 +1,9 @@
-@props(['item' => [], 'index' => 0])
+@props(['item' => [], 'index' => 0, 'showInquiry' => false])
+
+@php
+    $projectName = $item['title'] ?? 'proyek ini';
+    $inquiryMessage = 'Halo Multi Andria Indonesia, saya tertarik dengan produksi seperti "'.$projectName.'". Saya ingin berkonsultasi mengenai kebutuhan produksi saya.';
+@endphp
 
 <article data-motion-card="portfolio" class="reveal group flex h-full flex-col" style="--reveal-delay: {{ min($index * 60, 420) }}ms">
     {{-- Image with hover description overlay (desktop only) --}}
@@ -26,14 +31,22 @@
     </div>
 
     {{-- Card info --}}
-    <div class="mt-4">
-        <h3 class="text-base font-bold leading-snug text-mai-charcoal">{{ $item['title'] }}</h3>
+    <div class="mt-4 flex flex-1 flex-col">
+        <div class="min-h-[4.25rem]">
+            <h3 class="text-base font-bold leading-snug text-mai-charcoal">{{ $item['title'] }}</h3>
 
-        @if(! empty($item['brand_org']) && $item['brand_org'] !== '-')
-            <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-mai-slate">{{ $item['brand_org'] }}</p>
-        @endif
+            @if(! empty($item['brand_org']) && $item['brand_org'] !== '-')
+                <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-mai-slate">{{ $item['brand_org'] }}</p>
+            @endif
+        </div>
 
         {{-- Description below card: visible on mobile/tablet, hidden on desktop --}}
         <p class="mt-2 text-sm leading-relaxed text-mai-slate line-clamp-2 lg:hidden">{{ $item['description'] }}</p>
+
+        @if($showInquiry)
+            <x-whatsapp-button size="md" :message="$inquiryMessage" class="mt-5 w-full">
+                Buat Produk Serupa
+            </x-whatsapp-button>
+        @endif
     </div>
 </article>

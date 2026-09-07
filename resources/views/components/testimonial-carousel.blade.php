@@ -6,6 +6,9 @@
     <div
         x-data="{
             active: 0,
+            dragging: false,
+            dragStartX: 0,
+            dragStartScroll: 0,
             init() {
                 const track = this.$refs.track;
                 const observer = new IntersectionObserver((entries) => {
@@ -22,6 +25,21 @@
                 this.active = ((index % count) + count) % count;
                 this.$refs.track.children[this.active]?.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
             },
+            pointerDown(event) {
+                if (event.pointerType !== 'mouse' || event.button !== 0) return;
+                this.dragging = true;
+                this.dragStartX = event.clientX;
+                this.dragStartScroll = this.$refs.track.scrollLeft;
+                this.$refs.track.setPointerCapture(event.pointerId);
+            },
+            pointerMove(event) {
+                if (this.dragging) this.$refs.track.scrollLeft = this.dragStartScroll - (event.clientX - this.dragStartX);
+            },
+            pointerUp(event) {
+                if (!this.dragging) return;
+                this.dragging = false;
+                if (this.$refs.track.hasPointerCapture(event.pointerId)) this.$refs.track.releasePointerCapture(event.pointerId);
+            },
         }"
         @keydown.left="goTo(active - 1)"
         @keydown.right="goTo(active + 1)"
@@ -34,7 +52,12 @@
         <div class="relative">
             <div
                 x-ref="track"
-                class="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-4 pb-2"
+                class="timeline-scroller -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-4 pb-2"
+                :class="dragging ? 'is-dragging' : ''"
+                @pointerdown="pointerDown($event)"
+                @pointermove="pointerMove($event)"
+                @pointerup="pointerUp($event)"
+                @pointercancel="pointerUp($event)"
             >
                 @foreach($testimonials as $testimonial)
                     <div class="w-[85%] shrink-0 snap-start sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">

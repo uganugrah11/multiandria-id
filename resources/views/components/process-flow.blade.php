@@ -16,11 +16,18 @@
 {{-- Desktop: horizontal flow, connected in normal document flow (icon + arrow
      alternate as flex siblings) so the connector never falls out of sync with
      scrolling — the same technique used by <x-company-timeline>. --}}
-<div class="hidden lg:block">
-    <div class="-mx-4 overflow-x-auto px-4 pb-4">
+<div data-horizontal-scroll class="hidden lg:block">
+    <div class="relative">
+        <button data-horizontal-prev type="button" aria-label="Tahap sebelumnya" class="timeline-control timeline-control-prev" disabled>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-5 w-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button data-horizontal-next type="button" aria-label="Tahap berikutnya" class="timeline-control timeline-control-next">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-5 w-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 18 6-6-6-6"/></svg>
+        </button>
+        <div data-horizontal-scroller class="timeline-scroller -mx-4 overflow-x-auto px-4 pb-6" role="region" aria-label="Proses produksi" tabindex="0">
         <div class="flex w-max items-start">
             @foreach($steps as $step)
-                <div class="reveal flex w-40 shrink-0 flex-col items-center text-center" style="--reveal-delay: {{ $loop->index * 90 }}ms">
+                <div class="reveal timeline-item flex w-40 shrink-0 flex-col items-center text-center" style="--reveal-delay: {{ $loop->index * 90 }}ms">
                     <span class="flex h-14 w-14 items-center justify-center rounded-full border-2 border-mai-red/20 bg-mai-red/5 text-mai-red">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-6 w-6" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="{{ $icons[$step['icon']] ?? $icons['box'] }}"/>
@@ -38,6 +45,8 @@
                 @endunless
             @endforeach
         </div>
+    </div>
+        <div class="timeline-progress" aria-hidden="true"><span data-horizontal-progress></span></div>
     </div>
 </div>
 

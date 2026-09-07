@@ -220,9 +220,256 @@ function initCardHoverMotion() {
     window.addEventListener('pagehide', cleanup, { once: true });
 }
 
+/**
+ * Horizontal company timeline: native scroll remains the source of truth for
+ * keyboard, touch, and assistive-tech users. GSAP enhances only the visual
+ * milestone choreography when motion is allowed.
+ */
+function initCompanyTimelines() {
+    const timelines = gsap.utils.toArray('[data-company-timeline]');
+
+    if (!timelines.length) return;
+
+    window.__maiTimelineCleanup?.();
+
+    const cleanups = timelines.map((root) => {
+        const scroller = root.querySelector('[data-timeline-scroller]');
+        const progress = root.querySelector('[data-timeline-progress]');
+        const previous = root.querySelector('[data-timeline-prev]');
+        const next = root.querySelector('[data-timeline-next]');
+        const items = Array.from(root.querySelectorAll('[data-timeline-item]'));
+        const connectors = Array.from(root.querySelectorAll('[data-timeline-connector] > span'));
+
+        if (!scroller || !items.length) return () => {};
+
+        let dragStartX = 0;
+        let dragStartScroll = 0;
+        let isDragging = false;
+        let suppressClick = false;
+        let frame = null;
+
+        const maxScroll = () => Math.max(0, scroller.scrollWidth - scroller.clientWidth);
+        const currentIndex = () => {
+            const center = scroller.scrollLeft + (scroller.clientWidth / 2);
+            return items.reduce((closest, item, index) => {
+                const itemCenter = item.offsetLeft + (item.offsetWidth / 2);
+                const closestCenter = items[closest].offsetLeft + (items[closest].offsetWidth / 2);
+                return Math.abs(itemCenter - center) < Math.abs(closestCenter - center) ? index : closest;
+            }, 0);
+        };
+
+        const update = () => {
+            frame = null;
+            const maximum = maxScroll();
+            const ratio = maximum ? scroller.scrollLeft / maximum : 0;
+            progress?.style.setProperty('transform', `scaleX(${ratio})`);
+            previous.disabled = scroller.scrollLeft <= 2;
+            next.disabled = scroller.scrollLeft >= maximum - 2;
+
+            const activeIndex = currentIndex();
+            items.forEach((item, index) => {
+                const icon = item.querySelector('[data-timeline-icon]');
+                const active = index === activeIndex;
+                item.classList.toggle('is-active', active);
+
+                if (!prefersReducedMotion && icon) {
+                    gsap.to(icon, {
+                        scale: active ? 1.06 : 1,
+                        duration: 0.28,
+                        ease: 'power2.out',
+                        overwrite: 'auto',
+                    });
+                }
+            });
+        };
+
+        const requestUpdate = () => {
+            if (frame === null) frame = window.requestAnimationFrame(update);
+        };
+
+        const scrollByStep = (direction) => {
+            const step = Math.min(Math.max(items[0].offsetWidth + 40, 280), scroller.clientWidth * 0.9);
+            const destination = Math.max(0, Math.min(maxScroll(), scroller.scrollLeft + (step * direction)));
+
+            scroller.scrollTo({
+                left: destination,
+                behavior: prefersReducedMotion ? 'auto' : 'smooth',
+            });
+        };
+
+        // A fixed scroll delta is deliberately used here instead of deriving
+        // the closest card: it makes each control work predictably from every
+        // partial scroll position, then native scroll-snap settles the card.
+        const onPrevious = () => scrollByStep(-1);
+        const onNext = () => scrollByStep(1);
+        const onPointerDown = (event) => {
+            if (event.pointerType !== 'mouse' || event.button !== 0) return;
+            dragStartX = event.clientX;
+            dragStartScroll = scroller.scrollLeft;
+            isDragging = true;
+            suppressClick = false;
+            scroller.setPointerCapture(event.pointerId);
+            scroller.classList.add('is-dragging');
+        };
+        const onPointerMove = (event) => {
+            if (!isDragging) return;
+            const distance = event.clientX - dragStartX;
+            if (Math.abs(distance) > 4) suppressClick = true;
+            scroller.scrollLeft = dragStartScroll - distance;
+        };
+        const onPointerUp = (event) => {
+            if (!isDragging) return;
+            isDragging = false;
+            scroller.classList.remove('is-dragging');
+            if (scroller.hasPointerCapture(event.pointerId)) scroller.releasePointerCapture(event.pointerId);
+        };
+        const onClickCapture = (event) => {
+            if (!suppressClick) return;
+            event.preventDefault();
+            suppressClick = false;
+        };
+
+        scroller.addEventListener('scroll', requestUpdate, { passive: true });
+        scroller.addEventListener('pointerdown', onPointerDown);
+        scroller.addEventListener('pointermove', onPointerMove);
+        scroller.addEventListener('pointerup', onPointerUp);
+        scroller.addEventListener('pointercancel', onPointerUp);
+        scroller.addEventListener('click', onClickCapture, true);
+        previous.addEventListener('click', onPrevious);
+        next.addEventListener('click', onNext);
+        window.addEventListener('resize', requestUpdate, { passive: true });
+        requestUpdate();
+
+        const media = gsap.matchMedia();
+        media.add('(prefers-reduced-motion: no-preference)', () => {
+            items.forEach((item) => {
+                const icon = item.querySelector('[data-timeline-icon]');
+                const year = item.querySelector('[data-timeline-year]');
+                const card = item.querySelector('[data-timeline-card]');
+                const targets = [icon, year, card].filter(Boolean);
+
+                gsap.fromTo(targets, { autoAlpha: 0, y: 16 }, {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.52,
+                    ease: 'power3.out',
+                    stagger: 0.07,
+                    scrollTrigger: {
+                        trigger: item,
+                        scroller,
+                        horizontal: true,
+                        start: 'left 88%',
+                        once: true,
+                    },
+                });
+            });
+
+            connectors.forEach((connector) => {
+                gsap.to(connector, {
+                    scaleX: 1,
+                    duration: 0.42,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: connector.parentElement,
+                        scroller,
+                        horizontal: true,
+                        start: 'left 88%',
+                        once: true,
+                    },
+                });
+            });
+
+            ScrollTrigger.refresh();
+        });
+
+        return () => {
+            if (frame !== null) window.cancelAnimationFrame(frame);
+            media.revert();
+            scroller.removeEventListener('scroll', requestUpdate);
+            scroller.removeEventListener('pointerdown', onPointerDown);
+            scroller.removeEventListener('pointermove', onPointerMove);
+            scroller.removeEventListener('pointerup', onPointerUp);
+            scroller.removeEventListener('pointercancel', onPointerUp);
+            scroller.removeEventListener('click', onClickCapture, true);
+            previous.removeEventListener('click', onPrevious);
+            next.removeEventListener('click', onNext);
+            window.removeEventListener('resize', requestUpdate);
+        };
+    });
+
+    const cleanup = () => cleanups.forEach((remove) => remove());
+    window.__maiTimelineCleanup = cleanup;
+    window.addEventListener('pagehide', cleanup, { once: true });
+}
+
+/** Native horizontal process rail controls, sharing the same drag, edge-mask,
+ * snap, and progress treatment without adding timeline-specific animation. */
+function initHorizontalScrollers() {
+    const rails = gsap.utils.toArray('[data-horizontal-scroll]');
+
+    rails.forEach((root) => {
+        const scroller = root.querySelector('[data-horizontal-scroller]');
+        const previous = root.querySelector('[data-horizontal-prev]');
+        const next = root.querySelector('[data-horizontal-next]');
+        const progress = root.querySelector('[data-horizontal-progress]');
+
+        if (!scroller || !previous || !next) return;
+
+        let dragStartX = 0;
+        let dragStartScroll = 0;
+        let dragging = false;
+        let frame = null;
+        const maxScroll = () => Math.max(0, scroller.scrollWidth - scroller.clientWidth);
+        const update = () => {
+            frame = null;
+            const maximum = maxScroll();
+            const ratio = maximum ? scroller.scrollLeft / maximum : 0;
+            progress?.style.setProperty('transform', `scaleX(${ratio})`);
+            previous.disabled = scroller.scrollLeft <= 2;
+            next.disabled = scroller.scrollLeft >= maximum - 2;
+        };
+        const requestUpdate = () => {
+            if (frame === null) frame = window.requestAnimationFrame(update);
+        };
+        const scroll = (direction) => scroller.scrollBy({
+            left: direction * Math.min(280, scroller.clientWidth * 0.85),
+            behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        });
+        const onPointerDown = (event) => {
+            if (event.pointerType !== 'mouse' || event.button !== 0) return;
+            dragging = true;
+            dragStartX = event.clientX;
+            dragStartScroll = scroller.scrollLeft;
+            scroller.setPointerCapture(event.pointerId);
+            scroller.classList.add('is-dragging');
+        };
+        const onPointerMove = (event) => {
+            if (dragging) scroller.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
+        };
+        const onPointerUp = (event) => {
+            if (!dragging) return;
+            dragging = false;
+            scroller.classList.remove('is-dragging');
+            if (scroller.hasPointerCapture(event.pointerId)) scroller.releasePointerCapture(event.pointerId);
+        };
+
+        scroller.addEventListener('scroll', requestUpdate, { passive: true });
+        scroller.addEventListener('pointerdown', onPointerDown);
+        scroller.addEventListener('pointermove', onPointerMove);
+        scroller.addEventListener('pointerup', onPointerUp);
+        scroller.addEventListener('pointercancel', onPointerUp);
+        previous.addEventListener('click', () => scroll(-1));
+        next.addEventListener('click', () => scroll(1));
+        window.addEventListener('resize', requestUpdate, { passive: true });
+        requestUpdate();
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initHeroMotion();
     initScrollReveals();
     initCounters();
     initCardHoverMotion();
+    initCompanyTimelines();
+    initHorizontalScrollers();
 });

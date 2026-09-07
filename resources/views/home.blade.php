@@ -137,46 +137,11 @@
                 </h2>
             </div>
 
-            @if($featuredPortfolio->isNotEmpty())
-                @php
-                    $featured = $featuredPortfolio->first();
-                    $rest = $featuredPortfolio->slice(1);
-                @endphp
-                <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
-                    <a data-motion-card="portfolio" href="{{ route('portfolio') }}" class="reveal group relative block overflow-hidden rounded-2xl lg:col-span-2" style="--reveal-delay: 0ms">
-                        <div class="aspect-[4/3] overflow-hidden bg-mai-gray">
-                            @if($featured->cover_image_url)
-                                <img src="{{ $featured->cover_image_url }}" alt="{{ $featured->title }}" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" width="1200" height="900" loading="lazy">
-                            @endif
-                        </div>
-                        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-mai-charcoal/90 via-mai-charcoal/50 to-transparent p-6 pt-16">
-                            <p class="text-xs font-bold uppercase tracking-widest text-mai-soft-red">Proyek Unggulan</p>
-                            <h3 class="mt-1 text-xl font-bold text-white">{{ $featured->title }}</h3>
-                            @if($featured->client_name)
-                                <p class="mt-1 text-sm text-white/70">{{ $featured->client_name }} @if($featured->year) &middot; {{ $featured->year }} @endif</p>
-                            @endif
-                        </div>
-                    </a>
-
-                    @if($rest->isNotEmpty())
-                        <div class="grid grid-cols-2 gap-6 lg:grid-cols-1">
-                            @foreach($rest->take(2) as $project)
-                                <a data-motion-card="portfolio" href="{{ route('portfolio') }}" class="reveal group relative block overflow-hidden rounded-2xl bg-mai-gray" style="--reveal-delay: {{ $loop->index * 80 }}ms">
-                                    <div class="aspect-square overflow-hidden lg:aspect-[4/3]">
-                                        @if($project->cover_image_url)
-                                            <img src="{{ $project->cover_image_url }}" alt="{{ $project->title }}" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" width="900" height="900" loading="lazy">
-                                        @endif
-                                    </div>
-                                    <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-mai-charcoal/85 to-transparent p-4 pt-14">
-                                        <h3 class="text-sm font-bold text-white">{{ $project->title }}</h3>
-                                        @if($project->client_name)
-                                            <p class="mt-0.5 text-xs text-white/70">{{ $project->client_name }}</p>
-                                        @endif
-                                    </div>
-                                </a>
-                            @endforeach
-                        </div>
-                    @endif
+            @if($featuredPortfolio->count() === 3)
+                <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    @foreach($featuredPortfolio as $project)
+                        <x-portfolio-card :item="$project" :index="$loop->index" :show-inquiry="true" />
+                    @endforeach
                 </div>
             @else
                 <div class="reveal mt-12 rounded-2xl border border-mai-border bg-white p-8 text-center sm:p-12">
@@ -197,7 +162,7 @@
             @if($featuredPortfolio->isNotEmpty())
                 <div class="reveal mt-10 text-center" style="--reveal-delay: 120ms">
                     <a href="{{ route('portfolio') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border border-mai-border px-8 py-4 text-sm font-semibold text-mai-charcoal transition-all duration-200 hover:-translate-y-0.5 hover:border-mai-charcoal motion-reduce:hover:translate-y-0">
-                        Lihat Semua Portofolio
+                        Jelajahi Portofolio
                     </a>
                 </div>
             @endif
@@ -229,13 +194,16 @@
     </section>
 
     {{-- 9. FAQ --}}
-    <section class="bg-white py-20 sm:py-24" x-data="{ open: 0 }">
+    <section class="bg-white py-20 sm:py-24">
         <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-2xl mx-auto text-center">
                 <h2 class="reveal text-3xl font-bold leading-tight text-mai-charcoal sm:text-4xl">Pertanyaan yang sering diajukan</h2>
             </div>
 
-            <div class="mt-12 space-y-3">
+            <div class="mt-12">
+                <x-faq-accordion :faqs="config('company.faqs')" />
+            </div>
+            {{--
                 @php
                     $faqs = [
                         [
@@ -275,7 +243,7 @@
                 <p class="pt-2 text-center text-xs text-mai-slate">
                     [CONTENT NEEDED — pertanyaan FAQ lain (MOQ, lead time, CMT/FOB, dll) menunggu konfirmasi bisnis. Lihat docs/CONTENT_REQUIREMENTS.md.]
                 </p>
-            </div>
+            --}}
         </div>
     </section>
 
@@ -290,4 +258,21 @@
         secondary-url="{{ route('portfolio').'#produk' }}"
     />
 
+    @php
+        $faqSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'FAQPage',
+            'mainEntity' => collect(config('company.faqs'))->map(function (array $faq) {
+                return [
+                    '@type' => 'Question',
+                    'name' => $faq['question'],
+                    'acceptedAnswer' => [
+                        '@type' => 'Answer',
+                        'text' => $faq['answer'],
+                    ],
+                ];
+            })->values()->all(),
+        ];
+    @endphp
+    <script type="application/ld+json">@json($faqSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)</script>
 </x-layouts.app>

@@ -101,10 +101,124 @@ textarea:focus-visible {
     box-shadow: 0 1px 2px rgba(24, 24, 24, 0.04), 0 4px 12px rgba(24, 24, 24, 0.05);
 }
 
+/* Company timeline: native scrolling stays accessible, while the browser
+ * scrollbar is visually replaced by this restrained MAI progress indicator. */
+.timeline-scroller {
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+    overscroll-behavior-x: contain;
+    mask-image: linear-gradient(to right, transparent, #000 4rem, #000 calc(100% - 4rem), transparent);
+}
+
+.timeline-scroller::-webkit-scrollbar {
+    display: none;
+}
+
+.timeline-scroller.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    user-select: none;
+}
+
+.timeline-item {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.timeline-icon,
+.timeline-item [data-timeline-card] {
+    will-change: transform, opacity;
+}
+
+.timeline-item.is-active .timeline-icon {
+    border-color: var(--color-mai-red);
+    background-color: color-mix(in srgb, var(--color-mai-red) 10%, white);
+    color: var(--color-mai-red);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-mai-red) 10%, transparent);
+}
+
+.timeline-item.is-active [data-timeline-card] {
+    border-color: color-mix(in srgb, var(--color-mai-red) 55%, var(--color-mai-border));
+}
+
+.timeline-connector {
+    border-top: 2px dotted var(--color-mai-border);
+}
+
+.timeline-connector > span {
+    display: block;
+    width: 100%;
+    border-top: 2px dotted var(--color-mai-red);
+    transform: scaleX(0);
+    transform-origin: left center;
+    will-change: transform;
+}
+
+.timeline-control {
+    position: absolute;
+    z-index: 10;
+    top: 2.1rem;
+    display: flex;
+    height: 2.75rem;
+    width: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-mai-border);
+    border-radius: 9999px;
+    background: var(--color-mai-white);
+    color: var(--color-mai-charcoal);
+    box-shadow: var(--shadow-card);
+    transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, opacity 180ms ease, transform 180ms ease;
+}
+
+.timeline-control:hover:not(:disabled) {
+    transform: translateY(-2px);
+    border-color: var(--color-mai-red);
+    background: var(--color-mai-red);
+    color: white;
+}
+
+.timeline-control:disabled {
+    cursor: not-allowed;
+    opacity: 0.35;
+}
+
+.timeline-control-prev { left: 0.25rem; }
+.timeline-control-next { right: 0.25rem; }
+
+.timeline-progress {
+    position: relative;
+    margin: 0.25rem 1rem 0;
+    height: 2px;
+    overflow: hidden;
+    background: var(--color-mai-border);
+}
+
+.timeline-progress > span {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: var(--color-mai-red);
+    transform: scaleX(0);
+    transform-origin: left center;
+    will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .reveal,
     .reveal-scale,
     * {
         scroll-behavior: auto !important;
+    }
+
+    .timeline-scroller {
+        scroll-snap-type: x mandatory;
+    }
+
+    .timeline-connector > span {
+        transform: none;
     }
 }
