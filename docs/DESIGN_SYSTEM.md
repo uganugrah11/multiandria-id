@@ -98,6 +98,14 @@ No shadow should exceed `shadow-float`. Colored (red-tinted) shadows are avoided
 
 ---
 
+## Motion
+
+Motion is restrained and editorial: it should convey controlled confidence, premium craft, and warmth rather than playfulness. The signature entrance uses `power3.out` with no overshoot; the timing palette is 420ms for small labels, 460-560ms for supporting content, and 700ms for a hero headline.
+
+The homepage hero uses one GSAP timeline: eyebrow, a short MAI Red (`#AF2222`) underline, headline, supporting copy, then CTA buttons with a 100ms stagger. Entries use only `y`, `scaleX`, and `autoAlpha`, keeping the work on composited properties. Users who prefer reduced motion receive the complete, static hero immediately. Scroll reveals use a single 580ms `power3.out` entrance; number counters run once for 1.2 seconds; product and portfolio hover states are limited to fine pointers and settle within 240ms.
+
+---
+
 ## Buttons
 
 | Variant | Fill | Text | Border | Use |

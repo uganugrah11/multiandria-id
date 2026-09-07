@@ -3,7 +3,7 @@
     {{-- 1. Hero — full-bleed production photography. Decorative image (alt="") since
          the headline carries the message; role=presentation keeps it out of the
          accessibility tree. Scrim guarantees WCAG contrast for white text. --}}
-    <section class="relative overflow-hidden bg-mai-charcoal">
+    <section data-hero class="relative overflow-hidden bg-mai-charcoal">
         <img
             src="{{ asset('images/factory/a-group-of-people-working-4.jpg') }}"
             alt=""
@@ -19,14 +19,15 @@
 
         <div class="relative mx-auto flex min-h-[78vh] max-w-7xl items-center px-4 py-24 sm:px-6 lg:px-8">
             <div class="max-w-2xl">
-                <p class="animate-fade-up text-xs font-bold uppercase tracking-widest text-mai-soft-red" style="--reveal-delay: 0ms">PT. Multi Andria Indonesia</p>
-                <h1 class="animate-fade-up mt-5 text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl" style="--reveal-delay: 80ms">
+                <p data-hero-eyebrow class="text-xs font-bold uppercase tracking-widest text-mai-soft-red">PT. Multi Andria Indonesia</p>
+                <span data-hero-accent class="mt-4 block h-0.5 w-12 bg-mai-red" aria-hidden="true"></span>
+                <h1 data-hero-headline class="mt-5 text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
                     Partner Produksi Garment untuk Bisnis dan Institusi Anda
                 </h1>
-                <p class="animate-fade-up mt-6 max-w-lg text-lg leading-relaxed text-white/75" style="--reveal-delay: 160ms">
+                <p data-hero-description class="mt-6 max-w-lg text-lg leading-relaxed text-white/75">
                     Produksi garment dan tekstil custom untuk kebutuhan brand, perusahaan, sekolah, dan pemerintahan — dari konsultasi sampai produksi selesai.
                 </p>
-                <div class="animate-fade-up mt-10 flex flex-wrap gap-4" style="--reveal-delay: 240ms">
+                <div data-hero-actions class="mt-10 flex flex-wrap gap-4">
                     <x-whatsapp-button size="lg">Konsultasi via WhatsApp</x-whatsapp-button>
                     <a href="{{ route('portfolio') }}" class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/35 px-8 py-4 text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-white motion-reduce:hover:translate-y-0">
                         Lihat Portofolio
@@ -142,7 +143,7 @@
                     $rest = $featuredPortfolio->slice(1);
                 @endphp
                 <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
-                    <a href="{{ route('portfolio') }}" class="reveal group relative block overflow-hidden rounded-2xl lg:col-span-2" style="--reveal-delay: 0ms">
+                    <a data-motion-card="portfolio" href="{{ route('portfolio') }}" class="reveal group relative block overflow-hidden rounded-2xl lg:col-span-2" style="--reveal-delay: 0ms">
                         <div class="aspect-[4/3] overflow-hidden bg-mai-gray">
                             @if($featured->cover_image_url)
                                 <img src="{{ $featured->cover_image_url }}" alt="{{ $featured->title }}" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" width="1200" height="900" loading="lazy">
@@ -160,7 +161,7 @@
                     @if($rest->isNotEmpty())
                         <div class="grid grid-cols-2 gap-6 lg:grid-cols-1">
                             @foreach($rest->take(2) as $project)
-                                <a href="{{ route('portfolio') }}" class="reveal group relative block overflow-hidden rounded-2xl bg-mai-gray" style="--reveal-delay: {{ $loop->index * 80 }}ms">
+                                <a data-motion-card="portfolio" href="{{ route('portfolio') }}" class="reveal group relative block overflow-hidden rounded-2xl bg-mai-gray" style="--reveal-delay: {{ $loop->index * 80 }}ms">
                                     <div class="aspect-square overflow-hidden lg:aspect-[4/3]">
                                         @if($project->cover_image_url)
                                             <img src="{{ $project->cover_image_url }}" alt="{{ $project->title }}" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" width="900" height="900" loading="lazy">

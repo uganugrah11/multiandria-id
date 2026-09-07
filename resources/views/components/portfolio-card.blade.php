@@ -1,6 +1,6 @@
 @props(['item' => [], 'index' => 0])
 
-<article class="reveal group flex h-full flex-col" style="--reveal-delay: {{ min($index * 60, 420) }}ms">
+<article data-motion-card="portfolio" class="reveal group flex h-full flex-col" style="--reveal-delay: {{ min($index * 60, 420) }}ms">
     {{-- Image with hover description overlay (desktop only) --}}
     <div class="relative aspect-[3/4] overflow-hidden bg-mai-gray">
         @if($item['image_url'])

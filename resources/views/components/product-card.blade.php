@@ -1,6 +1,6 @@
 @props(['item' => [], 'index' => 0])
 
-<article class="reveal group flex h-full flex-col rounded-lg border border-mai-border bg-mai-white p-6 shadow-card transition-shadow duration-200 hover:shadow-card-hover lg:p-8" style="--reveal-delay: {{ min($index * 60, 420) }}ms">
+<article data-motion-card="product" class="reveal group flex h-full flex-col rounded-lg border border-mai-border bg-mai-white p-6 shadow-card transition-shadow duration-200 hover:shadow-card-hover lg:p-8" style="--reveal-delay: {{ min($index * 60, 420) }}ms">
     <div class="relative aspect-[3/4] w-full overflow-hidden rounded-lg bg-mai-gray">
         @if($item['image_url'])
             <img
