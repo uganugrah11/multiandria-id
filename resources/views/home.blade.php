@@ -56,48 +56,30 @@
         </div>
     </section>
 
-    {{-- 3. Trust / Statistics --}}
-    <section class="bg-mai-wine py-16">
+    {{-- 3. Trust / Statistics — horizontal editorial proof strip on dark wine.
+         Large, dominant numerals; concise labels; generous whitespace. --}}
+    <section class="bg-mai-wine py-20 sm:py-28">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <x-stat-strip />
-        </div>
-    </section>
-
-    {{-- 4. Product Categories — editorial capability index, not a card grid. --}}
-    <section class="bg-mai-ivory py-20 sm:py-24">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="max-w-2xl">
-                <p class="reveal text-xs font-bold uppercase tracking-widest text-mai-red">Kapabilitas Produk</p>
-                <h2 class="reveal mt-3 text-3xl font-bold leading-tight text-mai-charcoal sm:text-4xl" style="--reveal-delay: 60ms">
-                    Kami memproduksi berbagai kategori garment
-                </h2>
-            </div>
-
-            <div class="mt-12 grid grid-cols-1 gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
-                @foreach(\App\Models\Product::productTypes() as $slug => $label)
-                    <a
-                        href="{{ route('portfolio', ['type' => $slug]).'#produk' }}"
-                        class="reveal group flex items-center gap-4 border-t border-mai-border py-5 transition-colors duration-200 hover:border-mai-red"
-                        style="--reveal-delay: {{ min($loop->index * 40, 300) }}ms"
-                    >
-                        <span class="text-xs font-black text-mai-red/30 transition-colors duration-200 group-hover:text-mai-red">{{ sprintf('%02d', $loop->iteration) }}</span>
-                        <span class="flex-1 text-base font-bold text-mai-charcoal transition-colors duration-200 group-hover:text-mai-red">{{ $label }}</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-4 w-4 text-mai-slate transition-all duration-200 group-hover:translate-x-1 group-hover:text-mai-red" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                        </svg>
-                    </a>
+            <div class="grid grid-cols-1 gap-x-8 gap-y-12 border-t border-white/15 pt-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-y-0">
+                @php
+                    $homeStats = [
+                        ['value' => config('company.stats.years_experience'), 'label' => 'Tahun Pengalaman'],
+                        ['value' => config('company.stats.happy_clients'), 'label' => 'Klien Puas'],
+                        ['value' => config('company.stats.production_capacity'), 'label' => 'Kapasitas Produksi'],
+                        ['value' => config('company.stats.employees'), 'label' => 'Karyawan'],
+                    ];
+                @endphp
+                @foreach($homeStats as $stat)
+                    <div class="reveal lg:border-l lg:border-white/15 lg:pl-8" style="--reveal-delay: {{ $loop->index * 80 }}ms">
+                        <p class="text-4xl font-black tracking-tight text-white sm:text-5xl" data-counter>{{ $stat['value'] }}</p>
+                        <p class="mt-3 text-sm font-bold uppercase tracking-wider text-white/55">{{ $stat['label'] }}</p>
+                    </div>
                 @endforeach
             </div>
-
-            <div class="reveal mt-10" style="--reveal-delay: 80ms">
-                <a href="{{ route('portfolio').'#produk' }}" class="inline-flex items-center justify-center gap-2 rounded-lg border border-mai-border px-8 py-4 text-sm font-semibold text-mai-charcoal transition-all duration-200 hover:-translate-y-0.5 hover:border-mai-charcoal motion-reduce:hover:translate-y-0">
-                    Lihat Semua Produk
-                </a>
-            </div>
         </div>
     </section>
 
-    {{-- 5. Manufacturing Capabilities — numbered editorial process ledger. --}}
+    {{-- 4. Manufacturing Capabilities — numbered editorial process ledger. --}}
     <section class="bg-mai-charcoal py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-2xl">
@@ -135,40 +117,16 @@
         </div>
     </section>
 
-    {{-- 6. Why Multi Andria — editorial icon-led ledger rows, verbatim from config. --}}
-    <section class="bg-white py-20 sm:py-24">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="max-w-2xl">
-                <h2 class="reveal text-3xl font-bold leading-tight text-mai-charcoal sm:text-4xl">
-                    Keunggulan produksi yang bisa Anda andalkan
-                </h2>
-            </div>
+    {{-- 5. Why Multi Andria — editorial manifesto of verified advantages.
+         Large headline + distributed principles with subtle separators, inspired
+         by the reference's value/manifesto section — but only MAI verified copy. --}}
+    <x-value-principles
+        eyebrow="Keunggulan Kami"
+        heading="Lebih dari sekadar produksi, kami membangun proses yang dapat diandalkan."
+        :principles="config('company.advantages')"
+    />
 
-            @php
-                $advantageIcons = [
-                    'layers' => 'M12 3l9 4.5-9 4.5-9-4.5L12 3zm0 9l9 4.5-9 4.5-9-4.5L12 12z',
-                    'shield' => 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
-                    'chat' => 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z',
-                ];
-            @endphp
-            <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                @foreach(config('company.advantages') as $item)
-                    <div class="reveal group border-t border-mai-border pt-8" style="--reveal-delay: {{ $loop->index * 80 }}ms">
-                        <span class="flex h-14 w-14 items-center justify-center rounded-xl bg-mai-red/5 text-mai-red ring-1 ring-mai-red/15 transition-all duration-200 motion-reduce:transition-none group-hover:-translate-y-0.5 group-hover:bg-mai-red group-hover:text-white motion-reduce:group-hover:translate-y-0">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-6 w-6" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="{{ $advantageIcons[$item['icon']] ?? $advantageIcons['layers'] }}"/>
-                            </svg>
-                        </span>
-                        <p class="mt-4 text-xs font-black uppercase tracking-widest text-mai-red/40">{{ sprintf('%02d', $loop->iteration) }}</p>
-                        <h3 class="mt-2 text-lg font-bold text-mai-charcoal">{{ $item['title'] }}</h3>
-                        <p class="mt-2 text-sm leading-relaxed text-mai-slate">{{ $item['description'] }}</p>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    {{-- 7. Portfolio (preview) — featured project emphasis + supporting grid. --}}
+    {{-- 6. Portfolio (preview) — featured project emphasis + supporting grid. --}}
     <section class="bg-mai-ivory py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-2xl">
@@ -245,7 +203,7 @@
         </div>
     </section>
 
-    {{-- 8. Testimonials — no fabricated quotes; designed empty state. --}}
+    {{-- 7. Testimonials — no fabricated quotes; designed empty state. --}}
     <section class="bg-white py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-2xl mx-auto text-center">
@@ -257,7 +215,7 @@
         </div>
     </section>
 
-    {{-- 9. Client / Trust Signals --}}
+    {{-- 8. Client / Trust Signals --}}
     <section class="bg-mai-ivory py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-2xl mx-auto text-center">
@@ -269,7 +227,7 @@
         </div>
     </section>
 
-    {{-- 10. FAQ --}}
+    {{-- 9. FAQ --}}
     <section class="bg-white py-20 sm:py-24" x-data="{ open: 0 }">
         <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-2xl mx-auto text-center">
@@ -320,8 +278,10 @@
         </div>
     </section>
 
-    {{-- 11. Final CTA --}}
+    {{-- 10. Final CTA — editorial wine closing band as a visual page conclusion. --}}
     <x-cta-section
+        variant="wine"
+        eyebrow="Siap Mulai"
         heading="Siap Memulai Produksi?"
         description="Diskusikan kebutuhan garment Anda bersama tim Multi Andria Indonesia."
         :whatsapp-message="'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai kebutuhan produksi garment.'"

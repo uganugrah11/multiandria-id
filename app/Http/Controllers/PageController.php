@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PortfolioProject;
-use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class PageController extends Controller
 {
@@ -20,19 +19,41 @@ class PageController extends Controller
 
     public function portfolio(Request $request)
     {
-        $projects = PortfolioProject::active()->orderBy('sort_order')->get();
+        $portfolio = $this->loadJson('_portfolio.json', 'portfolio', 'model');
+        $products = $this->loadJson('_products.json', 'products', 'produk')->map(function ($item) {
+            $item['wa_url'] = 'https://wa.me/'.config('company.whatsapp.number')
+                .'?text='.rawurlencode(
+                    'Halo Multi Andria Indonesia, saya tertarik dengan produk "'.$item['title'].'". '
+                    .'Saya ingin mendapatkan informasi mengenai harga dan minimum order.'
+                );
 
-        $query = Product::active()->orderBy('sort_order');
+            return $item;
+        });
 
-        if ($request->filled('type')) {
-            $query->byType($request->string('type'));
+        return view('portfolio', compact('portfolio', 'products'));
+    }
+
+    /**
+     * Load a standalone content JSON file (kept local, git-ignored) and
+     * normalize its image paths from absolute Windows paths to public URLs.
+     */
+    private function loadJson(string $file, string $key, string $dir): Collection
+    {
+        $path = base_path($file);
+
+        if (! file_exists($path)) {
+            return collect();
         }
 
-        $products = $query->get();
-        $productTypes = Product::productTypes();
+        $data = json_decode(file_get_contents($path), true);
 
-        $categoryProducts = Product::active()->orderBy('sort_order')->get()->keyBy('product_type');
+        return collect($data[$key] ?? [])->map(function ($item) use ($dir) {
+            $item['image_path'] = basename($item['image'] ?? '');
+            $item['image_url'] = $item['image_path']
+                ? asset('images/'.$dir.'/'.$item['image_path'])
+                : null;
 
-        return view('portfolio', compact('projects', 'products', 'productTypes', 'categoryProducts'));
+            return $item;
+        })->values();
     }
 }

@@ -326,8 +326,6 @@ Potential categories may include:
 
 Only use categories that are actually supported by the business.
 
-Do not invent products.
-
 Product cards should prioritize:
 
 **Visual → Product name → Short description → WhatsApp CTA**
@@ -376,19 +374,6 @@ Potential themes:
 - Professional Support
 - Quality Control
 - Reliable Production
-
-Do not make unsupported claims.
-
-Never invent:
-
-- Production capacity
-- Number of employees
-- Certifications
-- Awards
-- Client numbers
-- Years of experience
-- Factory size
-- Production volume
 
 If information is missing, mark:
 
@@ -1027,20 +1012,6 @@ Do not introduce dependencies simply because they are fashionable.
 
 Never hallucinate company information.
 
-Never invent:
-
-- Clients
-- Testimonials
-- Certifications
-- Production capacity
-- Factory size
-- Employees
-- Revenue
-- Awards
-- Years of experience
-- Manufacturing capabilities
-- Product specifications
-
 If information is unavailable:
 
 ```text
@@ -1308,8 +1279,6 @@ When information is missing:
 - Identify it
 - Explain why it matters
 - Use a clearly marked placeholder
-
-Do not invent facts.
 
 When a design decision has significant consequences, briefly explain the reasoning.
 

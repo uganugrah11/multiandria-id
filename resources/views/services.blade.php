@@ -212,13 +212,15 @@
                         ['value' => config('company.stats.countries_served', '4+'), 'label' => 'Negara Dilayani'],
                     ];
                 @endphp
-                <div class="lg:col-span-7 grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-mai-border bg-mai-border sm:grid-cols-2">
-                    @foreach($capacityStats as $i => $stat)
-                        <div class="reveal bg-white p-8" style="--reveal-delay: {{ $i * 60 }}ms">
-                            <p class="text-4xl font-black tracking-tight text-mai-charcoal sm:text-5xl" data-counter>{{ $stat['value'] }}</p>
-                            <p class="mt-2 text-xs font-medium uppercase tracking-wider text-mai-slate">{{ $stat['label'] }}</p>
-                        </div>
-                    @endforeach
+                <div class="lg:col-span-7 border-t border-mai-border pt-10">
+                    <div class="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2">
+                        @foreach($capacityStats as $i => $stat)
+                            <div class="reveal" style="--reveal-delay: {{ $i * 70 }}ms">
+                                <p class="text-4xl font-black tracking-tight text-mai-charcoal sm:text-5xl" data-counter>{{ $stat['value'] }}</p>
+                                <p class="mt-3 text-sm font-bold uppercase tracking-wider text-mai-slate">{{ $stat['label'] }}</p>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
@@ -257,6 +259,8 @@
     </section>
 
     <x-cta-section
+        variant="wine"
+        eyebrow="Mulai Konsultasi"
         heading="Konsultasikan Kebutuhan Produksi Anda"
         description="Diskusikan model kerja sama, lead time, dan spesifikasi produk dengan tim Multi Andria Indonesia."
         :whatsapp-message="'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai proses dan kebutuhan produksi garment.'"

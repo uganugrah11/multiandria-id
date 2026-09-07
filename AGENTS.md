@@ -31,8 +31,6 @@ Treat the existing repository and `docs/` as the source of truth for implementat
 - `docs/CONTENT_AUDIT.md`
 - `docs/IMPLEMENTATION_ROADMAP.md`
 
-Do not invent business claims, statistics, certifications, clients, locations, production capabilities, or testimonials.
-
 ## Information Architecture
 
 The canonical public navigation is:
@@ -59,12 +57,14 @@ Navigation labels may remain Indonesian even when canonical route names are Engl
 Purpose: establish positioning, credibility, capabilities, and a clear inquiry CTA.
 
 Hero direction:
+
 - Brand/product-production positioning.
 - Prefer authentic garment/product imagery if a strong local asset exists.
 - Do not use the HQ building as the homepage hero.
 - If no suitable hero image exists, use a typography-led editorial composition instead of unrelated stock photography.
 
 Suggested narrative:
+
 1. Hero
 2. Company proof / short story
 3. Timeline or credibility
@@ -81,10 +81,12 @@ Suggested narrative:
 Purpose: establish identity, history, scale, credibility, and physical presence.
 
 Hero direction:
+
 - The uploaded HQ office photograph is an approved candidate.
 - Use it as company identity/location imagery, not as proof of manufacturing operations.
 
 Suggested narrative:
+
 1. Hero
 2. Company introduction
 3. Scale/proof metrics
@@ -102,6 +104,7 @@ Purpose: explain how customers can work with Multi Andria and how production is 
 Manufacturing is absorbed into this page.
 
 Suggested narrative:
+
 1. Service/manufacturing hero
 2. CMT
 3. FOB
@@ -112,6 +115,7 @@ Suggested narrative:
 8. CTA
 
 Important:
+
 - Never use the HQ office photo to imply a factory, sewing line, production floor, or manufacturing facility.
 - If authentic manufacturing photography is unavailable, use typography, process diagrams, data, or restrained graphic composition.
 - Mark missing authentic imagery as `CONTENT NEEDED` in the image audit rather than using misleading stock imagery.
@@ -121,6 +125,7 @@ Important:
 Purpose: demonstrate what Multi Andria can produce and build confidence through actual work.
 
 Suggested narrative:
+
 1. Portfolio hero
 2. Product/capability categories
 3. Featured projects
@@ -145,22 +150,22 @@ Therefore:
 Classify imagery as:
 
 1. Proof imagery
-   - HQ
-   - real production facility
-   - actual production process
-   - actual completed client work
+    - HQ
+    - real production facility
+    - actual production process
+    - actual completed client work
 
 2. Showcase imagery
-   - finished garments
-   - product mockups
-   - portfolio work
-   - product categories
+    - finished garments
+    - product mockups
+    - portfolio work
+    - product categories
 
 3. Brand/decorative imagery
-   - fabric details
-   - close-up details
-   - textures
-   - atmospheric visual assets
+    - fabric details
+    - close-up details
+    - textures
+    - atmospheric visual assets
 
 Hard rules:
 
@@ -178,10 +183,12 @@ Known uploaded assets:
 ### Asset A: Custom black T-shirt project
 
 Use:
+
 - Portfolio featured project
 - Product/capability showcase
 
 Do not use:
+
 - Manufacturing-process proof
 - Factory/facility proof
 - Primary homepage hero unless the composition is intentionally redesigned and it remains visually strong
@@ -189,10 +196,12 @@ Do not use:
 ### Asset B: Multi Andria HQ office
 
 Use:
+
 - Tentang Kami hero
 - Company/location section
 
 Do not use:
+
 - Manufacturing hero
 - Production-process section
 - Factory proof
@@ -310,6 +319,7 @@ OpenCode should load skills on demand. Do not copy third-party Taste Skill sourc
 Create or extend components when the pattern is truly reusable.
 
 Good reusable candidates:
+
 - page hero
 - CTA
 - section heading
@@ -327,6 +337,7 @@ Do not abstract a component merely because two sections share superficial HTML.
 Design mobile deliberately.
 
 Every major page change must be considered at:
+
 - small mobile
 - large mobile
 - tablet
@@ -340,6 +351,7 @@ Avoid horizontal overflow.
 ### Accessibility
 
 Before completion:
+
 - semantic headings
 - meaningful link/button labels
 - keyboard-visible focus states
@@ -363,6 +375,7 @@ Before completion:
 Animation should reinforce hierarchy and orientation.
 
 Prefer:
+
 - subtle reveal
 - transform/opacity transitions
 - image crop/reveal
@@ -370,6 +383,7 @@ Prefer:
 - section entrance when it improves comprehension
 
 Avoid:
+
 - constant looping motion
 - excessive parallax
 - magnetic cursor effects everywhere
@@ -391,11 +405,13 @@ When consolidating pages:
 ## Content Safety
 
 If required copy is missing:
+
 - use existing verified copy,
 - write only generic UX microcopy that does not introduce a new business claim,
 - or mark the content as `CONTENT NEEDED`.
 
 Never invent:
+
 - client names
 - production capacity
 - certifications
@@ -412,6 +428,7 @@ For a major redesign task:
 ### Phase 0: Read
 
 Read:
+
 - `AGENTS.md`
 - `PROJECT_INSTRUCTIONS.md`
 - relevant docs
@@ -422,6 +439,7 @@ Read:
 Do not modify code.
 
 Produce:
+
 - information architecture audit
 - visual audit
 - UX/conversion audit
@@ -435,6 +453,7 @@ Produce:
 ### Phase 2: Design direction
 
 Define:
+
 - page narratives
 - hero direction per page
 - section order
@@ -445,6 +464,7 @@ Define:
 ### Phase 3: Foundation
 
 Implement:
+
 - shared hero/component improvements
 - navigation/IA consolidation
 - tokens/utilities only when needed
@@ -453,6 +473,7 @@ Implement:
 ### Phase 4: Pages
 
 Implement one canonical page at a time:
+
 1. Home
 2. Tentang Kami
 3. Layanan
@@ -461,6 +482,7 @@ Implement one canonical page at a time:
 ### Phase 5: QA
 
 Run:
+
 - formatter/linter if configured
 - Laravel tests if relevant
 - build/assets checks
@@ -472,6 +494,7 @@ Run:
 ### Phase 6: Report
 
 Summarize:
+
 - changed files
 - design decisions
 - image choices

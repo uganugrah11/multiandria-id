@@ -60,13 +60,13 @@
                             'route' => 'portfolio',
                             'anchor' => '#produk',
                             'label' => 'Produk',
-                            'isActive' => fn () => request()->routeIs('portfolio') && request()->filled('type'),
+                            'isActive' => fn () => request()->routeIs('portfolio'),
                         ],
                         'services' => ['route' => 'services', 'label' => 'Layanan'],
                         'portfolio' => [
                             'route' => 'portfolio',
                             'label' => 'Portofolio',
-                            'isActive' => fn () => request()->routeIs('portfolio') && ! request()->filled('type'),
+                            'isActive' => fn () => request()->routeIs('portfolio'),
                         ],
                     ];
                 @endphp

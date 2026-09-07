@@ -85,28 +85,30 @@
         </div>
     </section>
 
-    {{-- 3. Scale / proof metrics — charcoal editorial band, data-counter values. --}}
-    <section class="bg-mai-charcoal py-20 sm:py-24">
+    {{-- 3. Scale / proof metrics — dark charcoal editorial band.
+         Large numerals, concise labels, supporting note. data-counter values. --}}
+    <section class="bg-mai-charcoal py-20 sm:py-28">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-3 sm:gap-y-16">
-                @php
-                    $proofStats = [
-                        ['value' => config('company.stats.years_experience', '12+'), 'label' => 'Tahun Berpengalaman'],
-                        ['value' => config('company.stats.employees', '600+'), 'label' => 'Karyawan'],
-                        ['value' => config('company.stats.production_capacity', '5.000 pcs/hari'), 'label' => 'Kapasitas Produksi'],
-                        ['value' => config('company.stats.happy_clients', '100+'), 'label' => 'Klien yang Terlayani'],
-                        ['value' => config('company.stats.product_categories', '10'), 'label' => 'Kategori Produk'],
-                        ['value' => config('company.stats.countries_served', '4+'), 'label' => 'Negara Dilayani'],
-                    ];
-                @endphp
-                @foreach($proofStats as $i => $stat)
-                    <div class="reveal {{ $i && $i % 3 !== 0 ? 'sm:border-none' : '' }}" style="--reveal-delay: {{ $i * 70 }}ms">
-                        <p class="text-5xl font-black tracking-tight text-white sm:text-6xl" data-counter>{{ $stat['value'] }}</p>
-                        <p class="mt-2 text-sm font-medium uppercase tracking-wider text-white/55">{{ $stat['label'] }}</p>
-                    </div>
-                @endforeach
+            <div class="max-w-2xl">
+                <p class="reveal text-xs font-bold uppercase tracking-widest text-mai-soft-red">Skala Operasi</p>
+                <h2 class="reveal mt-4 text-3xl font-extrabold leading-tight text-white sm:text-4xl" style="--reveal-delay: 60ms">
+                    Perusahaan garmen dengan skala produksi nasional
+                </h2>
             </div>
-            <p class="mt-14 max-w-2xl text-sm leading-relaxed text-white/55">
+
+            <x-stat-section
+                variant="dark"
+                class="mt-14"
+                :stats="[
+                    ['value' => config('company.stats.years_experience', '12+'), 'label' => 'Tahun Berpengalaman'],
+                    ['value' => config('company.stats.employees', '600+'), 'label' => 'Karyawan'],
+                    ['value' => config('company.stats.production_capacity', '5.000 pcs/hari'), 'label' => 'Kapasitas Produksi'],
+                    ['value' => config('company.stats.happy_clients', '100+'), 'label' => 'Klien yang Terlayani'],
+                    ['value' => config('company.stats.product_categories', '10'), 'label' => 'Kategori Produk'],
+                    ['value' => config('company.stats.countries_served', '4+'), 'label' => 'Negara Dilayani'],
+                ]"
+            />
+            <p class="reveal mt-14 max-w-2xl text-sm leading-relaxed text-white/55" style="--reveal-delay: 120ms">
                 Angka di atas berdasarkan profil perusahaan resmi kami. <a href="{{ asset('company_profile.pdf') }}" target="_blank" rel="noopener noreferrer" class="font-semibold text-mai-soft-red hover:text-white">Unduh Company Profile (PDF)</a> untuk informasi lebih lengkap.
             </p>
         </div>
@@ -201,7 +203,18 @@
         </div>
     </section>
 
-    {{-- 7. Client proof --}}
+    {{-- 7. Facility / Support — editorial split with image collage.
+         factory.jpg = factory/facility proof (dominant); hq.jpg + hq-1.jpg = HQ
+         identity (supporting). HQ images are NOT presented as factories. --}}
+    <x-facility-support
+        eyebrow="DIDUKUNG FASILITAS KAMI"
+        heading="Infrastruktur yang Mendukung Produksi Berkualitas"
+        :paragraph="'Multi Andria Indonesia beroperasi dari dua lokasi: kantor pusat beserta fasilitas produksi dan warehouse di Bintaro, serta pabrik garmen seluas 1.860 m² di Sukabumi — didirikan sejak 2020.'"
+        cta-label="Lihat Lokasi Kami"
+        cta-url="#lokasi"
+    />
+
+    {{-- 8. Client proof --}}
     <section class="bg-mai-ivory py-20 sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-3xl text-center">
@@ -215,8 +228,10 @@
         </div>
     </section>
 
-    {{-- 8. Final CTA --}}
+    {{-- 9. Final CTA --}}
     <x-cta-section
+        variant="wine"
+        eyebrow="Mulai Konsultasi"
         heading="Siap Bekerja Sama dengan Kami?"
         description="Diskusikan kebutuhan garment Anda bersama tim Multi Andria Indonesia."
         :whatsapp-message="'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai kebutuhan produksi garment.'"
