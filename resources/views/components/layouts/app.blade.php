@@ -56,12 +56,6 @@
                     $navLinks = [
                         'home' => ['route' => 'home', 'label' => 'Home'],
                         'about' => ['route' => 'about', 'label' => 'Tentang Kami'],
-                        'products' => [
-                            'route' => 'portfolio',
-                            'anchor' => '#produk',
-                            'label' => 'Produk',
-                            'isActive' => fn () => request()->routeIs('portfolio'),
-                        ],
                         'services' => ['route' => 'services', 'label' => 'Layanan'],
                         'portfolio' => [
                             'route' => 'portfolio',
