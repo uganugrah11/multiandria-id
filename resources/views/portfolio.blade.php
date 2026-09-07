@@ -3,7 +3,7 @@
     {{-- 1. Hero — showcase positioning. Uses the owner-assigned production
          facility background (same asset as the Layanan hero, treated here
          with a different crop). Decorative image — headline carries the message. --}}
-    <section class="relative overflow-hidden bg-mai-charcoal">
+    <section data-page-hero class="relative overflow-hidden bg-mai-charcoal">
         <img
             src="{{ asset('images/factory/a-factory-with-lots-of.jpg') }}"
             alt=""
@@ -19,14 +19,16 @@
 
         <div class="relative mx-auto flex min-h-[82vh] max-w-7xl items-center px-4 pt-32 pb-20 sm:px-6 lg:px-8">
             <div class="max-w-2xl">
-                <p class="animate-fade-up text-xs font-bold uppercase tracking-widest text-mai-soft-red">Portofolio</p>
-                <h1 class="animate-fade-up mt-5 text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl" style="--reveal-delay: 80ms">
+                <p data-hero-eyebrow class="text-xs font-bold uppercase tracking-widest text-mai-soft-red">Portofolio</p>
+                <span data-hero-accent class="mt-4 block h-0.5 w-12 bg-mai-red" aria-hidden="true"></span>
+                <h1 data-hero-headline class="mt-5 text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
                     Produk yang kami produksi, dari kebutuhan hingga hasil nyata
                 </h1>
-                <p class="animate-fade-up mt-6 max-w-xl text-lg leading-relaxed text-white/80" style="--reveal-delay: 160ms">
+                <p data-hero-description class="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
                     Kaos, seragam, jaket, hingga tote bag — beserta contoh hasil kerja untuk bisnis, komunitas, dan institusi.
                 </p>
-                <div class="animate-fade-up mt-10 flex flex-wrap gap-4" style="--reveal-delay: 240ms">
+                {{-- Conversion actions remain immediately visible; hero motion stages supporting copy only. --}}
+                <div class="mt-10 flex flex-wrap gap-4">
                     <x-whatsapp-button size="lg" :message="'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai kebutuhan produksi produk.'">
                         Konsultasi via WhatsApp
                     </x-whatsapp-button>

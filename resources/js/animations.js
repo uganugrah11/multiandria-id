@@ -7,6 +7,7 @@
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { motion, revealOnScroll, registerPageMotionCleanup } from './motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,7 +19,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
  * instead of relying on independent CSS delays.
  */
 function initHeroMotion() {
-    const hero = document.querySelector('[data-hero]');
+    const hero = document.querySelector('[data-hero], [data-service-hero], [data-page-hero]');
 
     if (!hero) return;
 
@@ -35,7 +36,7 @@ function initHeroMotion() {
 
     media.add('(prefers-reduced-motion: no-preference)', () => {
         const timeline = gsap.timeline({
-            defaults: { ease: 'power3.out' },
+            defaults: { ease: motion.ease },
         });
 
         timeline
@@ -62,7 +63,7 @@ function initHeroMotion() {
 }
 
 function initScrollReveals() {
-    const revealTargets = gsap.utils.toArray('.reveal');
+    const revealTargets = gsap.utils.toArray('.reveal:not([data-process-step]):not([data-service-proof-item])');
     const scaleTargets = gsap.utils.toArray('.reveal-scale');
 
     window.__maiScrollMotionCleanup?.();
@@ -75,35 +76,10 @@ function initScrollReveals() {
     const media = gsap.matchMedia();
 
     media.add('(prefers-reduced-motion: no-preference)', () => {
-        gsap.set(revealTargets, { autoAlpha: 0, y: 18, willChange: 'transform, opacity' });
-        gsap.set(scaleTargets, { autoAlpha: 0, scale: 1.03, willChange: 'transform, opacity' });
-
-        ScrollTrigger.batch(revealTargets, {
-            start: 'top 86%',
-            once: true,
-            onEnter: (batch) => gsap.to(batch, {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.58,
-                ease: 'power3.out',
-                stagger: 0.08,
-                overwrite: 'auto',
-                clearProps: 'willChange',
-            }),
-        });
-
-        ScrollTrigger.batch(scaleTargets, {
-            start: 'top 86%',
-            once: true,
-            onEnter: (batch) => gsap.to(batch, {
-                autoAlpha: 1,
-                scale: 1,
-                duration: 0.64,
-                ease: 'power3.out',
-                stagger: 0.08,
-                overwrite: 'auto',
-                clearProps: 'willChange',
-            }),
+        revealOnScroll(revealTargets, { duration: 0.58 });
+        revealOnScroll(scaleTargets, {
+            from: { autoAlpha: 0, scale: 1.03 },
+            duration: 0.64,
         });
     });
 
@@ -139,7 +115,7 @@ function animateCounter(el) {
     gsap.to(value, {
         current: target,
         duration: 1.2,
-        ease: 'power3.out',
+        ease: motion.ease,
         snap: { current: 1 },
         onUpdate: () => {
             el.textContent = formatThousands(value.current) + suffix;
@@ -352,7 +328,7 @@ function initCompanyTimelines() {
                     autoAlpha: 1,
                     y: 0,
                     duration: 0.52,
-                    ease: 'power3.out',
+                    ease: motion.ease,
                     stagger: 0.07,
                     scrollTrigger: {
                         trigger: item,
@@ -463,6 +439,121 @@ function initHorizontalScrollers() {
         window.addEventListener('resize', requestUpdate, { passive: true });
         requestUpdate();
     });
+}
+
+/**
+ * The manufacturing rail shares the timeline language: each verified stage is
+ * introduced in order and the red connector advances with it. Native horizontal
+ * scrolling remains available at every point; the motion is only a visual aid.
+ */
+function initManufacturingProcessFlows() {
+    const flows = gsap.utils.toArray('[data-manufacturing-process]');
+
+    if (!flows.length) return;
+
+    const cleanups = flows.map((flow) => {
+        const steps = Array.from(flow.querySelectorAll('[data-process-step]'));
+        const connectors = Array.from(flow.querySelectorAll('[data-process-connector]'));
+
+        if (!steps.length) return () => {};
+
+        if (prefersReducedMotion) {
+            steps.forEach((step) => step.classList.add('is-visible'));
+            gsap.set(connectors, { scaleX: 1, clearProps: 'transform,willChange' });
+            return () => {};
+        }
+
+        const media = gsap.matchMedia();
+        media.add('(prefers-reduced-motion: no-preference)', () => {
+            gsap.set(steps, { autoAlpha: 0, y: 18, willChange: 'transform, opacity' });
+            gsap.set(connectors, { scaleX: 0, transformOrigin: 'left center', willChange: 'transform' });
+
+            const timeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: flow,
+                    start: 'top 78%',
+                    once: true,
+                },
+            });
+
+            timeline
+                .to(steps, {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.6,
+                    ease: motion.ease,
+                    stagger: 0.06,
+                    clearProps: 'willChange',
+                })
+                .to(connectors, {
+                    scaleX: 1,
+                    duration: 0.3,
+                    ease: motion.ease,
+                    stagger: 0.04,
+                    clearProps: 'willChange',
+                }, '<0.08');
+        });
+
+        return () => media.revert();
+    });
+
+    registerPageMotionCleanup('ManufacturingProcess', () => cleanups.forEach((cleanup) => cleanup()));
+}
+
+/** Service proof sections use the same short, directional reveal language as
+ * the rest of the page while preserving their factual, operational emphasis. */
+function initServiceProofMotion() {
+    const groups = [
+        ['[data-qc-stages]', '[data-service-proof-item]', { autoAlpha: 0, x: -14 }],
+        ['[data-capacity-stats]', '[data-service-proof-item]', { autoAlpha: 0, y: 16, scale: 0.97 }],
+        ['[data-operational-locations]', '[data-service-proof-item]', { autoAlpha: 0, y: 16 }],
+    ];
+
+    const cleanups = groups.map(([groupSelector, itemSelector, from]) => {
+        const group = document.querySelector(groupSelector);
+        if (!group) return () => {};
+
+        return revealOnScroll(group.querySelectorAll(itemSelector), {
+            trigger: group,
+            from,
+            start: 'top 82%',
+            stagger: 0.07,
+            duration: 0.56,
+        });
+    });
+
+    if (cleanups.length) {
+        registerPageMotionCleanup('ServiceProof', () => cleanups.forEach((cleanup) => cleanup()));
+    }
+}
+
+/** Carousel navigation remains Alpine-owned for accessibility; GSAP only
+ * supplies a brief, repeatable entrance for the newly visible cards. */
+function initCarouselMotion() {
+    if (prefersReducedMotion) return;
+
+    const carousels = gsap.utils.toArray('[data-carousel-motion]');
+    if (!carousels.length) return;
+
+    const listeners = carousels.map((carousel) => {
+        const onChange = () => {
+            const cards = Array.from(carousel.querySelectorAll('[data-carousel-card][aria-hidden="false"] [data-motion-card]'));
+            gsap.killTweensOf(cards);
+            gsap.fromTo(cards, { autoAlpha: 0, y: 14 }, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.46,
+                ease: motion.ease,
+                stagger: 0.07,
+                overwrite: 'auto',
+            });
+        };
+
+        carousel.addEventListener('mai:carousel-change', onChange);
+        return () => carousel.removeEventListener('mai:carousel-change', onChange);
+    });
+
+    registerPageMotionCleanup('Carousel', () => listeners.forEach((remove) => remove()));
 }
 
 /**
@@ -579,5 +670,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initCardHoverMotion();
     initCompanyTimelines();
     initHorizontalScrollers();
+    initManufacturingProcessFlows();
+    initServiceProofMotion();
+    initCarouselMotion();
     initFaqAccordions();
 });

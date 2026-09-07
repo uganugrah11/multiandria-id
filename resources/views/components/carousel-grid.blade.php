@@ -50,7 +50,10 @@
             },
             goTo(nextIndex) {
                 this.index = Math.min(Math.max(0, nextIndex), this.pageCount - 1);
-                this.$nextTick(() => this.syncImageLoading());
+                this.$nextTick(() => {
+                    this.syncImageLoading();
+                    this.$el.dispatchEvent(new CustomEvent('mai:carousel-change'));
+                });
             },
             next() { this.goTo(this.index + 1); },
             prev() { this.goTo(this.index - 1); },
@@ -99,6 +102,7 @@
         role="region"
         aria-roledescription="carousel"
         aria-label="{{ $label }}"
+        data-carousel-motion
         class="mt-12"
     >
         <p class="sr-only" aria-live="polite" aria-atomic="true" x-text="slideLabel()"></p>

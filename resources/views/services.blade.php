@@ -3,7 +3,7 @@
     {{-- 1. Hero — full-bleed production facility photograph.
          Assigned by the project owner as the Layanan/manufacturing hero.
          Decorative image (headline carries the message); NOT the HQ/office photo. --}}
-    <section class="relative overflow-hidden bg-mai-charcoal">
+    <section data-service-hero class="relative overflow-hidden bg-mai-charcoal">
         <img
             src="{{ asset('images/factory/a-factory-with-lots-of.jpg') }}"
             alt=""
@@ -19,14 +19,16 @@
 
         <div class="relative mx-auto flex min-h-[82vh] max-w-7xl items-center px-4 pt-32 pb-20 sm:px-6 lg:px-8">
             <div class="max-w-2xl">
-                <p class="animate-fade-up text-xs font-bold uppercase tracking-widest text-mai-soft-red">Layanan</p>
-                <h1 class="animate-fade-up mt-5 text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl" style="--reveal-delay: 80ms">
+                <p data-hero-eyebrow class="text-xs font-bold uppercase tracking-widest text-mai-soft-red">Layanan</p>
+                <span data-hero-accent class="mt-4 block h-0.5 w-12 bg-mai-red" aria-hidden="true"></span>
+                <h1 data-hero-headline class="mt-5 text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
                     Layanan produksi garment untuk bisnis, institusi, dan pemerintahan
                 </h1>
-                <p class="animate-fade-up mt-6 max-w-xl text-lg leading-relaxed text-white/80" style="--reveal-delay: 160ms">
+                <p data-hero-description class="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
                     Keahlian utama kami adalah Clothing Design &amp; Production — tersedia dalam model kerja sama Jasa CMT dan Jasa FOB.
                 </p>
-                <div class="animate-fade-up mt-10 flex flex-wrap gap-4" style="--reveal-delay: 240ms">
+                {{-- Conversion actions remain immediately visible; hero motion stages supporting copy only. --}}
+                <div class="mt-10 flex flex-wrap gap-4">
                     <x-whatsapp-button size="lg" :message="'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai proses dan kebutuhan produksi garment.'">
                         Konsultasi via WhatsApp
                     </x-whatsapp-button>
@@ -161,9 +163,9 @@
                     </div>
                 </div>
 
-                <div class="reveal border-t border-white/15" style="--reveal-delay: 100ms">
+                <div data-qc-stages class="border-t border-white/15">
                     @foreach(['Desain', 'Pemilihan Bahan', 'Penjahitan & Perapihan', 'Pengemasan', 'Pengiriman'] as $i => $stage)
-                        <div class="flex items-center gap-5 border-b border-white/10 py-4">
+                        <div data-service-proof-item class="reveal flex items-center gap-5 border-b border-white/10 py-4">
                             <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-mai-red/20 text-mai-soft-red">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-4 w-4" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
@@ -213,9 +215,9 @@
                     ];
                 @endphp
                 <div class="lg:col-span-7 border-t border-mai-border pt-10">
-                    <div class="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2">
+                    <div data-capacity-stats class="grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2">
                         @foreach($capacityStats as $i => $stat)
-                            <div class="reveal" style="--reveal-delay: {{ $i * 70 }}ms">
+                            <div data-service-proof-item class="reveal">
                                 <p class="text-4xl font-black tracking-tight text-mai-charcoal sm:text-5xl" data-counter>{{ $stat['value'] }}</p>
                                 <p class="mt-3 text-sm font-bold uppercase tracking-wider text-mai-slate">{{ $stat['label'] }}</p>
                             </div>
@@ -239,22 +241,19 @@
                 </h2>
             </div>
 
-            <div class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
-                <div class="reveal" style="--reveal-delay: 0ms">
+            <div data-operational-locations class="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
+                <div data-service-proof-item class="reveal">
                     <x-location-card :location="collect(config('company.locations'))->firstWhere('key', 'hq')" variant="compact">
                         Termasuk fasilitas produksi &amp; warehouse — gedung 4 lantai sejak 2023.
                     </x-location-card>
                 </div>
-                <div class="reveal" style="--reveal-delay: 100ms">
+                <div data-service-proof-item class="reveal">
                     <x-location-card :location="collect(config('company.locations'))->firstWhere('key', 'factory')" variant="compact">
                         Luas bangunan 1.860 m² (didirikan 2020).
                     </x-location-card>
                 </div>
             </div>
 
-            <p class="reveal mx-auto mt-8 max-w-2xl text-center text-xs text-mai-slate">
-                [CONTENT NEEDED — kapabilitas mesin dan jumlah lini produksi spesifik masih menunggu konfirmasi resmi. Lihat docs/CONTENT_REQUIREMENTS.md.]
-            </p>
         </div>
     </section>
 
