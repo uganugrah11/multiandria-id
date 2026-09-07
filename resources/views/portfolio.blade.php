@@ -57,8 +57,6 @@
                 label="Karya dan produk pilihan"
                 :items="$portfolio"
                 card-component="portfolio-card"
-                view-all-label="Lihat Semua Portofolio"
-                collapse-label="Sembunyikan"
             />
         </div>
     </section>
@@ -136,14 +134,12 @@
                 </p>
             </div>
 
-            @if($products->count() > 1)
+            @if($products->isNotEmpty())
                 <x-carousel-grid
                     id="produk"
                     label="Katalog produk"
-                    :items="$products->skip(1)"
+                    :items="$products"
                     card-component="product-card"
-                    view-all-label="Lihat Semua Produk"
-                    collapse-label="Sembunyikan"
                 />
             @else
                 <p class="mt-16 text-center text-sm text-mai-slate">Katalog produk sedang dilengkapi.</p>
