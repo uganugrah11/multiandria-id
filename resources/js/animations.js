@@ -63,7 +63,7 @@ function initHeroMotion() {
 }
 
 function initScrollReveals() {
-    const revealTargets = gsap.utils.toArray('.reveal:not([data-process-step]):not([data-service-proof-item])');
+    const revealTargets = gsap.utils.toArray('.reveal:not([data-process-step]):not([data-service-proof-item]):not([data-motion-card])');
     const scaleTargets = gsap.utils.toArray('.reveal-scale');
 
     window.__maiScrollMotionCleanup?.();
@@ -89,13 +89,37 @@ function initScrollReveals() {
     window.addEventListener('pagehide', cleanup, { once: true });
 }
 
+function initCardEntranceMotion() {
+    const cards = gsap.utils.toArray('[data-motion-card]');
+
+    if (!cards.length) return;
+
+    const groupedCards = cards.reduce((groups, card) => {
+        const group = card.parentElement;
+        if (!group) return groups;
+        if (!groups.has(group)) groups.set(group, []);
+        groups.get(group).push(card);
+        return groups;
+    }, new Map());
+
+    const cleanups = Array.from(groupedCards.entries()).map(([group, groupCards]) => revealOnScroll(groupCards, {
+        trigger: group,
+        from: { autoAlpha: 0, y: 22, scale: 0.985 },
+        start: 'top 84%',
+        stagger: 0.09,
+        duration: 0.62,
+    }));
+
+    registerPageMotionCleanup('CardEntrance', () => cleanups.forEach((cleanup) => cleanup()));
+}
+
 /**
  * Animates the visible digits of a stat value from 0 up to its real,
  * server-rendered value — the value is already correct in the HTML, so a
  * user with JS disabled (or who scrolls past before it fires) only ever
  * sees the true number, never a "0" flash.
  */
-function animateCounter(el) {
+function animateCounter(el, delay = 0) {
     const raw = el.textContent.trim();
     const match = raw.match(/^([\d.,]+)(.*)$/);
 
@@ -114,7 +138,8 @@ function animateCounter(el) {
 
     gsap.to(value, {
         current: target,
-        duration: 1.2,
+        delay,
+        duration: 1.3,
         ease: motion.ease,
         snap: { current: 1 },
         onUpdate: () => {
@@ -127,20 +152,146 @@ function animateCounter(el) {
 }
 
 function initCounters() {
-    const counters = document.querySelectorAll('[data-counter]');
+    const counters = gsap.utils.toArray('[data-counter]');
 
     if (prefersReducedMotion) {
         return;
     }
 
-    counters.forEach((counter) => {
+    const groups = counters.reduce((result, counter) => {
+        const group = counter.closest('.grid') || counter.parentElement;
+        if (!group) return result;
+        if (!result.has(group)) result.set(group, []);
+        result.get(group).push(counter);
+        return result;
+    }, new Map());
+
+    groups.forEach((groupCounters, group) => {
         ScrollTrigger.create({
-            trigger: counter,
+            trigger: group,
             start: 'top 82%',
             once: true,
-            onEnter: () => animateCounter(counter),
+            onEnter: () => groupCounters.forEach((counter, index) => animateCounter(counter, index * 0.1)),
         });
     });
+}
+
+function initNavigationMotion() {
+    const links = gsap.utils.toArray('[data-motion-nav-link]');
+
+    if (!links.length) return;
+
+    const media = gsap.matchMedia();
+    media.add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
+        const listeners = links.map((link) => {
+            const indicator = link.querySelector('[data-nav-indicator]');
+            if (!indicator) return () => {};
+
+            const restingScale = link.hasAttribute('aria-current') ? 1 : 0;
+            const enter = () => gsap.to(indicator, {
+                scaleX: 1,
+                duration: 0.22,
+                ease: motion.uiEase,
+                overwrite: 'auto',
+            });
+            const leave = () => gsap.to(indicator, {
+                scaleX: restingScale,
+                duration: 0.18,
+                ease: motion.uiEase,
+                overwrite: 'auto',
+            });
+
+            link.addEventListener('pointerenter', enter);
+            link.addEventListener('pointerleave', leave);
+            return () => {
+                link.removeEventListener('pointerenter', enter);
+                link.removeEventListener('pointerleave', leave);
+            };
+        });
+
+        return () => listeners.forEach((remove) => remove());
+    });
+
+    registerPageMotionCleanup('Navigation', () => media.revert());
+}
+
+/**
+ * Conversion actions get concise depth and press feedback. The media query is
+ * intentionally the sole enhancement gate, leaving the existing CSS and all
+ * reduced-motion behavior untouched.
+ */
+function initButtonMotion() {
+    const buttons = gsap.utils.toArray('[data-motion-button]');
+
+    if (!buttons.length) return;
+
+    window.__maiButtonMotionCleanup?.();
+
+    const media = gsap.matchMedia();
+
+    media.add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
+        const listeners = buttons.map((button) => {
+            const isFloat = button.dataset.motionButton === 'whatsapp-float';
+            const hoverScale = isFloat ? 1.08 : 1.025;
+            const restingShadow = isFloat
+                ? '0 10px 15px rgba(0, 0, 0, 0.20)'
+                : '0 1px 2px rgba(24, 24, 24, 0.04)';
+            const hoverShadow = isFloat
+                ? '0 16px 28px rgba(0, 0, 0, 0.24)'
+                : '0 10px 18px rgba(24, 24, 24, 0.14)';
+
+            const enter = () => gsap.to(button, {
+                y: -2,
+                scale: hoverScale,
+                boxShadow: hoverShadow,
+                duration: 0.18,
+                ease: motion.uiEase,
+                overwrite: 'auto',
+            });
+            const leave = () => gsap.to(button, {
+                y: 0,
+                scale: 1,
+                boxShadow: restingShadow,
+                duration: motion.uiDuration,
+                ease: motion.uiEase,
+                overwrite: 'auto',
+            });
+            const press = () => gsap.to(button, {
+                y: 0,
+                scale: 0.97,
+                duration: 0.1,
+                ease: motion.pressEase,
+                overwrite: 'auto',
+            });
+            const release = () => gsap.to(button, {
+                y: -2,
+                scale: hoverScale,
+                duration: 0.2,
+                ease: motion.uiEase,
+                overwrite: 'auto',
+            });
+
+            button.addEventListener('pointerenter', enter);
+            button.addEventListener('pointerleave', leave);
+            button.addEventListener('pointerdown', press);
+            button.addEventListener('pointerup', release);
+            button.addEventListener('pointercancel', leave);
+
+            return () => {
+                button.removeEventListener('pointerenter', enter);
+                button.removeEventListener('pointerleave', leave);
+                button.removeEventListener('pointerdown', press);
+                button.removeEventListener('pointerup', release);
+                button.removeEventListener('pointercancel', leave);
+            };
+        });
+
+        return () => listeners.forEach((remove) => remove());
+    });
+
+    const cleanup = () => media.revert();
+    window.__maiButtonMotionCleanup = cleanup;
+    window.addEventListener('pagehide', cleanup, { once: true });
 }
 
 function initCardHoverMotion() {
@@ -154,29 +305,31 @@ function initCardHoverMotion() {
 
     media.add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
         const listeners = cards.map((card) => {
-            const isProductCard = card.dataset.motionCard === 'product';
+            const media = card.querySelector('[data-motion-card-media]');
             const enterVars = {
                 y: -4,
-                scale: 1.01,
                 duration: 0.22,
                 ease: 'power2.out',
                 overwrite: 'auto',
             };
             const leaveVars = {
                 y: 0,
-                scale: 1,
                 duration: 0.24,
                 ease: 'power2.out',
                 overwrite: 'auto',
             };
 
-            if (isProductCard) {
-                enterVars.boxShadow = '0 4px 12px rgba(24, 24, 24, 0.08)';
-                leaveVars.boxShadow = '0 1px 2px rgba(24, 24, 24, 0.04), 0 1px 3px rgba(24, 24, 24, 0.06)';
-            }
+            enterVars.boxShadow = '0 10px 22px rgba(24, 24, 24, 0.12)';
+            leaveVars.boxShadow = '0 1px 2px rgba(24, 24, 24, 0.04), 0 1px 3px rgba(24, 24, 24, 0.06)';
 
-            const enter = () => gsap.to(card, enterVars);
-            const leave = () => gsap.to(card, leaveVars);
+            const enter = () => {
+                gsap.to(card, enterVars);
+                if (media) gsap.to(media, { scale: 1.035, duration: 0.42, ease: 'power2.out', overwrite: 'auto' });
+            };
+            const leave = () => {
+                gsap.to(card, leaveVars);
+                if (media) gsap.to(media, { scale: 1, duration: 0.34, ease: 'power1.out', overwrite: 'auto' });
+            };
 
             card.addEventListener('pointerenter', enter);
             card.addEventListener('pointerleave', leave);
@@ -464,34 +617,39 @@ function initManufacturingProcessFlows() {
         }
 
         const media = gsap.matchMedia();
-        media.add('(prefers-reduced-motion: no-preference)', () => {
+        media.add('(min-width: 1024px) and (prefers-reduced-motion: no-preference)', () => {
             gsap.set(steps, { autoAlpha: 0, y: 18, willChange: 'transform, opacity' });
             gsap.set(connectors, { scaleX: 0, transformOrigin: 'left center', willChange: 'transform' });
 
             const timeline = gsap.timeline({
+                defaults: { ease: motion.ease },
                 scrollTrigger: {
                     trigger: flow,
-                    start: 'top 78%',
-                    once: true,
+                    start: 'top 18%',
+                    end: `+=${steps.length * 120}`,
+                    scrub: 0.7,
+                    pin: flow,
+                    anticipatePin: 1,
                 },
             });
 
-            timeline
-                .to(steps, {
+            steps.forEach((step, index) => {
+                const connector = connectors[index];
+
+                timeline.to(step, {
                     autoAlpha: 1,
                     y: 0,
-                    duration: 0.6,
-                    ease: motion.ease,
-                    stagger: 0.06,
-                    clearProps: 'willChange',
-                })
-                .to(connectors, {
-                    scaleX: 1,
-                    duration: 0.3,
-                    ease: motion.ease,
-                    stagger: 0.04,
-                    clearProps: 'willChange',
-                }, '<0.08');
+                    duration: 0.62,
+                }, index === 0 ? 0 : '+=0.08');
+
+                if (connector) {
+                    timeline.to(connector, {
+                        scaleX: 1,
+                        duration: 0.28,
+                        ease: 'power2.out',
+                    }, '<0.22');
+                }
+            });
         });
 
         return () => media.revert();
@@ -666,7 +824,10 @@ function initFaqAccordions() {
 document.addEventListener('DOMContentLoaded', () => {
     initHeroMotion();
     initScrollReveals();
+    initCardEntranceMotion();
     initCounters();
+    initButtonMotion();
+    initNavigationMotion();
     initCardHoverMotion();
     initCompanyTimelines();
     initHorizontalScrollers();

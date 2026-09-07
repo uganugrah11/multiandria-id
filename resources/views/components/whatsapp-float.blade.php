@@ -73,6 +73,7 @@
         rel="noopener noreferrer"
         @click="closePopup()"
         aria-label="Konsultasi via WhatsApp"
+        data-motion-button="whatsapp-float"
         class="group inline-flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-white shadow-lg shadow-black/20 transition-all duration-300 ease-in-out hover:scale-110 hover:bg-whatsapp-dark hover:shadow-xl active:scale-95 motion-reduce:hover:scale-100 sm:h-16 sm:w-16"
     >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6 transition-transform duration-300 ease-in-out group-hover:scale-110 sm:h-7 sm:w-7" aria-hidden="true">

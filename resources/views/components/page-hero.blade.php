@@ -39,17 +39,17 @@
     $maxClass = $alignment === 'center' ? 'max-w-4xl' : 'max-w-4xl';
 @endphp
 
-<section class="{{ $bgClass }} pb-16 pt-28 sm:pb-24 sm:pt-32">
+<section data-page-hero class="{{ $bgClass }} pb-16 pt-28 sm:pb-24 sm:pt-32">
     <div class="mx-auto {{ $maxClass }} px-4 sm:px-6 lg:px-8 {{ $alignClass }}">
         @if($eyebrow)
-            <p class="animate-fade-up {{ $eyebrowClass }} text-xs font-bold uppercase tracking-widest">{{ $eyebrow }}</p>
+            <p data-hero-eyebrow class="{{ $eyebrowClass }} text-xs font-bold uppercase tracking-widest">{{ $eyebrow }}</p>
         @endif
-        <h1 class="animate-fade-up mt-4 text-3xl font-extrabold leading-[1.1] {{ $textClass }} sm:text-4xl lg:text-5xl" style="--reveal-delay: 80ms">{{ $title }}</h1>
+        <h1 data-hero-headline class="mt-4 text-3xl font-extrabold leading-[1.1] {{ $textClass }} sm:text-4xl lg:text-5xl">{{ $title }}</h1>
         @if($description)
-            <p class="animate-fade-up mx-auto mt-4 max-w-xl text-base leading-relaxed {{ $subtextClass }}" style="--reveal-delay: 160ms">{{ $description }}</p>
+            <p data-hero-description class="mx-auto mt-4 max-w-xl text-base leading-relaxed {{ $subtextClass }}">{{ $description }}</p>
         @endif
         @if(isset($actions) && $actions->isNotEmpty())
-            <div class="animate-fade-up mt-8 flex flex-wrap gap-4 {{ $alignment === 'center' ? 'justify-center' : '' }}" style="--reveal-delay: 240ms">
+            <div data-hero-actions class="mt-8 flex flex-wrap gap-4 {{ $alignment === 'center' ? 'justify-center' : '' }}">
                 {{ $actions }}
             </div>
         @endif

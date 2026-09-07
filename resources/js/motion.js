@@ -4,9 +4,11 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 export const motion = {
-    ease: 'power2.out',
-    uiDuration: 0.3,
-    revealDuration: 0.6,
+    ease: 'power3.out',
+    uiEase: 'power1.out',
+    pressEase: 'power2.inOut',
+    uiDuration: 0.24,
+    revealDuration: 0.64,
 };
 
 export const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;

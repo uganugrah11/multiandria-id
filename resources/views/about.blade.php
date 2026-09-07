@@ -2,7 +2,7 @@
 
     {{-- 1. Hero — full-bleed HQ photograph (company identity, NOT factory proof).
          Assigned by project owner. Decorative image; headline carries the message. --}}
-    <section class="relative overflow-hidden bg-mai-charcoal">
+    <section data-page-hero class="relative overflow-hidden bg-mai-charcoal">
         <img
             src="{{ asset('images/factory/a-building-with-a-glass.jpg') }}"
             alt=""
@@ -18,14 +18,14 @@
 
         <div class="relative mx-auto flex min-h-[82vh] max-w-7xl items-center px-4 pt-32 pb-20 sm:px-6 lg:px-8">
             <div class="max-w-2xl">
-                <p class="animate-fade-up text-xs font-bold uppercase tracking-widest text-mai-soft-red">Tentang Kami</p>
-                <h1 class="animate-fade-up mt-5 text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl" style="--reveal-delay: 80ms">
+                <p data-hero-eyebrow class="text-xs font-bold uppercase tracking-widest text-mai-soft-red">Tentang Kami</p>
+                <h1 data-hero-headline class="mt-5 text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
                     PT Multi Andria Indonesia
                 </h1>
-                <p class="animate-fade-up mt-6 max-w-xl text-lg leading-relaxed text-white/80" style="--reveal-delay: 160ms">
+                <p data-hero-description class="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
                     Konveksi &amp; distributor bahan tekstil serta produk fashion untuk bisnis, institusi, dan pemerintahan — berpengalaman sejak 2014.
                 </p>
-                <div class="animate-fade-up mt-10 flex flex-wrap gap-4" style="--reveal-delay: 240ms">
+                <div data-hero-actions class="mt-10 flex flex-wrap gap-4">
                     <x-whatsapp-button size="lg" :message="'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai kebutuhan produksi garment.'">Konsultasi via WhatsApp</x-whatsapp-button>
                     <a href="{{ asset('company_profile.pdf') }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/35 px-8 py-4 text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-white motion-reduce:hover:translate-y-0">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-4 w-4" aria-hidden="true">
@@ -85,12 +85,29 @@
         </div>
     </section>
 
-    {{-- 3. Scale / proof metrics — dark charcoal editorial band.
-         Large numerals, concise labels, supporting note. data-counter values. --}}
-    <section class="bg-mai-charcoal py-20 sm:py-28">
+    {{-- 3. Scale / proof metrics — authentic production proof under a restrained
+         deep-wine scrim. Large numerals, concise labels, supporting note. --}}
+    <section class="relative isolate overflow-hidden bg-mai-wine py-20 sm:py-28">
+        <picture class="absolute inset-0 -z-10" aria-hidden="true">
+            <source media="(min-width: 1280px)" srcset="{{ asset('images/factory/factory-1920.webp') }}" type="image/webp">
+            <source srcset="{{ asset('images/factory/factory-1280.webp') }}" type="image/webp">
+            <img
+                src="{{ asset('images/factory/factory.jpg') }}"
+                alt=""
+                class="h-full w-full object-cover object-center"
+                width="2560"
+                height="1920"
+                loading="lazy"
+                decoding="async"
+            >
+        </picture>
+        <div class="absolute inset-0 -z-10 bg-gradient-to-br from-[#7f171a]/95 via-[#7f171a]/86 to-mai-charcoal/82" aria-hidden="true"></div>
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="max-w-2xl">
-                <p class="reveal text-xs font-bold uppercase tracking-widest text-mai-soft-red">Skala Operasi</p>
+                <p class="reveal flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-mai-ivory">
+                    <span class="h-px w-8 bg-mai-red" aria-hidden="true"></span>
+                    Skala Operasi
+                </p>
                 <h2 class="reveal mt-4 text-3xl font-extrabold leading-tight text-white sm:text-4xl" style="--reveal-delay: 60ms">
                     Perusahaan garmen dengan skala produksi nasional
                 </h2>
@@ -108,7 +125,7 @@
                     ['value' => config('company.stats.countries_served', '4+'), 'label' => 'Negara Dilayani'],
                 ]"
             />
-            <p class="reveal mt-14 max-w-2xl text-sm leading-relaxed text-white/55" style="--reveal-delay: 120ms">
+            <p class="reveal mt-14 max-w-2xl text-sm leading-relaxed text-white/80" style="--reveal-delay: 120ms">
                 Angka di atas berdasarkan profil perusahaan resmi kami. <a href="{{ asset('company_profile.pdf') }}" target="_blank" rel="noopener noreferrer" class="font-semibold text-mai-soft-red hover:text-white">Unduh Company Profile (PDF)</a> untuk informasi lebih lengkap.
             </p>
         </div>

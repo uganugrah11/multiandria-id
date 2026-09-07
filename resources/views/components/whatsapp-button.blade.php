@@ -26,6 +26,7 @@
     href="{{ $href }}"
     target="_blank"
     rel="noopener noreferrer"
+    data-motion-button="whatsapp"
     {{ $attributes->class([$base, $sizes[$size], $variants[$variant]]) }}
 >
     @if($variant === 'primary')

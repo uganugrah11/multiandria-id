@@ -28,7 +28,7 @@
                     Keahlian utama kami adalah Clothing Design &amp; Production — tersedia dalam model kerja sama Jasa CMT dan Jasa FOB.
                 </p>
                 {{-- Conversion actions remain immediately visible; hero motion stages supporting copy only. --}}
-                <div class="mt-10 flex flex-wrap gap-4">
+                <div data-hero-actions class="mt-10 flex flex-wrap gap-4">
                     <x-whatsapp-button size="lg" :message="'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai proses dan kebutuhan produksi garment.'">
                         Konsultasi via WhatsApp
                     </x-whatsapp-button>

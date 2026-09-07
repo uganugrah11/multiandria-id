@@ -70,27 +70,20 @@ textarea:focus-visible {
     transform: none;
 }
 
-/* Underline sweep for desktop nav links. */
+/* Desktop nav indicator. Its default state remains available without JS; GSAP
+ * adds the hover interpolation only when full motion is permitted. */
 .nav-link {
     position: relative;
 }
 
-.nav-link::after {
-    content: '';
+.nav-indicator {
     position: absolute;
     left: 0;
     right: 0;
     bottom: -4px;
     height: 2px;
     background: var(--color-mai-red);
-    transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.25s ease;
-}
-
-.nav-link:hover::after,
-.nav-link[aria-current='page']::after {
-    transform: scaleX(1);
 }
 
 [data-site-header] {

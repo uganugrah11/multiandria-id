@@ -71,12 +71,14 @@
                     <a
                         href="{{ route($link['route']) }}{{ $link['anchor'] ?? '' }}"
                         @if($isActive) aria-current="page" @endif
+                        data-motion-nav-link
                         class="nav-link text-sm font-semibold transition-colors duration-300"
                         :class="(scrolled || mobileOpen)
                             ? '{{ $isActive ? 'text-mai-red' : 'text-mai-charcoal hover:text-mai-red' }}'
                             : '{{ $isActive ? 'text-mai-soft-red' : 'text-white hover:text-white/80' }}'"
                     >
                         {{ $link['label'] }}
+                        <span data-nav-indicator aria-hidden="true" class="nav-indicator" style="transform: scaleX({{ $isActive ? 1 : 0 }})"></span>
                     </a>
                 @endforeach
             </nav>

@@ -20,7 +20,7 @@
     };
     $borderClass = $variant === 'dark' ? 'border-white/15' : 'border-mai-border';
     $labelClass = match($variant) {
-        'dark' => 'text-white/55',
+        'dark' => 'text-mai-ivory',
         'editorial' => 'text-mai-slate',
         default => 'text-mai-slate',
     };

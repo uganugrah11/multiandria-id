@@ -28,7 +28,7 @@
                     Kaos, seragam, jaket, hingga tote bag — beserta contoh hasil kerja untuk bisnis, komunitas, dan institusi.
                 </p>
                 {{-- Conversion actions remain immediately visible; hero motion stages supporting copy only. --}}
-                <div class="mt-10 flex flex-wrap gap-4">
+                <div data-hero-actions class="mt-10 flex flex-wrap gap-4">
                     <x-whatsapp-button size="lg" :message="'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai kebutuhan produksi produk.'">
                         Konsultasi via WhatsApp
                     </x-whatsapp-button>
