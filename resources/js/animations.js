@@ -465,6 +465,113 @@ function initHorizontalScrollers() {
     });
 }
 
+/**
+ * FAQ panels use measured heights rather than a fixed CSS max-height, so each
+ * answer opens precisely to its own content. Native buttons retain keyboard
+ * Enter/Space support; GSAP only supplies the visual transition.
+ */
+function initFaqAccordions() {
+    const accordions = gsap.utils.toArray('[data-faq-accordion]');
+
+    accordions.forEach((accordion) => {
+        const items = Array.from(accordion.children);
+        const state = items.map((item) => ({
+            item,
+            button: item.querySelector('[data-faq-toggle]'),
+            panel: item.querySelector('[data-faq-panel]'),
+            answer: item.querySelector('[data-faq-answer]'),
+            icon: item.querySelector('[data-faq-icon]'),
+        })).filter(({ button, panel, answer, icon }) => button && panel && answer && icon);
+
+        if (!state.length) return;
+
+        const setClosed = ({ button, panel, answer, icon }) => {
+            button.setAttribute('aria-expanded', 'false');
+            panel.hidden = true;
+            gsap.set(panel, { height: 0 });
+            gsap.set(answer, { autoAlpha: 0, y: -8 });
+            gsap.set(icon, { rotation: 0 });
+        };
+
+        const setOpen = ({ button, panel, answer, icon }) => {
+            button.setAttribute('aria-expanded', 'true');
+            panel.hidden = false;
+            gsap.set(panel, { height: 'auto' });
+            gsap.set(answer, { autoAlpha: 1, y: 0 });
+            gsap.set(icon, { rotation: 45 });
+        };
+
+        const close = (entry, animate = true) => {
+            const { button, panel, answer, icon } = entry;
+            if (button.getAttribute('aria-expanded') !== 'true') return;
+
+            button.setAttribute('aria-expanded', 'false');
+            gsap.killTweensOf([panel, answer, icon]);
+
+            if (!animate || prefersReducedMotion) {
+                setClosed(entry);
+                return;
+            }
+
+            gsap.timeline({
+                defaults: { overwrite: 'auto' },
+                onComplete: () => {
+                    panel.hidden = true;
+                    gsap.set(panel, { height: 0 });
+                },
+            })
+                .to(answer, { autoAlpha: 0, y: -8, duration: 0.14, ease: 'power1.in' })
+                .to(panel, { height: 0, duration: 0.28, ease: 'power2.out' }, 0)
+                .to(icon, { rotation: 0, duration: 0.22, ease: 'power2.out' }, 0);
+        };
+
+        const open = (entry, animate = true) => {
+            const { button, panel, answer, icon } = entry;
+            button.setAttribute('aria-expanded', 'true');
+            panel.hidden = false;
+            gsap.killTweensOf([panel, answer, icon]);
+
+            if (!animate || prefersReducedMotion) {
+                setOpen(entry);
+                return;
+            }
+
+            gsap.set(panel, { height: 0 });
+            gsap.set(answer, { autoAlpha: 0, y: 8 });
+            gsap.set(icon, { rotation: 0 });
+            const targetHeight = panel.scrollHeight;
+
+            gsap.timeline({ defaults: { overwrite: 'auto' } })
+                .to(panel, {
+                    height: targetHeight,
+                    duration: 0.36,
+                    ease: 'power2.out',
+                    onComplete: () => gsap.set(panel, { height: 'auto' }),
+                })
+                .to(answer, { autoAlpha: 1, y: 0, duration: 0.24, ease: 'power2.out' }, 0.08)
+                .to(icon, { rotation: 45, duration: 0.24, ease: 'power2.out' }, 0);
+        };
+
+        state.forEach((entry) => {
+            const expanded = entry.button.getAttribute('aria-expanded') === 'true';
+            expanded ? setOpen(entry) : setClosed(entry);
+
+            entry.button.addEventListener('click', () => {
+                const isOpen = entry.button.getAttribute('aria-expanded') === 'true';
+                if (isOpen) {
+                    close(entry);
+                    return;
+                }
+
+                state.forEach((other) => {
+                    if (other !== entry) close(other);
+                });
+                open(entry);
+            });
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     initHeroMotion();
     initScrollReveals();
@@ -472,4 +579,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initCardHoverMotion();
     initCompanyTimelines();
     initHorizontalScrollers();
+    initFaqAccordions();
 });
