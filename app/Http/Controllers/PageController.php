@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PortfolioProject;
 use App\Models\Product;
+use App\Support\CatalogCache;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -20,22 +21,23 @@ class PageController extends Controller
 
     public function portfolio(Request $request)
     {
-        $portfolio = PortfolioProject::active()
+        $portfolio = CatalogCache::remember(CatalogCache::ACTIVE_PORTFOLIO, fn () => PortfolioProject::active()
             ->orderBy('sort_order')
             ->get()
-            ->map(fn (PortfolioProject $project) => $this->mapPortfolioProject($project));
+            ->map(fn (PortfolioProject $project) => $this->mapPortfolioProject($project)));
 
-        $products = Product::active()
+        $products = CatalogCache::remember(CatalogCache::ACTIVE_PRODUCTS, fn () => Product::active()
             ->orderBy('sort_order')
             ->get()
-            ->map(fn (Product $product) => $this->mapProduct($product));
+            ->map(fn (Product $product) => $this->mapProduct($product)));
 
-        $featuredProduct = Product::active()
-            ->where('slug', 'seragam-dinas-polri-lengkap-pdl-kepolisian')
-            ->first();
-        $featuredShowcase = $featuredProduct
-            ? $this->mapProduct($featuredProduct)
-            : $products->first();
+        $featuredShowcase = CatalogCache::remember(CatalogCache::FEATURED_SHOWCASE, function () use ($products) {
+            $featuredProduct = Product::active()
+                ->where('slug', 'seragam-dinas-polri-lengkap-pdl-kepolisian')
+                ->first();
+
+            return $featuredProduct ? $this->mapProduct($featuredProduct) : $products->first();
+        });
 
         return view('portfolio', compact('portfolio', 'products', 'featuredShowcase'));
     }

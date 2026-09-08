@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PortfolioProject;
+use App\Support\CatalogCache;
 use Illuminate\Support\Collection;
 
 class HomeController extends Controller
@@ -16,19 +17,21 @@ class HomeController extends Controller
 
     private function featuredPortfolio(): Collection
     {
-        $items = PortfolioProject::active()
-            ->get()
-            ->map(fn (PortfolioProject $project) => [
-                'title' => $project->title,
-                'brand_org' => $project->client_name,
-                'description' => $project->description,
-                'image_url' => $project->cover_image_url,
-            ])
-            ->keyBy('title');
+        return CatalogCache::remember(CatalogCache::HOMEPAGE_FEATURED_PORTFOLIO, function () {
+            $items = PortfolioProject::active()
+                ->get()
+                ->map(fn (PortfolioProject $project) => [
+                    'title' => $project->title,
+                    'brand_org' => $project->client_name,
+                    'description' => $project->description,
+                    'image_url' => $project->cover_image_url,
+                ])
+                ->keyBy('title');
 
-        return collect(config('homepage.featured_portfolio_titles'))
-            ->map(fn (string $title) => $items->get($title))
-            ->filter()
-            ->values();
+            return collect(config('homepage.featured_portfolio_titles'))
+                ->map(fn (string $title) => $items->get($title))
+                ->filter()
+                ->values();
+        });
     }
 }

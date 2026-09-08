@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Support\CatalogCache;
+use App\Support\ImageOptimizer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -37,6 +41,8 @@ class ProductController extends Controller
                 $this->storeImages($product, $request->file('images'));
             }
         });
+
+        CatalogCache::flush();
 
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil ditambahkan.');
     }
@@ -75,6 +81,8 @@ class ProductController extends Controller
             }
         });
 
+        CatalogCache::flush();
+
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil diperbarui.');
     }
 
@@ -84,6 +92,8 @@ class ProductController extends Controller
             $product->images->each->delete();
             $product->delete();
         });
+
+        CatalogCache::flush();
 
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil dihapus.');
     }
@@ -99,14 +109,16 @@ class ProductController extends Controller
             'is_active' => ['boolean'],
             'is_featured' => ['boolean'],
             'sort_order' => ['nullable', 'integer'],
-            'images.*' => ['nullable', 'image', 'max:4096'],
+            'images.*' => ['nullable', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
         ]);
     }
 
     private function storeImages(Product $product, array $images, int $startOrder = 0): void
     {
         foreach ($images as $index => $image) {
-            $path = $image->store('products', 'public');
+            $optimized = app(ImageOptimizer::class)->optimize($image->get());
+            $path = 'products/'.Str::uuid().'.'.$optimized->extension;
+            Storage::disk('public')->put($path, $optimized->contents);
 
             ProductImage::create([
                 'product_id' => $product->id,

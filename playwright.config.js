@@ -23,13 +23,13 @@ export default defineConfig({
     baseURL: process.env.APP_URL || 'http://127.0.0.1:8000',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
+    video: 'off',
   },
 
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     },
     // Uncomment as needed once the core suite is stable:
     // { name: 'firefox', use: { ...devices['Desktop Firefox'] } },

@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use App\Models\PortfolioProject;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Support\CatalogCache;
+use App\Support\ImageOptimizer;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -38,6 +40,8 @@ class ImportLegacyContent extends Command
         foreach ($portfolio as $item) {
             $this->importPortfolio($item, $summary);
         }
+
+        CatalogCache::flush();
 
         $this->table(['Content', 'Created', 'Updated', 'Skipped'], [
             ['Products', ...array_values($summary['products'])],
@@ -184,9 +188,9 @@ class ImportLegacyContent extends Command
             return null;
         }
 
-        $extension = pathinfo($filename, PATHINFO_EXTENSION) ?: 'bin';
-        $destinationPath = "{$destinationDirectory}/{$slug}.{$extension}";
-        Storage::disk('public')->put($destinationPath, file_get_contents($sourcePath));
+        $optimized = app(ImageOptimizer::class)->optimize(file_get_contents($sourcePath));
+        $destinationPath = "{$destinationDirectory}/{$slug}.{$optimized->extension}";
+        Storage::disk('public')->put($destinationPath, $optimized->contents);
 
         return $destinationPath;
     }
