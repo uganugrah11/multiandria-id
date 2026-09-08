@@ -29,3 +29,6 @@ CommitInstruction.md
 .fallow
 _products.json
 _portfolio.json
+/test-results/
+/playwright-report/
+/playwright/.cache/

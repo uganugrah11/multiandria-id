@@ -66,7 +66,7 @@
     {{-- 3. Featured showcase — leading _products.json project (Seragam Dinas
          Polri Lengkap). Product/project showcase visual, NOT manufacturing
          process proof. Verified copy only; no client details invented. --}}
-    @if($featured = $products->first())
+    @if($featured = $featuredShowcase)
         <section class="bg-mai-white py-16 sm:py-24">
             <div class="mx-auto max-w-7xl px-4 lg:px-8">
                 <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">

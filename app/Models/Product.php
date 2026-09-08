@@ -14,8 +14,10 @@ class Product extends Model
     protected $fillable = [
         'name',
         'slug',
+        'sku',
         'product_type',
         'description',
+        'legacy_image_path',
         'specifications',
         'moq',
         'is_active',
@@ -25,6 +27,8 @@ class Product extends Model
 
     protected $casts = [
         'specifications' => 'array',
+        'sku' => 'string',
+        'legacy_image_path' => 'string',
         'is_active' => 'boolean',
         'is_featured' => 'boolean',
         'moq' => 'integer',

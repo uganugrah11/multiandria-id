@@ -14,6 +14,15 @@
             </div>
 
             <div class="mt-4">
+                <label for="product-sku" class="block text-xs font-semibold uppercase tracking-wide text-mai-slate">SKU (opsional)</label>
+                <input id="product-sku" name="sku" type="text" value="{{ old('sku', $product->sku ?? '') }}" aria-invalid="{{ $errors->has('sku') ? 'true' : 'false' }}"
+                    class="mt-1 w-full rounded-lg border border-mai-border px-4 py-2.5 text-sm focus:border-mai-red focus:outline-none focus:ring-1 focus:ring-mai-red {{ $errors->has('sku') ? 'border-red-300' : '' }}">
+                @error('sku')
+                    <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mt-4">
                 <label for="product-type" class="block text-xs font-semibold uppercase tracking-wide text-mai-slate">Kategori</label>
                 <select id="product-type" name="product_type" required aria-invalid="{{ $errors->has('product_type') ? 'true' : 'false' }}" class="mt-1 w-full rounded-lg border border-mai-border px-4 py-2.5 text-sm focus:border-mai-red focus:outline-none focus:ring-1 focus:ring-mai-red {{ $errors->has('product_type') ? 'border-red-300' : '' }}">
                     @foreach($productTypes as $slug => $label)

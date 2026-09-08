@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PortfolioProject;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class PageController extends Controller
 {
@@ -19,41 +20,47 @@ class PageController extends Controller
 
     public function portfolio(Request $request)
     {
-        $portfolio = $this->loadJson('_portfolio.json', 'portfolio', 'model');
-        $products = $this->loadJson('_products.json', 'products', 'produk')->map(function ($item) {
-            $item['wa_url'] = 'https://wa.me/'.config('company.whatsapp.number')
-                .'?text='.rawurlencode(
-                    'Halo Multi Andria Indonesia, saya tertarik dengan produk "'.$item['title'].'". '
-                    .'Saya ingin mendapatkan informasi mengenai harga dan minimum order.'
-                );
+        $portfolio = PortfolioProject::active()
+            ->orderBy('sort_order')
+            ->get()
+            ->map(fn (PortfolioProject $project) => $this->mapPortfolioProject($project));
 
-            return $item;
-        });
+        $products = Product::active()
+            ->orderBy('sort_order')
+            ->get()
+            ->map(fn (Product $product) => $this->mapProduct($product));
 
-        return view('portfolio', compact('portfolio', 'products'));
+        $featuredProduct = Product::active()
+            ->where('slug', 'seragam-dinas-polri-lengkap-pdl-kepolisian')
+            ->first();
+        $featuredShowcase = $featuredProduct
+            ? $this->mapProduct($featuredProduct)
+            : $products->first();
+
+        return view('portfolio', compact('portfolio', 'products', 'featuredShowcase'));
     }
 
-    /**
-     * Load a standalone content JSON file (kept local, git-ignored) and
-     * normalize its image paths from absolute Windows paths to public URLs.
-     */
-    private function loadJson(string $file, string $key, string $dir): Collection
+    private function mapPortfolioProject(PortfolioProject $project): array
     {
-        $path = base_path($file);
+        return [
+            'title' => $project->title,
+            'brand_org' => $project->client_name,
+            'description' => $project->description,
+            'image_url' => $project->cover_image_url,
+        ];
+    }
 
-        if (! file_exists($path)) {
-            return collect();
-        }
-
-        $data = json_decode(file_get_contents($path), true);
-
-        return collect($data[$key] ?? [])->map(function ($item) use ($dir) {
-            $item['image_path'] = basename($item['image'] ?? '');
-            $item['image_url'] = $item['image_path']
-                ? asset('images/'.$dir.'/'.$item['image_path'])
-                : null;
-
-            return $item;
-        })->values();
+    private function mapProduct(Product $product): array
+    {
+        return [
+            'title' => $product->name,
+            'description' => $product->description,
+            'image_url' => $product->primary_image_url,
+            'wa_url' => 'https://wa.me/'.config('company.whatsapp.number')
+                .'?text='.rawurlencode(
+                    'Halo Multi Andria Indonesia, saya tertarik dengan produk "'.$product->name.'". '
+                    .'Saya ingin mendapatkan informasi mengenai harga dan minimum order.'
+                ),
+        ];
     }
 }

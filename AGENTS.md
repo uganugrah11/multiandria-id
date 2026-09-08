@@ -520,3 +520,32 @@ Suggested commit boundaries:
 - `fix: refine responsive ui`
 
 Do not mix unrelated backend changes into UI redesign commits.
+
+## End-to-end testing (Playwright)
+
+This project uses Playwright for browser-level verification, alongside
+PHPUnit for backend/unit tests.
+
+- After making any change that touches a Blade view, route, form, or
+  frontend JS (Alpine.js/GSAP), run:
+
+    ```bash
+    npm run test:e2e
+    ```
+
+    This automatically boots `php artisan serve` and runs the suite in
+    `tests/e2e/`; no need to start the server manually first.
+
+- If a test fails, do not assume the fix worked from reading the code
+  alone. Check the generated evidence before concluding a change is
+  correct:
+    - `playwright-report/index.html` — full HTML report
+    - `test-results/` — per-test screenshots and traces on failure
+    - Run `npm run test:e2e:report` to open the last report
+
+- When adding a new UI feature or fixing a UI bug, add or update a
+  corresponding spec in `tests/e2e/` so the behavior stays covered.
+
+- Backend-only changes (models, migrations, jobs, non-HTTP logic) should
+  still go through `php artisan test` (PHPUnit) as before — Playwright is
+  for verifying things through an actual browser.

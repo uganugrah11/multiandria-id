@@ -14,6 +14,7 @@ class DashboardController extends Controller
             'products' => Product::count(),
             'active_products' => Product::active()->count(),
             'portfolio_projects' => PortfolioProject::count(),
+            'active_portfolio' => PortfolioProject::active()->count(),
         ];
 
         return view('admin.dashboard', compact('stats'));

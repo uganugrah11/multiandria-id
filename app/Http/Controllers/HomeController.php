@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PortfolioProject;
 use Illuminate\Support\Collection;
-use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -14,30 +14,16 @@ class HomeController extends Controller
         return view('home', compact('featuredPortfolio'));
     }
 
-    /**
-     * Curate the three homepage projects from the same local JSON source used
-     * by the portfolio page. Image paths are normalized for public delivery.
-     */
     private function featuredPortfolio(): Collection
     {
-        $path = base_path('_portfolio.json');
-
-        if (! file_exists($path)) {
-            return collect();
-        }
-
-        $items = collect(json_decode(file_get_contents($path), true)['portfolio'] ?? [])
-            ->map(function (array $item) {
-                $imagePath = basename($item['image'] ?? '');
-
-                return [
-                    'title' => $item['title'] ?? null,
-                    'brand_org' => $item['brand_org'] ?? null,
-                    'description' => $item['description'] ?? null,
-                    'style' => $item['style'] ?? [],
-                    'image_url' => $imagePath ? asset('images/model/'.$imagePath) : null,
-                ];
-            })
+        $items = PortfolioProject::active()
+            ->get()
+            ->map(fn (PortfolioProject $project) => [
+                'title' => $project->title,
+                'brand_org' => $project->client_name,
+                'description' => $project->description,
+                'image_url' => $project->cover_image_url,
+            ])
             ->keyBy('title');
 
         return collect(config('homepage.featured_portfolio_titles'))

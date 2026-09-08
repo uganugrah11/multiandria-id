@@ -27,6 +27,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $this->validateProduct($request);
+        $validated['is_active'] = $request->boolean('is_active');
+        $validated['is_featured'] = $request->boolean('is_featured');
 
         DB::transaction(function () use ($validated, $request) {
             $product = Product::create(collect($validated)->except('images')->toArray());
@@ -50,6 +52,8 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $validated = $this->validateProduct($request);
+        $validated['is_active'] = $request->boolean('is_active');
+        $validated['is_featured'] = $request->boolean('is_featured');
 
         DB::transaction(function () use ($validated, $request, $product) {
             $product->update(collect($validated)->except('images')->toArray());
@@ -88,6 +92,7 @@ class ProductController extends Controller
     {
         return $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'sku' => ['nullable', 'string', 'max:255'],
             'product_type' => ['required', 'string', 'in:'.implode(',', array_keys(Product::productTypes()))],
             'description' => ['nullable', 'string'],
             'moq' => ['nullable', 'integer', 'min:1'],

@@ -23,6 +23,9 @@
                 <a href="{{ route('admin.products.index') }}" class="block rounded-lg px-3 py-2 text-sm font-semibold {{ request()->routeIs('admin.products.*') ? 'bg-mai-red text-white' : 'text-mai-charcoal hover:bg-mai-gray' }}">
                     Produk
                 </a>
+                <a href="{{ route('admin.portfolio.index') }}" class="block rounded-lg px-3 py-2 text-sm font-semibold {{ request()->routeIs('admin.portfolio.*') ? 'bg-mai-red text-white' : 'text-mai-charcoal hover:bg-mai-gray' }}">
+                    Portofolio
+                </a>
             </nav>
         </aside>
 
@@ -55,6 +58,9 @@
                     </a>
                     <a href="{{ route('admin.products.index') }}" class="block rounded-lg px-3 py-2 text-sm font-semibold {{ request()->routeIs('admin.products.*') ? 'bg-mai-red text-white' : 'text-mai-charcoal hover:bg-mai-gray' }}">
                         Produk
+                    </a>
+                    <a href="{{ route('admin.portfolio.index') }}" class="block rounded-lg px-3 py-2 text-sm font-semibold {{ request()->routeIs('admin.portfolio.*') ? 'bg-mai-red text-white' : 'text-mai-charcoal hover:bg-mai-gray' }}">
+                        Portofolio
                     </a>
                 </div>
             </nav>
