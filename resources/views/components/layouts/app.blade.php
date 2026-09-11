@@ -15,8 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title ? $title.' — Multi Andria Indonesia' : 'Multi Andria Indonesia — Partner Produksi Garment untuk Bisnis dan Institusi' }}</title>
-    <meta name="description" content="{{ $description ?? 'PT. Multi Andria Indonesia — konveksi & distributor bahan tekstil serta produk fashion untuk bisnis, institusi, dan pemerintahan. Konsultasi produksi langsung via WhatsApp.' }}">
+    <x-seo.meta :title="$title" :description="$description" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

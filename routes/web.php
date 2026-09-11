@@ -8,12 +8,44 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
 
 // Public — canonical navigation: Home, Tentang Kami, Produk, Layanan, Portofolio.
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tentang-kami', [PageController::class, 'about'])->name('about');
 Route::get('/layanan', [PageController::class, 'services'])->name('services');
 Route::get('/portofolio', [PageController::class, 'portfolio'])->name('portfolio');
+
+// SEO Sitemap
+Route::get('/sitemap.xml', function () {
+    $siteUrl = config('seo.site_url');
+    $sitemapRoutes = config('seo.sitemap_routes');
+
+    $urls = collect($sitemapRoutes)->map(function (string $routeName) use ($siteUrl) {
+        return [
+            'loc' => route($routeName),
+            'lastmod' => now()->toAtomString(),
+            'changefreq' => 'weekly',
+            'priority' => $routeName === 'home' ? '1.0' : '0.8',
+        ];
+    })->toArray();
+
+    $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+    $xml .= "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n";
+
+    foreach ($urls as $url) {
+        $xml .= "  <url>\n";
+        $xml .= "    <loc>" . e($url['loc']) . "</loc>\n";
+        $xml .= "    <lastmod>" . e($url['lastmod']) . "</lastmod>\n";
+        $xml .= "    <changefreq>" . e($url['changefreq']) . "</changefreq>\n";
+        $xml .= "    <priority>" . e($url['priority']) . "</priority>\n";
+        $xml .= "  </url>\n";
+    }
+
+    $xml .= "</urlset>";
+
+    return Response::make($xml, 200, ['Content-Type' => 'application/xml']);
+})->name('sitemap');
 
 // Legacy URL redirects — preserve inbound links from old IA.
 Route::permanentRedirect('/manufacturing', '/layanan#proses-produksi');

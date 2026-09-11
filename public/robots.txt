@@ -1,2 +1,7 @@
 User-agent: *
-Disallow:
+Allow: /
+
+Disallow: /admin/
+Disallow: /login
+
+Sitemap: https://multiandriaindonesia.com/sitemap.xml
