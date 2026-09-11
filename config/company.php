@@ -132,19 +132,14 @@ return [
     | Shape once populated:
     | ['quote' => '...', 'name' => '...', 'company' => '...', 'role' => null, 'logo' => null]
     |
-    | ⚠ TEMPORARY DUMMY DATA BELOW — for local visual preview only, at the
-    | user's explicit request, so they can see the carousel with real cards
-    | instead of the empty state. This is NOT verified content and must be
-    | reverted to an empty array before committing / going live.
+    | Intentionally empty — no testimonial appears anywhere in the Company
+    | Profile, the old codebase, or the live site. Populate only with real,
+    | business-supplied testimonials; never with fabricated or prototype
+    | placeholder quotes (SEO Phase 3 content-integrity audit, see
+    | docs/CONTENT_AUDIT.md and docs/CONTENT_REQUIREMENTS.md).
     |
     */
-    'testimonials' => [
-        // Temporary placeholder data supplied for the prototype; replace with verified client testimonials before launch.
-        ['name' => 'Dimas Prasetyo', 'role' => 'HRD Manager, PT Sinar Abadi Logistik', 'quote' => 'Multi Andria bantu produksi seragam kerja untuk 150 karyawan kami. Kualitas jahitan rapi, bahan sesuai spesifikasi, dan pengerjaan selesai tepat waktu meski jumlahnya besar. Komunikasi via WhatsApp juga cepat direspon.'],
-        ['name' => 'Ratna Kusuma', 'role' => 'Ketua Panitia Alumni, SMA Negeri 3 Bandung', 'quote' => 'Pesan kaos alumni untuk acara reuni akbar, desain custom dari logo sekolah. Prosesnya gampang, tinggal diskusi lewat WhatsApp, revisi desain juga cepat. Hasilnya melebihi ekspektasi, banyak alumni yang puas.'],
-        ['name' => 'Andre Wijaya', 'role' => 'Owner, Brand Fashion Lokal (Streetwear)', 'quote' => 'Sudah dua kali produksi hoodie custom di Multi Andria untuk brand saya. Quality control-nya konsisten, jahitan kuat, dan mereka fleksibel soal MOQ untuk brand kecil seperti kami.'],
-        ['name' => 'Siti Nurhaliza', 'role' => 'Event Organizer, Java Sport Run', 'quote' => 'Produksi jersey lari untuk 500 peserta event kami, dari sablon nomor sampai bahan dry-fit semuanya sesuai request. Pengiriman juga rapi, langsung dikoordinasikan lewat tim mereka.'],
-    ],
+    'testimonials' => [],
 
     // Temporary FAQ copy supplied for the prototype; replace with business-verified answers before launch.
     'faqs' => [

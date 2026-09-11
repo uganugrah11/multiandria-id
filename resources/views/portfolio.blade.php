@@ -1,6 +1,6 @@
 <x-layouts.app
-    title="Portofolio"
-    description="PT Multi Andria Indonesia — contoh hasil produksi untuk brand, komunitas, sekolah, institusi, dan pemerintahan. Konsultasi kebutuhan produksi langsung via WhatsApp."
+    :title="config('seo.pages.portfolio.title')"
+    :description="config('seo.pages.portfolio.description')"
     :breadcrumbs="[
         ['name' => 'Home', 'url' => route('home')],
         ['name' => 'Portofolio', 'url' => route('portfolio')],

@@ -1,6 +1,6 @@
 <x-layouts.app
-    title="Layanan"
-    description="PT Multi Andria Indonesia — Clothing Design & Production dalam dua model kerja sama: Jasa CMT dan Jasa FOB. Proses produksi dengan Quality Control dari desain hingga pengiriman."
+    :title="config('seo.pages.services.title')"
+    :description="config('seo.pages.services.description')"
     :breadcrumbs="[
         ['name' => 'Home', 'url' => route('home')],
         ['name' => 'Layanan', 'url' => route('services')],
@@ -274,6 +274,8 @@
         heading="Konsultasikan Kebutuhan Produksi Anda"
         description="Diskusikan model kerja sama, lead time, dan spesifikasi produk dengan tim Multi Andria Indonesia."
         :whatsapp-message="'Halo Multi Andria Indonesia, saya ingin berkonsultasi mengenai proses dan kebutuhan produksi garment.'"
+        secondary-label="Lihat Portofolio Produksi"
+        secondary-url="{{ route('portfolio') }}"
     />
 
 </x-layouts.app>

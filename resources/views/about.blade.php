@@ -1,6 +1,6 @@
 <x-layouts.app
-    title="Tentang Kami"
-    description="PT Multi Andria Indonesia — konveksi & distributor bahan tekstil serta produk fashion. Profil perusahaan, skala, visi & misi, sertifikasi, perjalanan, dan lokasi kami."
+    :title="config('seo.pages.about.title')"
+    :description="config('seo.pages.about.description')"
     :breadcrumbs="[
         ['name' => 'Home', 'url' => route('home')],
         ['name' => 'Tentang Kami', 'url' => route('about')],
@@ -91,6 +91,10 @@
                             <dd class="mt-1 text-lg font-bold text-mai-charcoal">Bintaro &amp; Sukabumi</dd>
                         </div>
                     </dl>
+
+                    <p class="reveal mt-8 text-sm leading-relaxed text-mai-slate" style="--reveal-delay: 160ms">
+                        Pelajari lebih lanjut <a href="{{ route('services') }}" class="font-semibold text-mai-red hover:text-mai-wine">layanan produksi garment kami</a>, termasuk model kerja sama Jasa CMT dan Jasa FOB.
+                    </p>
                 </div>
             </div>
         </div>

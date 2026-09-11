@@ -1,4 +1,7 @@
-<x-layouts.app>
+<x-layouts.app
+    :title="config('seo.pages.home.title')"
+    :description="config('seo.pages.home.description')"
+>
 
     {{-- 1. Hero — full-bleed production photography. Decorative image (alt="") since
          the headline carries the message; role=presentation keeps it out of the
