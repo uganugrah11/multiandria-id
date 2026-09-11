@@ -6,7 +6,6 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 class ProductSeeder extends Seeder
 {

@@ -48,7 +48,7 @@ return [
     */
     'description' => 'PT Multi Andria Indonesia (PT MAI) adalah perusahaan yang bergerak di bidang konveksi & distributor bahan tekstil serta produk fashion. Berdiri sejak 2014, PT MAI dikenal karena kualitas & standar tinggi dalam produksinya, lead time yang singkat, serta berkomitmen pada praktik bisnis yang berkelanjutan dan bertanggung jawab.',
 
-    'vision' => "Menjadi perusahaan industri garmen terintegrasi nomor 1 di Indonesia yang memberikan pelayanan profesional dan kualitas produk terbaik, serta berkontribusi pada perkembangan industri tekstil nasional.",
+    'vision' => 'Menjadi perusahaan industri garmen terintegrasi nomor 1 di Indonesia yang memberikan pelayanan profesional dan kualitas produk terbaik, serta berkontribusi pada perkembangan industri tekstil nasional.',
 
     /*
     | The PDF lists exactly 5 mission points. The site previously showed 6

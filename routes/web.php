@@ -33,7 +33,7 @@ Route::get('/produk', function (Request $request) {
 
 // Admin auth (internal content management only — no public registration)
 Route::get('/login', [LoginController::class, 'create'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'store'])->middleware('guest');
+Route::post('/login', [LoginController::class, 'store'])->middleware(['guest', 'throttle:login']);
 Route::post('/logout', [LoginController::class, 'destroy'])->name('logout')->middleware('auth');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {

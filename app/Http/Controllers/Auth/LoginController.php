@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -15,6 +17,8 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
+        $throttleKey = Str::lower((string) $request->input('email')).'|'.$request->ip();
+
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -26,6 +30,7 @@ class LoginController extends Controller
             ])->onlyInput('email');
         }
 
+        RateLimiter::clear($throttleKey);
         $request->session()->regenerate();
 
         return redirect()->intended(route('admin.dashboard'));
