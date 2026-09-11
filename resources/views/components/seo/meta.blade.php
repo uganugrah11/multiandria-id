@@ -7,42 +7,31 @@
 ])
 
 @php
-    $seoConfig = config('seo');
-    $siteName = $seoConfig['site_name'];
-    $siteUrl = $seoConfig['site_url'];
-    $locale = $seoConfig['locale'];
-    $type = $seoConfig['type'];
-    
-    // Use provided values or fall back to defaults
-    $finalTitle = $title ?? $seoConfig['default_title'];
-    $finalDescription = $description ?? $seoConfig['default_description'];
-    $finalImage = $image ?? asset($seoConfig['default_image']);
-    $finalCanonical = $canonical ?? request()->url();
-    $finalRobots = $robots ?? 'index, follow';
+    $seo = app(\App\Support\SeoManager::class)->resolve($title, $description, $image, $canonical, $robots);
 @endphp
 
 <!-- Title -->
-<title>{{ $finalTitle }}</title>
+<title>{{ $seo['title'] }}</title>
 
 <!-- Meta Description -->
-<meta name="description" content="{{ $finalDescription }}">
-<meta name="robots" content="{{ $finalRobots }}">
+<meta name="description" content="{{ $seo['description'] }}">
+<meta name="robots" content="{{ $seo['robots'] }}">
 
 <!-- Canonical URL -->
-<link rel="canonical" href="{{ $finalCanonical }}">
+<link rel="canonical" href="{{ $seo['canonical'] }}">
 
 <!-- Open Graph -->
-<meta property="og:type" content="{{ $type }}">
-<meta property="og:site_name" content="{{ $siteName }}">
-<meta property="og:title" content="{{ $finalTitle }}">
-<meta property="og:description" content="{{ $finalDescription }}">
-<meta property="og:image" content="{{ $finalImage }}">
+<meta property="og:type" content="{{ $seo['type'] }}">
+<meta property="og:site_name" content="{{ $seo['site_name'] }}">
+<meta property="og:title" content="{{ $seo['title'] }}">
+<meta property="og:description" content="{{ $seo['description'] }}">
+<meta property="og:image" content="{{ $seo['image'] }}">
 <meta property="og:image:type" content="image/png">
-<meta property="og:url" content="{{ $finalCanonical }}">
-<meta property="og:locale" content="{{ $locale }}">
+<meta property="og:url" content="{{ $seo['canonical'] }}">
+<meta property="og:locale" content="{{ $seo['locale'] }}">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ $finalTitle }}">
-<meta name="twitter:description" content="{{ $finalDescription }}">
-<meta name="twitter:image" content="{{ $finalImage }}">
+<meta name="twitter:title" content="{{ $seo['title'] }}">
+<meta name="twitter:description" content="{{ $seo['description'] }}">
+<meta name="twitter:image" content="{{ $seo['image'] }}">

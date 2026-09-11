@@ -1,4 +1,11 @@
-<x-layouts.app title="Layanan" description="PT Multi Andria Indonesia — Clothing Design & Production dalam dua model kerja sama: Jasa CMT dan Jasa FOB. Proses produksi dengan Quality Control dari desain hingga pengiriman.">
+<x-layouts.app
+    title="Layanan"
+    description="PT Multi Andria Indonesia — Clothing Design & Production dalam dua model kerja sama: Jasa CMT dan Jasa FOB. Proses produksi dengan Quality Control dari desain hingga pengiriman."
+    :breadcrumbs="[
+        ['name' => 'Home', 'url' => route('home')],
+        ['name' => 'Layanan', 'url' => route('services')],
+    ]"
+>
 
     {{-- 1. Hero — full-bleed production facility photograph.
          Assigned by the project owner as the Layanan/manufacturing hero.
@@ -19,6 +26,10 @@
 
         <div class="relative mx-auto flex min-h-[82vh] max-w-7xl items-center px-4 pt-32 pb-20 sm:px-6 lg:px-8">
             <div class="max-w-2xl">
+                <x-seo.breadcrumbs :items="[
+                    ['name' => 'Home', 'url' => route('home')],
+                    ['name' => 'Layanan', 'url' => route('services')],
+                ]" />
                 <p data-hero-eyebrow class="text-xs font-bold uppercase tracking-widest text-mai-soft-red">Layanan</p>
                 <span data-hero-accent class="mt-4 block h-0.5 w-12 bg-mai-red" aria-hidden="true"></span>
                 <h1 data-hero-headline class="mt-5 text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">

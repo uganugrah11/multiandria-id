@@ -257,22 +257,4 @@
         secondary-label="Lihat Produk"
         secondary-url="{{ route('portfolio').'#produk' }}"
     />
-
-    @php
-        $faqSchema = [
-            '@context' => 'https://schema.org',
-            '@type' => 'FAQPage',
-            'mainEntity' => collect(config('company.faqs'))->map(function (array $faq) {
-                return [
-                    '@type' => 'Question',
-                    'name' => $faq['question'],
-                    'acceptedAnswer' => [
-                        '@type' => 'Answer',
-                        'text' => $faq['answer'],
-                    ],
-                ];
-            })->values()->all(),
-        ];
-    @endphp
-    <script type="application/ld+json">@json($faqSchema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)</script>
 </x-layouts.app>

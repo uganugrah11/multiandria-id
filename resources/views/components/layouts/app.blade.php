@@ -2,10 +2,28 @@
     'title' => null,
     'description' => null,
     'solidHeader' => false,
+    'breadcrumbs' => null,
 ])
 
 @php
     $startSolid = $solidHeader;
+
+    $seoManager = app(\App\Support\SeoManager::class);
+    $resolvedSeo = $seoManager->resolve($title, $description);
+
+    $jsonLdSchemas = [
+        $seoManager->organizationSchema(),
+        $seoManager->websiteSchema(),
+    ];
+
+    $breadcrumbSchema = null;
+
+    if (! empty($breadcrumbs)) {
+        $breadcrumbSchema = $seoManager->breadcrumbListSchema($resolvedSeo['canonical'], $breadcrumbs);
+        $jsonLdSchemas[] = $breadcrumbSchema;
+    }
+
+    $jsonLdSchemas[] = $seoManager->webPageSchema($resolvedSeo, $breadcrumbSchema['@id'] ?? null);
 @endphp
 
 <!DOCTYPE html>
@@ -16,6 +34,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <x-seo.meta :title="$title" :description="$description" />
+    <x-seo.json-ld :schemas="$jsonLdSchemas" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

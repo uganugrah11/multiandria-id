@@ -1,4 +1,11 @@
-<x-layouts.app title="Portofolio" description="PT Multi Andria Indonesia — contoh hasil produksi untuk brand, komunitas, sekolah, institusi, dan pemerintahan. Konsultasi kebutuhan produksi langsung via WhatsApp.">
+<x-layouts.app
+    title="Portofolio"
+    description="PT Multi Andria Indonesia — contoh hasil produksi untuk brand, komunitas, sekolah, institusi, dan pemerintahan. Konsultasi kebutuhan produksi langsung via WhatsApp."
+    :breadcrumbs="[
+        ['name' => 'Home', 'url' => route('home')],
+        ['name' => 'Portofolio', 'url' => route('portfolio')],
+    ]"
+>
 
     {{-- 1. Hero — showcase positioning. Uses the owner-assigned production
          facility background (same asset as the Layanan hero, treated here
@@ -19,6 +26,10 @@
 
         <div class="relative mx-auto flex min-h-[82vh] max-w-7xl items-center px-4 pt-32 pb-20 sm:px-6 lg:px-8">
             <div class="max-w-2xl">
+                <x-seo.breadcrumbs :items="[
+                    ['name' => 'Home', 'url' => route('home')],
+                    ['name' => 'Portofolio', 'url' => route('portfolio')],
+                ]" />
                 <p data-hero-eyebrow class="text-xs font-bold uppercase tracking-widest text-mai-soft-red">Portofolio</p>
                 <span data-hero-accent class="mt-4 block h-0.5 w-12 bg-mai-red" aria-hidden="true"></span>
                 <h1 data-hero-headline class="mt-5 text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">

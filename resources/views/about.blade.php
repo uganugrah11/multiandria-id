@@ -1,4 +1,11 @@
-<x-layouts.app title="Tentang Kami" description="PT Multi Andria Indonesia — konveksi & distributor bahan tekstil serta produk fashion. Profil perusahaan, skala, visi & misi, sertifikasi, perjalanan, dan lokasi kami.">
+<x-layouts.app
+    title="Tentang Kami"
+    description="PT Multi Andria Indonesia — konveksi & distributor bahan tekstil serta produk fashion. Profil perusahaan, skala, visi & misi, sertifikasi, perjalanan, dan lokasi kami."
+    :breadcrumbs="[
+        ['name' => 'Home', 'url' => route('home')],
+        ['name' => 'Tentang Kami', 'url' => route('about')],
+    ]"
+>
 
     {{-- 1. Hero — full-bleed HQ photograph (company identity, NOT factory proof).
          Assigned by project owner. Decorative image; headline carries the message. --}}
@@ -18,6 +25,10 @@
 
         <div class="relative mx-auto flex min-h-[82vh] max-w-7xl items-center px-4 pt-32 pb-20 sm:px-6 lg:px-8">
             <div class="max-w-2xl">
+                <x-seo.breadcrumbs :items="[
+                    ['name' => 'Home', 'url' => route('home')],
+                    ['name' => 'Tentang Kami', 'url' => route('about')],
+                ]" />
                 <p data-hero-eyebrow class="text-xs font-bold uppercase tracking-widest text-mai-soft-red">Tentang Kami</p>
                 <h1 data-hero-headline class="mt-5 text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
                     PT Multi Andria Indonesia
