@@ -18,16 +18,10 @@ Route::get('/portofolio', [PageController::class, 'portfolio'])->name('portfolio
 
 // SEO Sitemap
 Route::get('/sitemap.xml', function () {
-    $siteUrl = config('seo.site_url');
     $sitemapRoutes = config('seo.sitemap_routes');
 
-    $urls = collect($sitemapRoutes)->map(function (string $routeName) use ($siteUrl) {
-        return [
-            'loc' => route($routeName),
-            'lastmod' => now()->toAtomString(),
-            'changefreq' => 'weekly',
-            'priority' => $routeName === 'home' ? '1.0' : '0.8',
-        ];
+    $urls = collect($sitemapRoutes)->map(function (string $routeName) {
+        return ['loc' => route($routeName)];
     })->toArray();
 
     $xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
@@ -36,9 +30,6 @@ Route::get('/sitemap.xml', function () {
     foreach ($urls as $url) {
         $xml .= "  <url>\n";
         $xml .= "    <loc>" . e($url['loc']) . "</loc>\n";
-        $xml .= "    <lastmod>" . e($url['lastmod']) . "</lastmod>\n";
-        $xml .= "    <changefreq>" . e($url['changefreq']) . "</changefreq>\n";
-        $xml .= "    <priority>" . e($url['priority']) . "</priority>\n";
         $xml .= "  </url>\n";
     }
 
@@ -57,7 +48,7 @@ Route::permanentRedirect('/kontak', '/tentang-kami#lokasi');
 // lands on the #produk showcase anchor so the category filter is in view.
 Route::get('/produk', function (Request $request) {
     $url = $request->filled('type')
-        ? route('portfolio', ['type' => $request->string('type')]).'#produk'
+        ? route('portfolio', ['type' => (string) $request->string('type')]).'#produk'
         : route('portfolio').'#produk';
 
     return redirect($url)->setStatusCode(301);

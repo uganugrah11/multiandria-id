@@ -3,6 +3,7 @@
     'description' => null,
     'solidHeader' => false,
     'breadcrumbs' => null,
+    'robots' => 'index, follow',
 ])
 
 @php
@@ -33,8 +34,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <x-seo.meta :title="$title" :description="$description" />
+    <x-seo.meta :title="$title" :description="$description" :robots="$robots" />
     <x-seo.json-ld :schemas="$jsonLdSchemas" />
+
+    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
+    <link rel="icon" href="{{ asset('images/logo-mai-transparent.png') }}" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
